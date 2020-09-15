@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_140437) do
+ActiveRecord::Schema.define(version: 2020_09_15_143516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_09_15_140437) do
     t.bigint "paying_user_id"
     t.date "due_date"
     t.integer "status", default: 1
+    t.bigint "flat_id"
+    t.index ["flat_id"], name: "index_bills_on_flat_id"
     t.index ["paying_user_id"], name: "index_bills_on_paying_user_id"
     t.index ["user_id"], name: "index_bills_on_user_id"
   end
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_140437) do
     t.bigint "flat_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_landlord", default: false
     t.index ["flat_id"], name: "index_flatmembers_on_flat_id"
     t.index ["user_id"], name: "index_flatmembers_on_user_id"
   end
@@ -141,6 +144,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_140437) do
     t.bigint "bill_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status", default: false
     t.index ["bill_id"], name: "index_payments_on_bill_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end

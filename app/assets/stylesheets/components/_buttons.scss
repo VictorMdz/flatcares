@@ -1,0 +1,17 @@
+.btn.text-white {
+  color: $white;
+}
+
+.btn.text-orange {
+  background-color: #fff;
+  color: #E7836B;
+}
+
+.btn.active-filter {
+  color: $white;
+}
+
+.btn.inactive-filter {
+  color: $gray;
+  background-color: $light-gray;
+}

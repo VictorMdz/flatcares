@@ -1,7 +1,31 @@
-.avatar {
-  width: 40px;
+.avatar-primary-orange {
+  width: 70px;
   border-radius: 50%;
+  // border: 5px solid $orange;
+  height: 70px;
+  background-size: cover;
 }
+
+.avatar-primary-gray {
+  width: 70px;
+  border-radius: 50%;
+  // border: 5px solid $light-gray;
+  height: 70px;
+  background-size: cover;
+}
+
+.avatar-secondary-orange {
+  width: 33px;
+  border-radius: 50%;
+  // border: 3px solid $orange;
+}
+
+.avatar-secondary-gray {
+  width: 33px;
+  border-radius: 50%;
+  // border: 3px solid $light-gray;
+}
+
 .avatar-large {
   width: 56px;
   border-radius: 50%;

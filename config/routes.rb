@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :bills
   resources :areas
+
   resources :areas do 
     resources :tasks, only: [ :new, :create, :update ]
 

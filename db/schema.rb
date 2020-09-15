@@ -11,7 +11,8 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 2020_09_15_125605) do
+ActiveRecord::Schema.define(version: 2020_09_15_132828) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
     t.bigint "bill_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status", default: false
     t.index ["bill_id"], name: "index_payments_on_bill_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end

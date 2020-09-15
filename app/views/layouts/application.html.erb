@@ -12,8 +12,16 @@
   </head>
 
   <body>
-    <div class="">
-      <%= yield %>
-    </div>
+    <%= render 'shared/navbar' %>
+ 
+    <%= yield %>
+    
+
+    <!-- example flash messages  -->
+
+    <p class="notice"><%= notice %></p>
+
+    <p class="alert"><%= alert %></p>
+
   </body>
 </html>

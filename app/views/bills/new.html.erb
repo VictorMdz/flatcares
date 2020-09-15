@@ -1,0 +1,8 @@
+<%= simple_form_for(@bill) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :amount %>
+  <%= f.input :due_date, as: :string, class: "form-control", :input_html => { :type => "date", :value => Date.today} %>
+  <%= f.input :paying_user_id,:collection %>
+
+  <%= f.submit "Submit the bill"%>
+<% end %>

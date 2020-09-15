@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :bills
+
   resources :areas
 
-  resources :areas do 
+  resources :areas do
     resources :tasks, only: [ :new, :create, :update ]
 
   end
   root to: 'pages#home'
 
-  resources :flats
+  resources :flats do
+    resources :bills
+  end
+
   resources :chatroom
   resources :chatroom do
     resources :messages

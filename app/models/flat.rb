@@ -1,6 +1,7 @@
 class Flat < ApplicationRecord
   has_many :flatmembers, dependent: :destroy
   has_many :users, through: :flatmembers
+
   has_many :bills
   has_many :events
   has_many :areas

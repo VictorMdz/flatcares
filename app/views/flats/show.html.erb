@@ -1,0 +1,33 @@
+<!-- CURRENT USER AVATAR -->
+<% if current_user.picture.attached? %>
+  <%= cl_image_tag current_user.user.picture.key %>
+<% else %>
+  <i class="fas fa-user-circle fa-2x"></i>
+<% end %>
+<p>You</p>
+
+<% @flat_flatmembers.each do |flatmember| %>
+<!-- FLATMEMBERS AVATAR AND NAME -->
+  <% if flatmember.user.id != current_user.id %>
+    <% if flatmember.user.picture.attached? %>
+      <%= cl_image_tag flatmember.user.picture.key %>
+    <% else %>
+      <i class="fas fa-user-circle fa-2x"></i>
+    <% end %>
+    <p><%= flatmember.user.first_name %></p>
+  <% end %>
+<% end %>
+
+<ul>
+  <% @notifications.each do |notification| %>
+    <% if notification.notifiable_type == "Bill" %>
+      <li>Bill - <%= notification.notifiable.name %> </li>
+    <% elsif notification.notifiable_type == "Event"  %>
+      <li>Event - <%= notification.notifiable.name %> </li>
+    <% elsif notification.notifiable_type == "Area" %>
+      <li>Area - <%= notification.notifiable.name %> </li>
+    <% else %>
+      <li>Chat</li>
+    <% end %>
+  <% end %>
+</ul>

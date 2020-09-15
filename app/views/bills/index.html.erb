@@ -1,0 +1,12 @@
+<h1>House Bills</h1>
+<div class="card">
+<% @bills.each do |bill| %>
+  <h3><%=bill.name%></h3>
+  <div>
+    <h4>Date:</h4>
+    <h4><%=bill.due_date%></h4>
+  </div>
+  <p><%=bill.status%></p>
+  <h4><%=bill.amount%></h4>
+<%end%>
+</div>

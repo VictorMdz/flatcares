@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_111028) do
+ActiveRecord::Schema.define(version: 2020_09_15_155623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "areas", force: :cascade do |t|
     t.string "name"
@@ -21,18 +42,24 @@ ActiveRecord::Schema.define(version: 2020_09_15_111028) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "assigned_user_id"
     t.bigint "previously_assigned_user_id"
+    t.bigint "flat_id"
+    t.integer "status", default: 0
     t.index ["assigned_user_id"], name: "index_areas_on_assigned_user_id"
+    t.index ["flat_id"], name: "index_areas_on_flat_id"
     t.index ["previously_assigned_user_id"], name: "index_areas_on_previously_assigned_user_id"
   end
 
   create_table "bills", force: :cascade do |t|
     t.string "name"
     t.integer "amount"
-    t.boolean "status", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "paying_user_id"
+    t.date "due_date"
+    t.integer "status", default: 1
+    t.bigint "flat_id"
+    t.index ["flat_id"], name: "index_bills_on_flat_id"
     t.index ["paying_user_id"], name: "index_bills_on_paying_user_id"
     t.index ["user_id"], name: "index_bills_on_user_id"
   end
@@ -46,13 +73,15 @@ ActiveRecord::Schema.define(version: 2020_09_15_111028) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string "type"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "flat_id"
+    t.integer "event_type"
+    t.index ["flat_id"], name: "index_events_on_flat_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -62,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_111028) do
     t.bigint "flat_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_landlord", default: false
     t.index ["flat_id"], name: "index_flatmembers_on_flat_id"
     t.index ["user_id"], name: "index_flatmembers_on_user_id"
   end
@@ -82,6 +112,28 @@ ActiveRecord::Schema.define(version: 2020_09_15_111028) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
+    t.string "notifiable_type", null: false
+    t.bigint "notifiable_id", null: false
+    t.string "key", null: false
+    t.string "group_type"
+    t.bigint "group_id"
+    t.integer "group_owner_id"
+    t.string "notifier_type"
+    t.bigint "notifier_id"
+    t.text "parameters"
+    t.datetime "opened_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_owner_id"], name: "index_notifications_on_group_owner_id"
+    t.index ["group_type", "group_id"], name: "index_notifications_on_group_type_and_group_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
+    t.index ["notifier_type", "notifier_id"], name: "index_notifications_on_notifier_type_and_notifier_id"
+    t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"
+  end
+
   create_table "participations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
@@ -97,8 +149,27 @@ ActiveRecord::Schema.define(version: 2020_09_15_111028) do
     t.bigint "bill_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status", default: false
     t.index ["bill_id"], name: "index_payments_on_bill_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
+    t.string "key", null: false
+    t.boolean "subscribing", default: true, null: false
+    t.boolean "subscribing_to_email", default: true, null: false
+    t.datetime "subscribed_at"
+    t.datetime "unsubscribed_at"
+    t.datetime "subscribed_to_email_at"
+    t.datetime "unsubscribed_to_email_at"
+    t.text "optional_targets"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["key"], name: "index_subscriptions_on_key"
+    t.index ["target_type", "target_id", "key"], name: "index_subscriptions_on_target_type_and_target_id_and_key", unique: true
+    t.index ["target_type", "target_id"], name: "index_subscriptions_on_target_type_and_target_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -124,6 +195,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_111028) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bills", "users"
   add_foreign_key "chatrooms", "flats"
   add_foreign_key "events", "users"

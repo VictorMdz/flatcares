@@ -6,11 +6,11 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $background-flatcares;
-$font-size-base: 1rem;
+$body-bg:                 $light-gray;
+$font-size-base: 1.2rem;
 
 // Colors
-$body-color: $gray;
+$body-color: $text-color;
 $primary:    $blue;
 $success:    $green;
 $info:       $yellow;
@@ -24,6 +24,8 @@ $border-radius-sm: 2px;
 
 // Override other variables below!
 
-h1{
-  font-weight: 700;
+p {
+  font-weight: 300;
 }
+
+$h1-font-size: 64px;

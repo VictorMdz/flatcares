@@ -10,12 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_09_15_125605) do
+ActiveRecord::Schema.define(version: 2020_09_15_140437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -106,6 +104,28 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
+    t.string "notifiable_type", null: false
+    t.bigint "notifiable_id", null: false
+    t.string "key", null: false
+    t.string "group_type"
+    t.bigint "group_id"
+    t.integer "group_owner_id"
+    t.string "notifier_type"
+    t.bigint "notifier_id"
+    t.text "parameters"
+    t.datetime "opened_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_owner_id"], name: "index_notifications_on_group_owner_id"
+    t.index ["group_type", "group_id"], name: "index_notifications_on_group_type_and_group_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
+    t.index ["notifier_type", "notifier_id"], name: "index_notifications_on_notifier_type_and_notifier_id"
+    t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"
+  end
+
   create_table "participations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
@@ -123,6 +143,24 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_id"], name: "index_payments_on_bill_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
+    t.string "key", null: false
+    t.boolean "subscribing", default: true, null: false
+    t.boolean "subscribing_to_email", default: true, null: false
+    t.datetime "subscribed_at"
+    t.datetime "unsubscribed_at"
+    t.datetime "subscribed_to_email_at"
+    t.datetime "unsubscribed_to_email_at"
+    t.text "optional_targets"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["key"], name: "index_subscriptions_on_key"
+    t.index ["target_type", "target_id", "key"], name: "index_subscriptions_on_target_type_and_target_id_and_key", unique: true
+    t.index ["target_type", "target_id"], name: "index_subscriptions_on_target_type_and_target_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -148,9 +186,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-
   add_foreign_key "bills", "users"
   add_foreign_key "chatrooms", "flats"
   add_foreign_key "events", "users"
@@ -160,9 +196,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
   add_foreign_key "messages", "users"
   add_foreign_key "participations", "events"
   add_foreign_key "participations", "users"
-
   add_foreign_key "payments", "bills"
   add_foreign_key "payments", "users"
-
   add_foreign_key "tasks", "areas"
 end

@@ -5,9 +5,9 @@ class BillsController < ApplicationController
   end
 
   def index
-    
+    @bills = Bill.all
   end
-  
+
   private
 
   def set_bill
@@ -16,5 +16,6 @@ class BillsController < ApplicationController
 
 
  
+
 
 end

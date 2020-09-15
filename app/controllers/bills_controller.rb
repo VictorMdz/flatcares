@@ -9,14 +9,18 @@ class BillsController < ApplicationController
   end
 
   def new
+    @flat = Flat.find(params[:flat_id])
     @bill = Bill.new
   end
 
   def create
+
     @bill = Bill.new(bill_params)
 
+    @bill.flat = @flat
+
     if @bill.save
-      redirect_to bill_path(@bill)
+      redirect_to flat_bills_path(@flat)
     else
       render "bills/show"
     end

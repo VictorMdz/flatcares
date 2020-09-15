@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :flatmembers, dependent: :destroy
+  has_many :flats, through: :flatmembers
   has_many :messages, dependent: :destroy
 
   has_many :events, dependent: :destroy

@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_09_15_125605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,11 +51,12 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
   create_table "bills", force: :cascade do |t|
     t.string "name"
     t.integer "amount"
-    t.boolean "status", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "paying_user_id"
+    t.date "due_date"
+    t.integer "status", default: 1
     t.index ["paying_user_id"], name: "index_bills_on_paying_user_id"
     t.index ["user_id"], name: "index_bills_on_user_id"
   end
@@ -112,6 +115,16 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
     t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "user_id", null: false
+    t.bigint "bill_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_payments_on_bill_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.boolean "completed"
@@ -135,7 +148,9 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+
   add_foreign_key "bills", "users"
   add_foreign_key "chatrooms", "flats"
   add_foreign_key "events", "users"
@@ -145,5 +160,9 @@ ActiveRecord::Schema.define(version: 2020_09_15_125605) do
   add_foreign_key "messages", "users"
   add_foreign_key "participations", "events"
   add_foreign_key "participations", "users"
+
+  add_foreign_key "payments", "bills"
+  add_foreign_key "payments", "users"
+
   add_foreign_key "tasks", "areas"
 end

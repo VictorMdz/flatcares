@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { invitations: 'invitations' }
-  resources :bills
-  devise_for :users
 
   resources :areas do
     resources :tasks, only: [ :new, :create, :update ]

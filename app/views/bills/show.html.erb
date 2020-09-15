@@ -1,0 +1,17 @@
+<% @bill.payments.each do |payment| %>
+  <%= payment.user.first_name %>
+  <%= payment.amount %>
+  <% if (payment.status == true) & (payment.user_id == @bill.paying_user_id) %>
+    <p>First Payment</p>
+    <p>Has paid</p>
+  <% elsif (payment.status == false) & (payment.user_id != @bill.paying_user_id) %>
+    <p>Has to pay to <%= @bill.paying_user.first_name %> </p>
+      <%= simple_form_for payment, url: flat_bill_path(@flat, @bill), method: :patch do |f| %>
+        <%= f.input :status, :as => :hidden, :input_html => { :value => :true } %>
+        <%= f.submit "Paid?" %>
+      <% end %>
+  <% else %>
+    <p>Has paid to <%= @bill.paying_user.first_name %></p>
+  <% end %>
+<% end %>
+

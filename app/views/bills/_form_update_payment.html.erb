@@ -1,0 +1,4 @@
+<%= simple_form_for payment, method: :patch do |f| %>
+  <%= f.input :status, :as => :hidden, :input_html => { :value => :true } %>
+  <%= f.submit "Paid?" %>
+<% end %>

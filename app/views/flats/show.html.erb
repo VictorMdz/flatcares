@@ -17,3 +17,17 @@
     <p><%= flatmember.user.first_name %></p>
   <% end %>
 <% end %>
+
+<ul>
+  <% @notifications.each do |notification| %>
+    <% if notification.notifiable_type == "Bill" %>
+      <li>Bill - <%= notification.notifiable.name %> </li>
+    <% elsif notification.notifiable_type == "Event"  %>
+      <li>Event - <%= notification.notifiable.name %> </li>
+    <% elsif notification.notifiable_type == "Area" %>
+      <li>Area - <%= notification.notifiable.name %> </li>
+    <% else %>
+      <li>Chat</li>
+    <% end %>
+  <% end %>
+</ul>

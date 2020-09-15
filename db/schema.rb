@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_143516) do
+ActiveRecord::Schema.define(version: 2020_09_15_155623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,10 @@ ActiveRecord::Schema.define(version: 2020_09_15_143516) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "assigned_user_id"
     t.bigint "previously_assigned_user_id"
+    t.bigint "flat_id"
+    t.integer "status", default: 0
     t.index ["assigned_user_id"], name: "index_areas_on_assigned_user_id"
+    t.index ["flat_id"], name: "index_areas_on_flat_id"
     t.index ["previously_assigned_user_id"], name: "index_areas_on_previously_assigned_user_id"
   end
 
@@ -70,13 +73,15 @@ ActiveRecord::Schema.define(version: 2020_09_15_143516) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string "type"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "flat_id"
+    t.integer "event_type"
+    t.index ["flat_id"], name: "index_events_on_flat_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

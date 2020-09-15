@@ -1,6 +1,7 @@
 class Bill < ApplicationRecord
   belongs_to :user
   belongs_to :paying_user, class_name: 'User'
+  belongs_to :flat
 
   has_many :payments
   enum status: [:payed, :pending, :overdue]
@@ -11,8 +12,7 @@ class Bill < ApplicationRecord
 
   acts_as_notifiable :users,
     targets: ->(bill, key) {
-      raise
-      # ([comment.article.user] + comment.article.reload.commented_users.to_a - [comment.user]).uniq
+      bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)
     },
     notifiable_path: :bill_notifiable_path
 
@@ -21,6 +21,6 @@ class Bill < ApplicationRecord
   end
 
   def notify_users
-    notify :users, key: "bill.create"
+    notify :users, key: "bill.crueate"
   end
 end

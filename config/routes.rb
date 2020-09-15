@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :areas
+  
+  resources :areas do 
+    resources :tasks, only: [ :new, :create, :update ]
+
+  end
   root to: 'pages#home'
 
   resources :events

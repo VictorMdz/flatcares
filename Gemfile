@@ -66,3 +66,4 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'devise'
 
 gem 'pundit'
+gem 'devise_invitable', '~> 2.0.0'

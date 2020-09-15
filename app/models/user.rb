@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :flatmembers, dependent: :destroy
   has_many :flats, through: :flatmembers
+  
   has_many :messages, dependent: :destroy
 
   has_many :events, dependent: :destroy
@@ -19,9 +20,13 @@ class User < ApplicationRecord
   has_many :assigned_areas, class_name: 'Area', foreign_key: 'assigned_user_id'
   has_many :previously_assigned_areas, class_name: 'Area', foreign_key: 'previously_assigned_user_id'
 
+
   def living_in
     # flat_id = flatmembers.where(user_id: id, is_owner: false)
     # Flat.find flat_id
     flats.first
   end
+
+  acts_as_target
+
 end

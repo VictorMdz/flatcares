@@ -3,6 +3,7 @@ class FlatsController < ApplicationController
 
   def show
     @flat_flatmembers =  @flat.flatmembers
+    @notifications = current_user.notifications
   end
 
   def new

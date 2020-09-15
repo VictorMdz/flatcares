@@ -1,0 +1,7 @@
+<%= simple_form_for [@flat, @bill] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :amount %>
+  <%= f.input :due_date, as: :string, class: "form-control", :input_html => { :type => "date", :value => Date.today} %>
+  <%= f.association :paying_user, collection: @flat.users, label_method: :first_name, prompt: "Who paid the bill?" %>
+  <%= f.submit "Submit the bill"%>
+<% end %>

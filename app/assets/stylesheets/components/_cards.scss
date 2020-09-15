@@ -1,0 +1,45 @@
+
+.card-orange, .card-white, .card-gray, .calendar-card-white, .expenses-card-white {
+  border-radius: 50px;
+  padding: 38px;
+  box-shadow: 0px 0px 23px 17px rgba(198, 198, 198, 0.08);
+}
+
+.card-orange {
+  color: $white;
+  background-color: $orange;
+}
+
+.card-white {
+  color: $orange;
+  background-color: $white;
+}
+
+.card-gray {
+  background-color: $light-gray;
+}
+
+.expenses-card-white, .calendar-card-white {
+  background-color: $white;
+}
+
+.expense-details > * > *, .calendar-card-white > * > * {
+  margin: 0;
+}
+
+.expense-details {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.expenses-details:not(:last-child) {
+  border-bottom: 1px dashed #E4E4E4;
+}
+
+.card-half {
+  max-width: 50%;
+  margin: 15px;
+}
+

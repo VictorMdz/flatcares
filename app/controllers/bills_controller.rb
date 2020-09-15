@@ -5,15 +5,15 @@ class BillsController < ApplicationController
   end
 
   def index
+    @bills = Bill.all
   end
-
-
 
   private
 
   def set_bill
     @bill = Bill.find(params[:id])
   end
+
 
 
 

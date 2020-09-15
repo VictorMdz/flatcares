@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :bills
   resources :areas
 
-  resources :areas do
+  resources :areas do 
     resources :tasks, only: [ :new, :create, :update ]
 
   end

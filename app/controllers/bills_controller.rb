@@ -13,9 +13,4 @@ class BillsController < ApplicationController
   def set_bill
     @bill = Bill.find(params[:id])
   end
-
-
- 
-
-
 end

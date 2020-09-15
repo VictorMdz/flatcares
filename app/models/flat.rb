@@ -6,6 +6,7 @@ class Flat < ApplicationRecord
   has_many :events
   has_many :areas
 
+
   has_many :chatrooms, dependent: :destroy
   validates :name, presence: true
   validates :name, length: { minimum: 2 }

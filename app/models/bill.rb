@@ -19,7 +19,7 @@ class Bill < ApplicationRecord
       bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)
     },
     notifiable_path: :bill_notifiable_path
-  
+
   def status
     if Date.today > self.due_date
       "overdue"
@@ -29,7 +29,7 @@ class Bill < ApplicationRecord
       "pending"
     end
   end
-  
+
   private
 
   def bill_notifiable_path
@@ -40,13 +40,14 @@ class Bill < ApplicationRecord
     notify :users, key: "bill.create"
   end
 
-  def create_payments
-    amount_by_user = amount / flat.users.count
 
-    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_user, paid: true)
+  def create_payments
+    amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
+
+    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_users, paid: true)
 
     flat.users.where.not(id: paying_user_id).each do |user|
-      Payment.create(user_id: user.id, bill_id: id, amount: amount_by_user)
+      Payment.create(user_id: user.id, bill_id: id, amount: amount_by_users)
     end
   end
 

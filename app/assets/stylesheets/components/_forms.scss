@@ -1,0 +1,26 @@
+form.simple_form {
+  background-color: $white;
+  padding: 30px;
+  text-align: center;
+}
+
+form.simple_form input:not(.btn), form.simple_form select  {
+  border-radius: 10px;
+}
+
+form.simple_form input.form-control-file {
+  border-radius: 0px;
+}
+
+form.simple_form input, form.simple_form select option {
+  color: #a0a0a0;
+}
+
+
+form.simple_form input, form.simple_form select {
+  height: 50px;
+}
+
+form.simple_form select {
+  color: #6F747C;
+}

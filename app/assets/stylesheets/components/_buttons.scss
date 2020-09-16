@@ -8,12 +8,16 @@
 }
 
 .btn.active-filter {
-  color: $white;
+
 }
 
 .btn.inactive-filter {
   color: $gray;
   background-color: $light-gray;
+  &.active {
+    color: $white;
+    background-color: #E7836B
+  }
 }
 
 .btn {

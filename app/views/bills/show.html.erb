@@ -6,13 +6,20 @@
         <p> <%= @bill.due_date %> </p>
         <p> <strong> Total <%= @bill.amount %> € </strong></p>
       </div>
+      <div class="d-flex justify-content-between align-items-center">
         <%= link_to "< Go to Bills", flat_bills_path, class: "primary-link" %>
+        <% if @bill.invoice.attached? %>
+          <a href="<%= cl_image_path @bill.invoice.key %>" target="_blank">Invoice file</a>
+        <% else %>
+          <p>No invoice file attached</p>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <div class="row justify-content-center m-3">
     <div class="col-12">
-      <% @bill.payments.order("created_at desc").each do |payment| %>
+      <% @bill.payments.order("created_at asc").each do |payment| %>
         <div class="<%= (payment.user_id == @bill.paying_user_id) || (payment.paid == true) ? 'expenses-card-white' : 'card-gray' %>">
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">

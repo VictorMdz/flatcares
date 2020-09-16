@@ -15,3 +15,23 @@ $headers-font: "Rubik", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+// Text
+p {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+p.secondary-p {
+  font-size: 12px;
+}
+
+a.primary-link {
+  color: #E7836B;
+  text-decoration: underline;
+}
+
+a.secondary-link {
+  color: #535353;
+  text-decoration: underline;
+}

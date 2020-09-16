@@ -42,16 +42,20 @@
 
 .card-half-orange {
   color: $white;
-  width: 48%;
   margin: 5px;
   padding: 16px;
   background-color: $orange;
   border-radius: 15px;
 }
 
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .card-half-gray {
   color: $gray;
-  width: 48%;
   margin: 5px;
   padding: 16px;
   background-color: $light-gray;

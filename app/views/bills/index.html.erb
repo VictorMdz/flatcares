@@ -52,13 +52,13 @@
       <div class="cards-grid">
       <% @bills.each do |bill| %>
       <div class="<%= (bill.status == "pending") || (bill.status == "overdue") ? 'card-half-gray' : 'card-half-orange' %>">
-          <h3><%=bill.name%></h3>
-          <p><%=bill.due_date%></p>
-          <div class="d-flex justify-content-between align-items-end">
-            <p class="secondary-p m-0"><br><%=bill.status%></p>
-            <h3><%=bill.amount%></h3>
-          </div>
+        <h3><%=bill.name%></h3>
+        <p><%=bill.due_date%>Date:</p>
+        <div class="d-flex justify-content-between align-items-end">
+          <p class="secondary-p m-0"><br><%=bill.status.capitalize%></p>
+          <h3><%=bill.amount%>€</h3>
         </div>
+      </div>
       <%end%>
     </div>
   </div> 

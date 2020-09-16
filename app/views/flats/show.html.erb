@@ -1,33 +1,129 @@
-<!-- CURRENT USER AVATAR -->
-<% if current_user.picture.attached? %>
-  <%= cl_image_tag current_user.user.picture.key %>
-<% else %>
-  <i class="fas fa-user-circle fa-2x"></i>
-<% end %>
-<p>You</p>
+<!-- FLAT NAME -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center"><%= @flat.name %></h2>
+    </div>
+  </div>
+</div>
 
-<% @flat_flatmembers.each do |flatmember| %>
-<!-- FLATMEMBERS AVATAR AND NAME -->
-  <% if flatmember.user.id != current_user.id %>
-    <% if flatmember.user.picture.attached? %>
-      <%= cl_image_tag flatmember.user.picture.key %>
-    <% else %>
-      <i class="fas fa-user-circle fa-2x"></i>
-    <% end %>
-    <p><%= flatmember.user.first_name %></p>
-  <% end %>
-<% end %>
+<!-- AVATARS -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 justify-content-center d-flex">
+      <div class="d-flex flex-column align-items-center">
+        <!-- CURRENT USER AVATAR -->
+        <% if current_user.picture.attached? %>
+          <%= cl_image_tag current_user.user.picture.key, class: 'avatar-primary-gray' %>
+        <% else %>
+          <i class="fas fa-user-circle fa-3x"></i>
+        <% end %>
+        <p>You</p>
+      </div>
+    </div>
+  </div>
 
-<ul>
-  <% @notifications.each do |notification| %>
-    <% if notification.notifiable_type == "Bill" %>
-      <li>Bill - <%= notification.notifiable.name %> </li>
-    <% elsif notification.notifiable_type == "Event"  %>
-      <li>Event - <%= notification.notifiable.name %> </li>
-    <% elsif notification.notifiable_type == "Area" %>
-      <li>Area - <%= notification.notifiable.name %> </li>
-    <% else %>
-      <li>Chat</li>
+  <div class="row justify-content-center">
+    <% @flat_flatmembers.each do |flatmember| %>
+      <% if flatmember.user.id != current_user.id %>
+        <div class="col-3 justify-content-center d-flex">
+          <div class="d-flex flex-column align-items-center">
+            <!-- FLATMEMBERS AVATAR AND NAME -->
+              <% if flatmember.user.picture.attached? %>
+                <%= cl_image_tag flatmember.user.picture.key, class: 'avatar-secondary-gray' %>
+              <% else %>
+                <i class="fas fa-user-circle fa-2x"></i>
+              <% end %>
+              <p><%= flatmember.user.first_name %></p>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </div>
+</div>
+
+<!-- NOTIFICATIONS NAME -->
+<div class="container mt-5 mb-1">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="text-start">Notifications</h4>
+    </div>
+  </div>
+</div>
+
+
+<!-- NOTIFICATIONS -->
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <% @notifications.each do |notification| %>
+        <% if notification.notifiable_type == "Bill" %>
+        <!-- NEW BILL ADDED -->
+          <div class="row calendar-card-white my-3">
+            <div class="col-2 justify-content-start align-items-center d-flex">
+              <!-- AVATAR -->
+              <% if notification.notifiable.user.picture.attached? %>
+                <%= cl_image_tag notification.notifiable.user.picture.key, class: 'avatar-secondary-gray' %>
+              <% else %>
+                <i class="fas fa-user-circle fa-2x"></i>
+              <% end %>
+            </div>
+            <div class="col-8 justify-content-start align-items-start">
+              <!-- USER NAME -->
+              <h6><%= notification.notifiable.user.first_name %></h6>
+              <!-- BILL NAME -->
+              <p>Added <%= notification.notifiable.name %></p>
+              <%= link_to "Bill", flat_bill_path(notification.notifiable.flat_id, notification.notifiable.id) %>
+            </div>
+            <div class="col-2 justify-content-end align-items-center d-flex">
+              <i class="fas fa-file-invoice-dollar fa-2x text-primary"></i>
+            </div>
+          </div>
+
+          <!-- NEW EVENT ADDED -->
+        <% elsif notification.notifiable_type == "Event" %>
+          <div class="row calendar-card-white my-3">
+            <div class="col-2 justify-content-start align-items-center d-flex">
+              <!-- AVATAR -->
+              <% if notification.notifiable.user.picture.attached? %>
+                <%= cl_image_tag notification.notifiable.user.picture.key, class: 'avatar-secondary-gray' %>
+              <% else %>
+                <i class="fas fa-user-circle fa-2x"></i>
+              <% end %>
+            </div>
+            <div class="col-8 justify-content-start align-items-start">
+              <!-- USER NAME -->
+              <h6><%= notification.notifiable.user.first_name %></h6>
+              <!-- EVENT NAME -->
+              <p>Created <%= notification.notifiable.name %> for <%= notification.notifiable.start_date.day %>/<%= notification.notifiable.start_date.month %> </p>
+            </div>
+            <div class="col-2 justify-content-end align-items-center d-flex">
+              <i class="fas fa-calendar-alt fa-2x text-primary"></i>
+            </div>
+          </div>
+
+          <!-- NEW AREA ASSINGMENT -->
+        <% elsif notification.notifiable_type == "Area" %>
+          <% if notification.notifiable.assigned_user_id == current_user.id %>
+            <div class="row calendar-card-white my-3">
+              <div class="col-10 justify-content-start align-items-start">
+                <!-- AREA NAME -->
+                <p>You have been assigned to <strong><%= notification.notifiable.name %></strong></p>
+              </div>
+              <div class="col-2 justify-content-end d-flex">
+                <i class="fas fa-tasks fa-2x text-primary"></i>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- NEW MESSAGE IN CHAT -->
+        <% else %>
+          <div class="calendar-card-white my-3">
+            Chat
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

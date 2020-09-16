@@ -3,7 +3,6 @@ class BillsController < ApplicationController
 
   def show
     @flat = Flat.find(params[:flat_id])
-
   end
 
   def index

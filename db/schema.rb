@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_09_16_135021) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,7 +57,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_135021) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "paying_user_id"
     t.date "due_date"
-    t.integer "status", default: 1
     t.bigint "flat_id"
     t.integer "amount_cents", default: 0, null: false
     t.index ["flat_id"], name: "index_bills_on_flat_id"

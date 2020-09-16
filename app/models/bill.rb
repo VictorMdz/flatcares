@@ -6,7 +6,6 @@ class Bill < ApplicationRecord
   has_one_attached :invoice
 
   has_many :payments
-  enum status: [:payed, :pending, :overdue]
 
   # validates :name, presence: true
   # validates :amount, presence: true
@@ -20,6 +19,18 @@ class Bill < ApplicationRecord
       bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)
     },
     notifiable_path: :bill_notifiable_path
+  
+  def status
+    if Date.today > self.due_date
+      "overdue"
+    elsif self.payments.where(paid: true).count == self.payments.count
+      "paid"
+    else
+      "pending"
+    end
+  end
+  
+  private
 
   def bill_notifiable_path
     bill_path(bill)
@@ -38,4 +49,5 @@ class Bill < ApplicationRecord
       Payment.create(user_id: user.id, bill_id: id, amount: amount_by_user)
     end
   end
+
 end

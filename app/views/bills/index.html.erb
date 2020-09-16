@@ -1,63 +1,67 @@
-<div class="main-container">
-  <div class="content">
-    <div class="header-container pl-4 my-4">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
       <h2>House Bills</h2>
-        <div class="row w-100 pt-4">
-          <div class="pt-2" data-controller="bills">
-            <div class="btn-group p-1 mb-2 ">  
-              <button
-                type="button"
-                class="btn inactive-filter"
-                data-target="bills.filter"
-                data-action="bills#toggleActive"
-              >Rent</button>
-            </div>
-            <div class="btn-group p-1 mb-2 ">  
-              <button
-                type="button"
-                class="btn inactive-filter"
-                data-action="bills#toggleActive"
-              >Electrecity</button>
-            </div>
-            <div class="btn-group p-1 mb-2 ">  
-              <button
-                type="button"
-                class="btn inactive-filter"
-                data-action="bills#toggleActive"
-              >Water</button>
-            </div>
-            <div class="btn-group p-1 mb-2 ">  
-              <button
-                type="button"
-                class="btn inactive-filter"
-                data-action="bills#toggleActive"
-              >Intert</button>
-            </div>
-            <div class="btn-group p-1 mb-2 ">  
-              <button
-                type="button"
-                class="btn inactive-filter"
-                data-action="bills#toggleActive"
-              >Gas</button>
-            </div>
-          </div>
+      <div class="pt-2" data-controller="bills">
+        <div class="btn-group p-1 mb-2 ">  
+          <button
+            type="button"
+            class="btn inactive-filter"
+            data-target="bills.filter"
+            data-action="bills#toggleActive"
+          >Rent</button>
         </div>
+        <div class="btn-group p-1 mb-2 ">  
+          <button
+            type="button"
+            class="btn inactive-filter"
+            data-action="bills#toggleActive"
+          >Electrecity</button>
+        </div>
+        <div class="btn-group p-1 mb-2 ">  
+          <button
+            type="button"
+            class="btn inactive-filter"
+            data-action="bills#toggleActive"
+          >Water</button>
+        </div>
+        <div class="btn-group p-1 mb-2 ">  
+          <button
+            type="button"
+            class="btn inactive-filter"
+            data-action="bills#toggleActive"
+          >Intert</button>
+        </div>
+        <div class="btn-group p-1 mb-2 ">  
+          <button
+            type="button"
+            class="btn inactive-filter"
+            data-action="bills#toggleActive"
+          >Gas</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="container">
-          <div class="card">
-            <% @bills.each do |bill| %>
+<div class="container">
+  <div class="row">
+    <div class="col-12"> 
+      <div class="d-flex">
+       <% @bills.each do |bill| %>
+        <div class="card-half-orange">
             <h3><%=bill.name%></h3>
-            <div>
-              <h4>Date:</h4>
-              <h4><%=bill.due_date%></h4>
+            <p><%=bill.due_date%></p>
+            <div class="d-flex justify-content-between align-items-end">
+              <p class="secondary-p m-0"><br><%=bill.status%></p>
+              <h3><%=bill.amount%></h3>
             </div>
-            <p><%=bill.status%></p>
-            <h4><%=bill.amount%></h4>
-            <%end%>
-          </div>
         </div>
+         <%end%>
+      </div>
     </div>
   </div>
 </div>
 
 
+   

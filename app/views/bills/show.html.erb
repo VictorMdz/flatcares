@@ -13,11 +13,7 @@
   <div class="row justify-content-center m-3">
     <div class="col-12">
       <% @bill.payments.order("created_at desc").each do |payment| %>
-        <% if payment.user_id == @bill.paying_user_id %>
-          <div class="expenses-card-white">
-        <% else %>
-          <div class="card-gray">
-        <% end %>
+        <div class="<%= (payment.user_id == @bill.paying_user_id) || (payment.paid == true) ? 'expenses-card-white' : 'card-gray' %>">
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
               <%= image_tag "add-button.svg" %>
@@ -41,7 +37,10 @@
                   <p class= "secondary-p">Has to pay to <%= @bill.paying_user.first_name %> </p>
                 </div>
               <% else %>
-                <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
+                <div class="text-right">
+                  <h2> <%= payment.amount %> </h2>
+                  <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
+                </div>
               <% end %>
             </div>
             <% if (payment.user_id != @bill.paying_user_id) & (payment.paid == false) %>
@@ -55,6 +54,5 @@
               </div>
             <% end %>
           </div>
-        <% end %>
-    </div>
+      <% end %>
   </div>

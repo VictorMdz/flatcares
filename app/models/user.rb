@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :bills
-  has_many :payments
+  has_many :bills, dependent: :destroy
+  has_many :payments, dependent: :destroy
   has_many :paying_bills, class_name: 'Bill', foreign_key: 'paying_user_id'
   has_one_attached :picture
   # devise :database_authenticatable, :confirmable, :invitable
@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_many :flatmembers, dependent: :destroy
   has_many :flats, through: :flatmembers
-  
+
   has_many :messages, dependent: :destroy
 
   has_many :events, dependent: :destroy

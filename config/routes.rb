@@ -17,12 +17,16 @@ root to: "pages#home"
   resources :flats do
     resources :bills
     resources :events
+
     resources :areas do
       resources :tasks, only: [ :new, :create, :update ]
     end
   end
 
-  resources :chatroom
+  resources :bills, only: [] do
+    resources :payments, only: [:update]
+  end
+
   resources :chatroom do
     resources :messages
   end

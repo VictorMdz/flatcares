@@ -19,19 +19,21 @@
   background-color: $light-gray;
 }
 
+.card-gray h3 {
+  margin: 0;
+}
+
 .expenses-card-white, .calendar-card-white {
   background-color: $white;
 }
 
-.expense-details > * > *, .calendar-card-white > * > * {
+.expense-details > * > *, .calendar-card-white > * > *  {
   margin: 0;
 }
 
 .expense-details {
   padding-top: 30px;
   padding-bottom: 30px;
-  margin-left: 40px;
-  margin-right: 40px;
 }
 
 .expenses-details:not(:last-child) {
@@ -55,4 +57,12 @@
   background-color: $light-gray;
   border-radius: 15px;
 }
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .calendar-card-white, .expenses-card-white {
+    padding: 20px;
+  }
+}
+
 

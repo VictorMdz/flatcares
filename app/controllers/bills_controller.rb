@@ -2,6 +2,7 @@ class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :update]
 
   def index
+    @flat = Flat.find(params[:flat_id])
     @bills = Bill.all
   end
 

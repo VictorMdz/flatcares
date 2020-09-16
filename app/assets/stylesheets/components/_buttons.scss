@@ -31,3 +31,8 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.background-none form.simple_form {
+  background-color: transparent !important;
+  padding: 0;
+}

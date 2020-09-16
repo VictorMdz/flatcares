@@ -15,14 +15,33 @@
 @import "components/buttons";
 @import "components/forms";
 
-// Extra small devices (portrait phones, less than 576px)
+body {
+  margin-bottom: 95px;
+}
+
+.navbar-flatcares {
+  display: none;
+}
+
+.btn-success:hover {
+  background-color: rgba(130, 198, 149, 0.7);
+  border-color: rgba(130, 198, 149, 0.7);
+}
+
+// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .navbar-smartphone {
     display: none;
   }
+
+  .navbar-flatcares {
+  display: flex;
 }
 
-body {
-  margin-bottom: 95px;
+  body {
+    margin-bottom: 0px;
+  }
 }
+
+
 

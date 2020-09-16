@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { invitations: 'invitations' }
 
+  notify_to :users
+
   resources :areas do
     resources :tasks, only: [ :new, :create, :update ]
   end

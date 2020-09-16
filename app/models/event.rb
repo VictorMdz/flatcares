@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :flat
 
-  validates :title, presence:true
+  validates :name, presence:true
   # validates :type, presence:true
   enum event_type: [:party, :dinner, :repair, :holidays, :other]
 

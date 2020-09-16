@@ -25,6 +25,15 @@
 
 .expenses-card-white, .calendar-card-white {
   background-color: $white;
+  &.highlight {
+    animation-name: new_notification;
+    animation-duration: 10s;
+  }
+}
+
+@keyframes new_notification {
+  from {background-color: rgba(226, 103, 73, 0.2);}
+  to {background-color: $white;}
 }
 
 .expense-details > * > *, .calendar-card-white > * > *  {

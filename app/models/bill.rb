@@ -4,12 +4,11 @@ class Bill < ApplicationRecord
   belongs_to :paying_user, class_name: 'User'
   belongs_to :flat
 
-
   has_many :payments
   enum status: [:payed, :pending, :overdue]
 
-  # validates :name, presence: true
-  # validates :amount, presence: true
+  validates :name, presence: true
+  validates :amount, presence: true
   after_create :notify_users, :create_payments
 
   acts_as_notifiable :users,

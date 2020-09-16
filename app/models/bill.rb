@@ -29,7 +29,7 @@ class Bill < ApplicationRecord
   def create_payments
     amount_by_user = amount / flat.users.count
 
-    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_user, status: true)
+    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_user, paid: true)
 
     flat.users.where.not(id: paying_user_id).each do |user|
       Payment.create(user_id: user.id, bill_id: id, amount: amount_by_user)

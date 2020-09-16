@@ -30,12 +30,12 @@
                 <h3> <%= payment.user.first_name %></h3>
               <% end %>
             </div>
-              <% if (payment.status == true) & (payment.user_id == @bill.paying_user_id) %>
+              <% if (payment.paid == true) & (payment.user_id == @bill.paying_user_id) %>
                 <div class="text-right">
                   <h2> <%= payment.amount %> </h2>
                   <p class= "secondary-p">Has paid</p>
                 </div>
-              <% elsif (payment.status == false) & (payment.user_id != @bill.paying_user_id) %>
+              <% elsif (payment.paid == false) & (payment.user_id != @bill.paying_user_id) %>
                 <div class="text-right">
                   <h2> <%= payment.amount %> </h2>
                   <p class= "secondary-p">Has to pay to <%= @bill.paying_user.first_name %> </p>
@@ -44,12 +44,12 @@
                 <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
               <% end %>
             </div>
-            <% if (payment.user_id != @bill.paying_user_id) & (payment.status == false) %>
+            <% if (payment.user_id != @bill.paying_user_id) & (payment.paid == false) %>
               <div class="d-flex justify-content-between align-items-center mt-4">
                 <%= link_to "Request Payment", flat_bills_path, class: "secondary-link" %>
 
                 <%= simple_form_for payment, url: flat_bill_path(@flat, @bill), method: :patch do |f| %>
-                  <%= f.input :status, :as => :hidden, :input_html => { :value => :true } %>
+                  <%= f.input :paid, :as => :hidden, :input_html => { :value => :true } %>
                   <%= f.submit "Has paid?", class: "btn shadow text-orange" %>
                 <% end %>
               </div>

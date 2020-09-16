@@ -12,16 +12,17 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
- 
-    <%= yield %>
-    
+    <!--   <%= render 'shared/navbar' %> -->
+    <div class="main-content">
 
-    <!-- example flash messages  -->
+      <%= yield %>
 
-    <p class="notice"><%= notice %></p>
 
-    <p class="alert"><%= alert %></p>
+      <!-- example flash messages  -->
 
+      <p class="notice"><%= notice %></p>
+
+      <p class="alert"><%= alert %></p>
+    </div>
   </body>
 </html>

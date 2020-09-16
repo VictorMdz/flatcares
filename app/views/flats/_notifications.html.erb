@@ -8,7 +8,7 @@
           <% if notification.notifiable_type == "Bill" %>
           <!-- NEW BILL ADDED -->
             <%= link_to flat_bill_path(notification.notifiable.flat_id, notification.notifiable.id), class: "secondary-link text-decoration-none" do %>
-              <div class="row calendar-card-white my-3 <%= 'highlight' if index == 0 %>">
+              <div class="row calendar-card-white my-3">
                 <div class="col-2 justify-content-start align-items-center d-flex">
                   <!-- AVATAR -->
                   <% if notification.notifiable.user.picture.attached? %>
@@ -32,7 +32,7 @@
           <!-- NEW EVENT ADDED -->
           <% elsif notification.notifiable_type == "Event" %>
             <%= link_to flat_event_path(notification.notifiable.flat_id, notification.notifiable.id), class: "secondary-link text-decoration-none" do %>
-              <div class="row calendar-card-white my-3 <%= 'highlight' if index == 0 %>">
+              <div class="row calendar-card-white my-3">
                 <div class="col-2 justify-content-start align-items-center d-flex">
                   <!-- AVATAR -->
                   <% if notification.notifiable.user.picture.attached? %>
@@ -57,7 +57,7 @@
           <% elsif notification.notifiable_type == "Area" %>
             <%= link_to flat_event_path(notification.notifiable.flat_id, notification.notifiable.id), class: "secondary-link text-decoration-none" do %>
               <% if notification.notifiable.assigned_user_id == current_user.id %>
-                <div class="row calendar-card-white my-3 <%= 'highlight' if index == 0 %>">
+                <div class="row calendar-card-white my-3">
                   <div class="col-10 justify-content-start align-items-start">
                     <!-- AREA NAME -->
                     <p>You have been assigned to <strong><%= notification.notifiable.name %></strong></p>
@@ -71,7 +71,7 @@
 
           <!-- NEW MESSAGE IN CHAT -->
           <% else %>
-            <div class="calendar-card-white my-3 <%= 'highlight' if index == 0 %>">
+            <div class="calendar-card-white my-3">
               Chat
             </div>
           <% end %>

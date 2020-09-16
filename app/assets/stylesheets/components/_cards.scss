@@ -38,8 +38,21 @@
   border-bottom: 1px dashed #E4E4E4;
 }
 
-.card-half {
-  max-width: 50%;
-  margin: 15px;
+.card-half-orange {
+  color: $white;
+  width: 48%;
+  margin: 5px;
+  padding: 16px;
+  background-color: $orange;
+  border-radius: 15px;
+}
+
+.card-half-gray {
+  color: $gray;
+  width: 48%;
+  margin: 5px;
+  padding: 16px;
+  background-color: $light-gray;
+  border-radius: 15px;
 }
 

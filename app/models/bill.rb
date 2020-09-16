@@ -6,7 +6,6 @@ class Bill < ApplicationRecord
 
 
   has_many :payments
-  enum status: [:payed, :pending, :overdue]
 
   # validates :name, presence: true
   # validates :amount, presence: true

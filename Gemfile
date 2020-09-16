@@ -71,3 +71,6 @@ gem 'devise_invitable', '~> 2.0.0'
 
 gem 'activity_notification'
 
+gem 'money-rails'
+
+

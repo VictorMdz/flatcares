@@ -1,13 +1,13 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :update]
 
+  def index
+    @bills = Bill.all
+  end
+
   def show
     @flat = Flat.find(params[:flat_id])
 
-  end
-
-  def index
-    @bills = Bill.all
   end
 
   def new

@@ -1,12 +1,63 @@
-<h1>House Bills</h1>
-<div class="card">
-<% @bills.each do |bill| %>
-  <h3><%=bill.name%></h3>
-  <div>
-    <h4>Date:</h4>
-    <h4><%=bill.due_date%></h4>
+<div class="main-container">
+  <div class="content">
+    <div class="header-container pl-4 my-4">
+      <h2>House Bills</h2>
+        <div class="row w-100 pt-4">
+          <div class="pt-2" data-controller="bills">
+            <div class="btn-group p-1 mb-2 ">  
+              <button
+                type="button"
+                class="btn inactive-filter"
+                data-target="bills.filter"
+                data-action="bills#toggleActive"
+              >Rent</button>
+            </div>
+            <div class="btn-group p-1 mb-2 ">  
+              <button
+                type="button"
+                class="btn inactive-filter"
+                data-action="bills#toggleActive"
+              >Electrecity</button>
+            </div>
+            <div class="btn-group p-1 mb-2 ">  
+              <button
+                type="button"
+                class="btn inactive-filter"
+                data-action="bills#toggleActive"
+              >Water</button>
+            </div>
+            <div class="btn-group p-1 mb-2 ">  
+              <button
+                type="button"
+                class="btn inactive-filter"
+                data-action="bills#toggleActive"
+              >Intert</button>
+            </div>
+            <div class="btn-group p-1 mb-2 ">  
+              <button
+                type="button"
+                class="btn inactive-filter"
+                data-action="bills#toggleActive"
+              >Gas</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="card">
+            <% @bills.each do |bill| %>
+            <h3><%=bill.name%></h3>
+            <div>
+              <h4>Date:</h4>
+              <h4><%=bill.due_date%></h4>
+            </div>
+            <p><%=bill.status%></p>
+            <h4><%=bill.amount%></h4>
+            <%end%>
+          </div>
+        </div>
+    </div>
   </div>
-  <p><%=bill.status%></p>
-  <h4><%=bill.amount%></h4>
-<%end%>
 </div>
+
+

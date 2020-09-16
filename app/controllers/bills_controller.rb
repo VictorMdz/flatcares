@@ -45,7 +45,7 @@ class BillsController < ApplicationController
       :due_date,
       :paying_user_id,
       :invoice
-      )
+    )
   end
 
   def set_bill

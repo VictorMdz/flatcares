@@ -3,7 +3,7 @@ class Bill < ApplicationRecord
   belongs_to :flat
   belongs_to :paying_user, class_name: 'User'
   belongs_to :flat
-
+  has_one_attached :invoice
 
   has_many :payments
   enum status: [:payed, :pending, :overdue]

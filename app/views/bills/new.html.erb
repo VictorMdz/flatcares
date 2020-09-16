@@ -1,15 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <%= simple_form_for [@flat, @bill] do |f| %>
-        <h2>Create a new Bill</h2>
-          <%= f.input :name, placeholder: "Bill's Name", label: false %>
-          <%= f.input :amount, placeholder: 'How much was the payment?', label: false %>
-          <%= f.input :due_date, class: "form-control", placeholder: 'Date of the bill', label: false %>
-          <%= f.association :paying_user, collection: @flat.users, label_method: :first_name, include_blank: "Who paid the bill?", label: false %>
-          <%= f.input :invoice, as: :file, label: false %>
-          <%= f.submit "Submit the bill", class: "btn btn-success text-white"%>
-        <% end %>
+      <%= render 'form_bill' %>
     </div>
   </div>
 </div>

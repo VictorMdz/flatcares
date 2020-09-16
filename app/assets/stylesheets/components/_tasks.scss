@@ -1,0 +1,8 @@
+.task-container {
+  padding: 40px 10px 40px 10px;
+  border-bottom: 1px dashed #E4E4E4;
+}
+
+.task-container > * > * > * {
+  margin: 0;
+}

@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   resources :areas do
     resources :tasks, only: [ :new, :create, :update ]
   end
+root to: "pages#home"
 
-  root to: 'pages#home'
+  # devise_scope :user do
+  #   root to: 'devise/sessions#new'
+  # end
+
 
   resources :flats do
     resources :bills

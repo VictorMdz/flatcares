@@ -43,7 +43,8 @@ class BillsController < ApplicationController
       :name,
       :amount,
       :due_date,
-      :paying_user_id
+      :paying_user_id,
+      :invoice
       )
   end
 

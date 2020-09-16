@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  border-bottom: 1px solid $light-gray;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -24,4 +24,13 @@
   position: fixed;
   bottom: 0;
   overflow: auto;
+}
+
+.navbar-flatcares {
+  padding-left: 50px;
+  padding-right: 50px;
+  position: sticky;
+  top: 0;
+  background-color: $white-bone;
+  z-index: 999;
 }

@@ -12,6 +12,9 @@ class Bill < ApplicationRecord
   # validates :amount, presence: true
   after_create :notify_users, :create_payments
 
+  monetize :amount_cents
+
+
   acts_as_notifiable :users,
     targets: ->(bill, key) {
       bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)

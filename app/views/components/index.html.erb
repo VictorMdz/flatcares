@@ -1,9 +1,10 @@
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Fonts</p>
       <h1>This is the main title: Lorem ipsum dolor</h1>
       <h2>Secondary title: sit amet consectur</h2>
+      <h3>Tertiary title sit amet consectur</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
         ex ea commodo consequat.</p>
@@ -15,7 +16,7 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Buttons</p>
       <p>Primary</p>
@@ -32,7 +33,7 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Form</p>
 
@@ -41,7 +42,7 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Orange Card</p>
       <div class="card-white">
@@ -59,7 +60,7 @@
 
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Orange Card</p>
       <div class="card-orange">
@@ -77,7 +78,7 @@
 
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Expenses Cards</p>
       <div class="expenses-card-white">
@@ -87,7 +88,7 @@
             <p>Date: 13/05/1991</p>
           </div>
           <div class="expense-avatar">
-            <%= image_tag "add-button.svg" %>
+            <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange" %>
           </div>
           <div class="expense-price">
             <h3>16,40€</h3>
@@ -101,7 +102,7 @@
             <p>Date: 13/05/1991</p>
           </div>
           <div class="expense-avatar">
-            <%= image_tag "add-button.svg" %>
+            <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange" %>
           </div>
           <div class="expense-price">
             <h3>16,40€</h3>
@@ -115,7 +116,7 @@
             <p>Date: 13/05/1991</p>
           </div>
           <div class="expense-avatar">
-            <%= image_tag "add-button.svg" %>
+            <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange" %>
           </div>
           <div class="expense-price">
             <h3>16,40€</h3>
@@ -128,24 +129,24 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Expense Card Half Size</p>
       <div class="d-flex">
-        <div class="card-half card-orange">
-          <h2>Bill name</h2>
+        <div class="card-half-orange">
+          <h3>Bill name</h2>
           <p>Date:<br>28/04/2020</p>
           <div class="d-flex justify-content-between align-items-end">
-            <p class="secondary-p m-0">Paid for:<br> Jesús Antay</p>
+            <p class="secondary-p m-0">Pending</p>
             <h3 class="m-0">182,42€</h3>
           </div>
         </div>
 
-        <div class="card-half card-gray">
-          <h2>Bill name</h2>
+        <div class="card-half-gray">
+          <h3>Bill name</h2>
           <p>Date:<br>28/04/2020</p>
           <div class="d-flex justify-content-between align-items-end">
-            <p class="secondary-p m-0">Paid for:<br> Jesús Antay</p>
+            <p class="secondary-p m-0">Solved</p>
             <h3 class="m-0">182,42€</h3>
           </div>
         </div>
@@ -155,13 +156,13 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Expense card avatar gray</p>
         <div class="card-gray">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-              <%= image_tag "add-button.svg" %>
+              <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange mr-2" %>
               <h3>Victor M</h3>
             </div>
             <div class="text-center">
@@ -179,13 +180,13 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Expense card avatar white</p>
-        <div class="expenses-card-white m-3">
+        <div class="expenses-card-white">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-              <%= image_tag "add-button.svg" %>
+              <%= image_tag "victor-mendoza.jpg", class: "avatar-primary-orange" %>
               <h3>Victor M</h3>
             </div>
             <div class="text-center">
@@ -195,10 +196,10 @@
           </div>
         </div>
 
-        <div class="expenses-card-white m-3">
+        <div class="expenses-card-white">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-              <%= image_tag "add-button.svg" %>
+              <%= image_tag "victor-mendoza.jpg", class: "avatar-primary-orange" %>
               <h3>Camille</h3>
             </div>
             <div class="text-center">
@@ -213,7 +214,7 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col col-md-8">
       <p>Icons for calendar</p>
       <i class="far fa-calendar"></i>
@@ -224,7 +225,7 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Calendar card</p>
       <div class="calendar-card-white">
@@ -243,7 +244,7 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center">
     <div class="col-md-8">
       <p>Avatars</p>
       <p>Primary avatars</p>

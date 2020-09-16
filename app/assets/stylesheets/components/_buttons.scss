@@ -15,3 +15,15 @@
   color: $gray;
   background-color: $light-gray;
 }
+
+.btn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 2px;
+}
+
+
+.card-gray .btn {
+  padding-left: 15px;
+  padding-right: 15px;
+}

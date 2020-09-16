@@ -13,3 +13,14 @@
 @import "pages/index";
 @import "components/cards";
 @import "components/buttons";
+
+// Extra small devices (portrait phones, less than 576px)
+@media (min-width: 576px) {
+  .navbar-smartphone {
+    display: none;
+  }
+}
+
+body {
+  margin-bottom: 95px;
+}

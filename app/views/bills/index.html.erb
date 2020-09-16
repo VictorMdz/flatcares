@@ -6,7 +6,7 @@
       <%= image_tag "add-button.svg" %>
     </div>
       <div class="pt-2" data-controller="bills">
-        <div class="btn-group p-1 mb-2 ">  
+        <div class="btn-group p-1 mb-2 ">
           <button
             type="button"
             class="btn inactive-filter"
@@ -14,28 +14,28 @@
             data-action="bills#toggleActive"
           >Rent</button>
         </div>
-        <div class="btn-group p-1 mb-2 ">  
+        <div class="btn-group p-1 mb-2 ">
           <button
             type="button"
             class="btn inactive-filter"
             data-action="bills#toggleActive"
           >Electrecity</button>
         </div>
-        <div class="btn-group p-1 mb-2 ">  
+        <div class="btn-group p-1 mb-2 ">
           <button
             type="button"
             class="btn inactive-filter"
             data-action="bills#toggleActive"
           >Water</button>
         </div>
-        <div class="btn-group p-1 mb-2 ">  
+        <div class="btn-group p-1 mb-2 ">
           <button
             type="button"
             class="btn inactive-filter"
             data-action="bills#toggleActive"
           >Intert</button>
         </div>
-        <div class="btn-group p-1 mb-2 ">  
+        <div class="btn-group p-1 mb-2 ">
           <button
             type="button"
             class="btn inactive-filter"
@@ -52,17 +52,20 @@
       <div class="cards-grid">
       <% @bills.each do |bill| %>
       <div class="<%= (bill.status == "pending") || (bill.status == "overdue") ? 'card-half-gray' : 'card-half-orange' %>">
-        <h3><%=bill.name%></h3>
-        <p><%=bill.due_date%>Date:</p>
-        <div class="d-flex justify-content-between align-items-end">
-          <p class="secondary-p m-0"><br><%=bill.status.capitalize%></p>
-          <h3><%=bill.amount%>€</h3>
+
+          <h3><%=bill.name%></h3>
+          <p><%=bill.due_date%></p>
+          <div class="d-flex justify-content-between align-items-end">
+            <p class="secondary-p m-0"><br><%=bill.status%></p>
+            <h3><%= humanized_money_with_symbol(bill.amount) %></h3>
+          </div>
+
         </div>
       </div>
       <%end%>
     </div>
-  </div> 
-</div> 
+  </div>
+</div>
 
 
-   
+

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_132902) do
+ActiveRecord::Schema.define(version: 2020_09_16_135021) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,13 +52,13 @@ ActiveRecord::Schema.define(version: 2020_09_16_132902) do
 
   create_table "bills", force: :cascade do |t|
     t.string "name"
-    t.integer "amount"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "paying_user_id"
     t.date "due_date"
     t.bigint "flat_id"
+    t.integer "amount_cents", default: 0, null: false
     t.index ["flat_id"], name: "index_bills_on_flat_id"
     t.index ["paying_user_id"], name: "index_bills_on_paying_user_id"
     t.index ["user_id"], name: "index_bills_on_user_id"
@@ -143,12 +144,12 @@ ActiveRecord::Schema.define(version: 2020_09_16_132902) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "amount"
     t.bigint "user_id", null: false
     t.bigint "bill_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "paid", default: false
+    t.integer "amount_cents", default: 0, null: false
     t.index ["bill_id"], name: "index_payments_on_bill_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end

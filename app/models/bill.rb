@@ -10,7 +10,7 @@ class Bill < ApplicationRecord
 
   # validates :name, presence: true
   # validates :amount, presence: true
-  after_create :notify_users
+  after_create :notify_users, :create_payments
 
   acts_as_notifiable :users,
     targets: ->(bill, key) {
@@ -23,6 +23,16 @@ class Bill < ApplicationRecord
   end
 
   def notify_users
-    notify :users, key: "bill.crueate"
+    notify :users, key: "bill.create"
+  end
+
+  def create_payments
+    amount_by_user = amount / flat.users.count
+
+    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_user, paid: true)
+
+    flat.users.where.not(id: paying_user_id).each do |user|
+      Payment.create(user_id: user.id, bill_id: id, amount: amount_by_user)
+    end
   end
 end

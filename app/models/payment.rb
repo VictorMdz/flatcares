@@ -1,6 +1,6 @@
 class Payment < ApplicationRecord
   belongs_to :user
-  belongs_to :bill, dependent: :destroy
+  belongs_to :bill
 
   monetize :amount_cents
 

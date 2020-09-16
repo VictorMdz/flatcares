@@ -1,5 +1,5 @@
 class BillsController < ApplicationController
-  before_action :set_bill, only: [:show, :update]
+  before_action :set_bill, only: [:show, :update, :edit, :destroy]
 
   def index
     @flat = Flat.find(params[:flat_id])
@@ -32,8 +32,23 @@ class BillsController < ApplicationController
     end
   end
 
+  def edit
+    @flat = Flat.find(params[:flat_id])
+  end
+
   def update
     @flat = Flat.find(params[:flat_id])
+    if @bill.update(bill_params)
+      redirect_to flat_bill_path
+    else
+      render edit_flat_bill_path
+    end
+  end
+
+  def destroy
+    @flat = Flat.find(params[:flat_id])
+    @bill.destroy
+    redirect_to flat_bills_path
   end
 
   private

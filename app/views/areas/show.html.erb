@@ -1,4 +1,7 @@
 <h2><%= @area.name %> tasks</h2>
+<%= link_to new_area_task_path(@area) do %>
+  <%= image_tag "add-button.svg" %>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-12">

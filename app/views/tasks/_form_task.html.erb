@@ -1,0 +1,5 @@
+<%= simple_form_for [@area, @task] do |f| %>
+  <h2>Create a new Task in the <%= @area.name %> </h2>
+  <%= f.input :name, placeholder: "Task's name", label: false %>
+  <%= f.submit "Create task", class: "btn btn-success text-white"%>
+<% end %>

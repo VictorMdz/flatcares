@@ -7,16 +7,15 @@ class AreasController < ApplicationController
   end
 
   def show
-
   end
 
   def new
-    @area = Area.find(params[:area_id])
-    @task = Task.new
   end
 
   def create
-    @task = Task.new
+  end
+
+  def destroy
   end
 
   private

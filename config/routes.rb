@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   notify_to :users
 
   resources :areas do
-    resources :tasks, only: [ :new, :create, :update ]
+    resources :tasks
   end
 root to: "pages#home"
 
-  # devise_scope :user do
+# devise_scope :user do
   #   root to: 'devise/sessions#new'
   # end
 
@@ -16,7 +16,7 @@ root to: "pages#home"
   resources :flats do
     get 'members', to: 'flatmembers#invite'
     post 'invitations', to: 'flatmembers#send_invitations'
-  
+
     resources :bills
     resources :events
 

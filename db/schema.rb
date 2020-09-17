@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_135021) do
+ActiveRecord::Schema.define(version: 2020_09_17_111318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_135021) do
     t.bigint "previously_assigned_user_id"
     t.bigint "flat_id"
     t.integer "status", default: 0
+    t.string "description"
     t.index ["assigned_user_id"], name: "index_areas_on_assigned_user_id"
     t.index ["flat_id"], name: "index_areas_on_flat_id"
     t.index ["previously_assigned_user_id"], name: "index_areas_on_previously_assigned_user_id"
@@ -173,7 +174,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_135021) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.bigint "area_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

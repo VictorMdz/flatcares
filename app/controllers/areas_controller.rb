@@ -17,6 +17,6 @@ before_action :set_tasks, only: [:show]
   end
 
   def set_tasks
-    @tasks = @area.tasks.all
+    @tasks = @area.tasks.all.order("created_at")
   end
 end

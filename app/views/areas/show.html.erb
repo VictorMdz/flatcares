@@ -10,6 +10,8 @@
           <div class="row">
             <div class="col-8 d-flex justify-content-start align-items-center">
               <%= task.name %>
+              <%= link_to "Edit", edit_area_task_path(@area, task) %> |
+              <%= link_to "Delete", area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
               <%= simple_form_for([ @area, task ], remote: true, method: :patch) do |f| %>

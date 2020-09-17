@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= simple_form_for [@area, @task] do |f| %>
+        <h2>Edit your task</h2>
+        <%= f.input :name, placeholder: "New task's name", label: false %>
+        <%= f.submit "Update task", class: "btn btn-success text-white"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+

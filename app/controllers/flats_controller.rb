@@ -11,27 +11,22 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
+    @user = current_user
   end
 
   def create
-    @flat = Flat.new(flat_params)
-  end
+    current_user.flats.push(Flat.create(flat_params))
+    # @flat = current_user.flats.push(Flat.create(flat_params))
+    # # @flat.users.push(current_user)
 
-  def invite_users
-    user_emails = params[:emails].split ","
-
-    user_emails.each do |email|
-      user = User.find_by email: email
-
-      if user
-        # logic to add an existing user to the flat and send an email
-      else
-        user = User.invite!({ email: email }, current_user)
-        user.flats.push current_user.living_in
-      end
+    if current_user.flats.last.save
+      redirect_to flat_path(current_user.flats.last)
+    else
+      render "flats/new"
     end
   end
 
+  
   private
 
   def set_flat

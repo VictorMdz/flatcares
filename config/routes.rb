@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :users, controllers: { invitations: 'invitations' }
 
   notify_to :users
@@ -15,11 +14,14 @@ root to: "pages#home"
 
 
   resources :flats do
+    get 'members', to: 'flatmembers#invite'
+    post 'invitations', to: 'flatmembers#send_invitations'
+  
     resources :bills
     resources :events
 
     resources :areas do
-      resources :tasks, only: [ :new, :create, :update ]
+      resources :tasks
     end
   end
 

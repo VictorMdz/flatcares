@@ -10,7 +10,10 @@ class Bill < ApplicationRecord
 
   validates :name, presence: true
   validates :amount, presence: true
+  validates :due_date, presence: true
+
   after_create :notify_users, :create_payments
+
   after_update :update_payments
   after_destroy :clean_notifications
 
@@ -56,7 +59,10 @@ class Bill < ApplicationRecord
 
   def update_payments
     amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
-    Payment.update(amount: amount_by_users)
+
+    payments.each do |payment|
+      payment.update(amount: amount_by_users, paid: payment.user == paying_user)
+    end
   end
 
   def clean_notifications

@@ -11,7 +11,7 @@ root to: "pages#home"
 # devise_scope :user do
   #   root to: 'devise/sessions#new'
   # end
-
+  resources :flatmembers, only: [:destroy]
 
   resources :flats do
     get 'members', to: 'flatmembers#invite'

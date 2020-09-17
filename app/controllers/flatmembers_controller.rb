@@ -18,5 +18,12 @@ class FlatmembersController < ApplicationController
         user.flats.push @flat
       end
     end
+    redirect_to flat_path(@flat)
+  end
+
+  def destroy
+    @flatmember = Flatmember.find(params[:id])
+    @flatmember.destroy
+    redirect_to flat_path(@flatmember.flat_id)
   end
 end

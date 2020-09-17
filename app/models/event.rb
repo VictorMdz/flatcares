@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   enum event_type: [:party, :dinner, :repair, :holidays, :other]
 
   after_create :notify_users
+  after_destroy :clean_notifications
 
   acts_as_notifiable :users,
     targets: ->(event, key) {
@@ -20,5 +21,9 @@ class Event < ApplicationRecord
 
   def notify_users
     notify :users, key: "event.create"
+  end
+
+  def clean_notifications
+    ActivityNotification::Notification.where(notifiable: self).destroy_all
   end
 end

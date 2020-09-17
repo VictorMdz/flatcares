@@ -26,9 +26,14 @@ p.secondary-p {
   font-size: 12px;
 }
 
-a.primary-link {
+a.primary-link, .btn.primary-link{
   color: #E7836B;
   text-decoration: underline;
+}
+
+.btn.primary-link {
+  padding: 0;
+  margin: 0;
 }
 
 a.secondary-link {

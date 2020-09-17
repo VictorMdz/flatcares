@@ -28,3 +28,7 @@ form.simple_form select {
 form.simple_form h2 {
   margin-bottom: 30px;
 }
+
+form.simple_form.edit_payment {
+  padding: 0;
+}

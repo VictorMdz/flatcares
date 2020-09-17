@@ -51,13 +51,17 @@
                 <div class="text-right">
                   <h2> <%= humanized_money_with_symbol(payment.amount) %> </h2>
                   <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
+                    <%= simple_form_for payment, class: "background-none", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
+                    <%= f.input :paid, :as => :hidden, :input_html => { :value => :false } %>
+                    <%= f.submit "Hasn't paid?", class: "btn btn-link primary-link" %>
+                <% end %>
                 </div>
               <% end %>
             </div>
             <% if (payment.user_id != @bill.paying_user_id) & (payment.paid == false) %>
               <div class="d-flex justify-content-between align-items-center background-none">
                 <%= link_to "Request Payment", flat_bills_path, class: "secondary-link" %>
-                <%= simple_form_for payment, class: "background-none", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
+                <%= simple_form_for payment, class: "background-none p-0", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
                   <%= f.input :paid, :as => :hidden, :input_html => { :value => :true } %>
                   <%= f.submit "Has paid?", class: "btn shadow text-orange" %>
                 <% end %>

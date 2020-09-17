@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6" data-controller="invitations">
+      <%= form_with(url: flat_invitations_path(@flat), class: 'd-flex flex-column') do %>
+        <div class="form-group d-flex flex-column">
+          <%= label_tag(:member, "Member") %>
+          <div data-target="invitations.field">
+            <div class="d-flex align-items-center">
+              <%= text_field_tag "member[]", nil, class: 'form-control', placeholder: 'Member email' %>
+              <%= image_tag('add-button.svg', height: '50', class: 'cursor-pointer', data: { action: "click->invitations#addField", target: "invitations.button"}) %>
+            </div>
+          </div>
+        </div>
+        <div class="additional-fields" data-target="invitations.additionalFields">
+        </div>
+        <%=submit_tag("Invite", class: 'btn btn-primary text-white')%>
+      <% end %>
+    </div>
+  </div>
+</div>
+

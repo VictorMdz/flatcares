@@ -1,8 +1,11 @@
-
-.card-orange, .card-white, .card-gray, .calendar-card-white, .expenses-card-white, .task-card-white {
+.card-orange, .card-white, .card-gray, .calendar-card-white, .expenses-card-white, .task-card-white-high, .task-card-white-low {
   border-radius: 50px;
   padding: 38px;
   box-shadow: 0px 0px 23px 17px rgba(198, 198, 198, 0.08);
+}
+
+.task-card-white-low {
+  padding: 20px;
 }
 
 .card-orange {
@@ -23,7 +26,7 @@
   margin: 0;
 }
 
-.expenses-card-white, .calendar-card-white, .task-card-white {
+.expenses-card-white, .calendar-card-white, .task-card-white-high, .task-card-white-low {
   background-color: $white;
   &.highlight {
     animation-name: new_notification;
@@ -36,7 +39,7 @@
   to {background-color: $white;}
 }
 
-.expense-details > * > *, .calendar-card-white > * > *, .task-card-white > * > *  {
+.expense-details > * > *, .calendar-card-white > * > *, .task-card-white-high > * > *, .task-card-white-low > * > * {
   margin: 0;
 }
 
@@ -85,5 +88,6 @@
     padding: 20px;
   }
 }
+
 
 

@@ -7,6 +7,8 @@ class TasksController < ApplicationController
       redirect_to area_path(@task.area_id)
     else
       render area_path(@task.area_id)
+    end
+  end
 
   def new
     @area = Area.find(params[:area_id])

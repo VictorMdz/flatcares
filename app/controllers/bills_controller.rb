@@ -3,7 +3,7 @@ class BillsController < ApplicationController
 
   def index
     @flat = Flat.find(params[:flat_id])
-    @bills = Bill.all
+    @bills = Bill.where(flat_id: params[:flat_id])
   end
 
   def show

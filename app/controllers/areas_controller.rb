@@ -3,6 +3,7 @@ class AreasController < ApplicationController
   before_action :set_tasks, only: [:show]
 
   def index
+    @flat = Flat.find(params[:flat_id])
     @areas = Area.all
   end
 

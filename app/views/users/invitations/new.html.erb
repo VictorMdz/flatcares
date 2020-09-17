@@ -6,6 +6,17 @@
   <% resource.class.invite_key_fields.each do |field| -%>
     <div class="form-inputs">
       <%= f.input field %>
+      <div class="form-inputs">
+        <div class="form-row">
+          <div class="col">
+            <%= f.input :first_name,
+              required: true, class: "form-control" %>
+          </div>
+        <div class="col">
+          <%= f.input :last_name,
+            required: true, class: "form-control" %>
+        </div>
+      </div>
     </div>
   <% end -%>
   

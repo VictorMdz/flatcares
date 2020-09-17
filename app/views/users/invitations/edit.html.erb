@@ -5,6 +5,17 @@
   <%= f.hidden_field :invitation_token %>
 
   <div class="form-inputs">
+    <div class="form-inputs">
+        <div class="form-row">
+          <div class="col">
+            <%= f.input :first_name,
+              required: true, class: "form-control" %>
+          </div>
+        <div class="col">
+          <%= f.input :last_name,
+            required: true, class: "form-control" %>
+        </div>
+      </div>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
   </div>

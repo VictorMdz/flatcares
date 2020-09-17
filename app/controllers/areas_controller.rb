@@ -1,6 +1,6 @@
 class AreasController < ApplicationController
-before_action :set_area, only: [:show]
-before_action :set_tasks, only: [:show]
+  before_action :set_area, only: [:show, :update, :edit, :destroy]
+  before_action :set_tasks, only: [:show]
 
   def index
     @areas = Area.all
@@ -10,6 +10,15 @@ before_action :set_tasks, only: [:show]
 
   end
 
+  def new
+    @area = Area.find(params[:area_id])
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new
+  end
+
   private
 
   def set_area
@@ -17,6 +26,6 @@ before_action :set_tasks, only: [:show]
   end
 
   def set_tasks
-    @tasks = @area.tasks.all
+    @tasks = @area.tasks.all.order("created_at")
   end
 end

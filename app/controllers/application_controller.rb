@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     # devise_parameter_sanitizer.permit(:account_update, keys: [:picture])
   end
-  
+
   def after_sign_in_path_for(resource)
     if resource.flats.count > 0
       flat_path(resource.flats[0])

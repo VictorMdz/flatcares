@@ -1,7 +1,19 @@
-<h2><%= @area.name %> tasks</h2>
-<%= link_to new_area_task_path(@area) do %>
-  <%= image_tag "add-button.svg" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h1><%= @area.name %> tasks</h1>
+          <%= link_to "Edit", edit_area_path(@area) %> |
+          <%= link_to "Delete", area_path(@area), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+        <%= link_to image_tag('add-button.svg'), new_area_task_path(@area) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="container">
   <div class="row">
     <div class="col-12">

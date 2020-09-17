@@ -1,5 +1,5 @@
 class Area < ApplicationRecord
-  belongs_to :assigned_user, class_name: "User"
+  belongs_to :assigned_user, class_name: "User", optional: true
   belongs_to :previously_assigned_user, class_name: "User", optional: true
   belongs_to :flat
   has_many :tasks, dependent: :destroy

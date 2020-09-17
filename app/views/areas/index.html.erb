@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2>Common Areas</h2>
+      <div class="d-flex justify-content-between">
+        <h1>Common Areas</h1>
+        <%= link_to image_tag('add-button.svg'), new_flat_area_path %>
+      </div>
     </div>
   </div>
 </div>
@@ -28,8 +31,13 @@
           <% end %>
         </div>
         <div class="col-6 justify-content-start align-items-start">
-            <h6 class="mb-1 d-block"><%= area.name %></h6>
-            <p class="mb-0 d-block"><%= area.assigned_user.first_name %></p>
+            <h6 class="mb-1 d-block"><%= area.name.capitalize %></h6>
+            <p class="mb-1 d-block"><%= area.description.capitalize %></p>
+            <% if area.assigned_user.nil? %>
+              <p class="mb-0 d-block">Nobody is assigned yet</p>
+            <% else %>
+              <p class="mb-0 d-block"><%= area.assigned_user.first_name %></p>
+            <% end %>
         </div>
         <div class="col-4 justify-content-end align-items-center d-flex">
           <% area.tasks.all.each do |task| %>

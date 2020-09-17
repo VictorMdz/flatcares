@@ -20,7 +20,6 @@
         <% end %>
         <p>You</p>
       </div>
-      <%= link_to "Add Member", flat_members_path(@flat)%>
     </div>
   </div>
 
@@ -40,6 +39,28 @@
         </div>
       <% end %>
     <% end %>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-6 justify-content-end align-items-center d-flex">
+      <%= link_to "Add Member", flat_members_path(@flat), class: "btn btn-info shadow text-orange px-3 py-1" %>
+    </div>
+    <div class="col-6 justify-content-start align-items-center d-flex">
+      <div class="dropdown">
+        <a class="secondary-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Delete Member
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-remote="true">
+          <% @flat_flatmembers.each do |flatmember| %>
+            <%= link_to "Delete #{flatmember.user.first_name}",
+                flatmember_path(flatmember),
+                class: "dropdown-item",
+                method: :delete,
+                data: { confirm: "Are you sure?",
+                } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

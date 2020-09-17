@@ -7,6 +7,7 @@
         <% @notifications.each_with_index do |notification, index| %>
           <% if notification.notifiable_type == "Bill" %>
           <!-- NEW BILL ADDED -->
+
             <%= link_to flat_bill_path(notification.notifiable.flat_id, notification.notifiable.id), class: "secondary-link text-decoration-none" do %>
               <div class="row calendar-card-white my-3">
                 <div class="col-2 justify-content-start align-items-center d-flex">

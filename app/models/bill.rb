@@ -12,6 +12,7 @@ class Bill < ApplicationRecord
   validates :amount, presence: true
   after_create :notify_users, :create_payments
   after_update :update_payments
+  after_destroy :clean_notifications
 
   monetize :amount_cents
 
@@ -56,6 +57,10 @@ class Bill < ApplicationRecord
   def update_payments
     amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
     Payment.update(amount: amount_by_users)
+  end
+
+  def clean_notifications
+    ActivityNotification::Notification.where(notifiable: self).destroy_all
   end
 
 end

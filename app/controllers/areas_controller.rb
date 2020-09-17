@@ -3,12 +3,12 @@ class AreasController < ApplicationController
   before_action :set_tasks, only: [:show]
 
   def index
+    @flat = Flat.find(params[:flat_id])
     @areas = Area.all
     @areas = Area.where(flat_id: params[:flat_id])
   end
 
   def show
-
   end
 
   def new
@@ -45,6 +45,7 @@ class AreasController < ApplicationController
     @area.destroy
     redirect_to flat_areas_path(@area.flat_id)
   end
+
 
   private
 

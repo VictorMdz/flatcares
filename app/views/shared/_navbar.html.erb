@@ -14,13 +14,13 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
+          <%= link_to "Home", flat_path(@flat), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Bills", "#", class: "nav-link" %>
+          <%= link_to "Bills", flat_bills_path(@flat, @bill), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Tasks", "#", class: "nav-link" %>
+          <%= link_to "Tasks", flat_areas_path(@flat, @area), class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Events", "#", class: "nav-link" %>

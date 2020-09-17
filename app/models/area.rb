@@ -6,6 +6,7 @@ class Area < ApplicationRecord
   validates :name, presence: true
 
   after_create :notify_users
+  after_destroy :clean_notifications
 
   acts_as_notifiable :users,
     targets: ->(area, key) {
@@ -19,5 +20,9 @@ class Area < ApplicationRecord
 
   def notify_users
     notify :users, key: "area.update"
+  end
+
+  def clean_notifications
+    ActivityNotification::Notification.where(notifiable: self).destroy_all
   end
 end

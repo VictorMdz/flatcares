@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :assigned_areas, class_name: 'Area', foreign_key: 'assigned_user_id'
   has_many :previously_assigned_areas, class_name: 'Area', foreign_key: 'previously_assigned_user_id'
 
+  after_create :create_flatmember
 
   def living_in
     # flat_id = flatmembers.where(user_id: id, is_owner: false)
@@ -28,5 +29,11 @@ class User < ApplicationRecord
   end
 
   acts_as_target
+
+  private
+
+  def create_flatmember
+    Flatmember.create(user_id: id)
+  end
 
 end

@@ -29,6 +29,10 @@ body {
   border-color: rgba(130, 198, 149, 0.7);
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 // Icons
 .fa-calendar, .fa-location-arrow, .fa-suitcase-rolling, .fas.fa-circle, .far.fa-circle {
   color: $orange;

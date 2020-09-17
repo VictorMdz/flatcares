@@ -26,6 +26,6 @@ class AreasController < ApplicationController
   end
 
   def set_tasks
-    @tasks = @area.tasks.all
+    @tasks = @area.tasks.all.order("created_at")
   end
 end

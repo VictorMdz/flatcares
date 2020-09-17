@@ -6,6 +6,7 @@
           <h1><%= @area.name %> tasks</h1>
           <%= link_to "Edit", edit_area_path(@area) %> |
           <%= link_to "Delete", area_path(@area), method: :delete, data: { confirm: "Are you sure?" } %>
+          <p><%= link_to "< Go to Areas", flat_areas_path(@flat), class: "primary-link" %></p>
         </div>
         <%= link_to image_tag('add-button.svg'), new_area_task_path(@area) %>
       </div>

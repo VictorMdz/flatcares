@@ -9,7 +9,7 @@ class Bill < ApplicationRecord
   has_many :payments, dependent: :destroy
 
   validates :name, presence: true
-  validates :amount, presence: true
+  validates :amount_cents, presence: true
   validates :due_date, presence: true
 
   after_create :notify_users, :create_payments

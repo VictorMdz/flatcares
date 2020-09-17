@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   notify_to :users
 
-  resources :areas do
-    resources :tasks
+  resources :areas, only: [:show, :update, :edit, :destroy] do
+    resources :tasks, only: [ :new, :create, :update, :destroy ]
   end
-root to: "pages#home"
+
+  root to: "pages#home"
 
 # devise_scope :user do
   #   root to: 'devise/sessions#new'

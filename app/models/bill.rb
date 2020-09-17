@@ -13,6 +13,7 @@ class Bill < ApplicationRecord
   validates :due_date, presence: true
 
   after_create :notify_users, :create_payments
+
   after_update :update_payments
 
   monetize :amount_cents
@@ -57,9 +58,9 @@ class Bill < ApplicationRecord
 
   def update_payments
     amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
-    Payment.update(amount: amount_by_users, paid: true)
-    flat.users.where.not(id: paying_user_id).each do |user|
-      Payment.update(amount: amount_by_users, paid: false)
+
+    payments.each do |payment|
+      payment.update(amount: amount_by_users, paid: payment.user == paying_user)
     end
   end
 

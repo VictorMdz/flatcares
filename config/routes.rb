@@ -19,7 +19,7 @@ root to: "pages#home"
     resources :events
 
     resources :areas do
-      resources :tasks, only: [ :new, :create, :update ]
+      resources :tasks
     end
   end
 

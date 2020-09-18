@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-
       <div class="d-flex justify-content-left align-items-start">
         <div class="mr-4">
           <h1><%= @bill.name %></h1>
@@ -18,12 +17,7 @@
           <% end %>
         </div>
       </div>
-
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-
-
-        </div>
+      <div class="d-flex justify-content-end align-items-center">
         <h2>Total <%= humanized_money_with_symbol(@bill.amount) %> </h2>
       </div>
       <div class="d-flex justify-content-between align-items-center">
@@ -45,11 +39,7 @@
         <div class="<%= (payment.user_id == @bill.paying_user_id) || (payment.paid == true) ? 'expenses-card-white' : 'expenses-card-gray' %>">
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
-              <% if current_user.picture.attached? %>
-                <%= cl_image_tag current_user.user.picture.key, class: 'avatar-secondary-orange' %>
-              <% else %>
-                <i class="fas fa-user-circle fa-3x"></i>
-              <% end %>
+              <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange" %>
               <% if payment.user_id == @bill.paying_user_id %>
                 <div class="text-left ">
                   <h3>  <%= payment.user.first_name %> </h3>

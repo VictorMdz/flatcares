@@ -25,6 +25,6 @@
 
       <p class="alert m-0"><%= alert %></p>
     </div>
-    <%= render 'shared/navbar-smartphone' if signed_in? %>
+    <%= render 'shared/navbar-smartphone' if (signed_in?) && (!current_user.flats.empty?) %>
   </body>
 </html>

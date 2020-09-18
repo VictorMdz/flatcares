@@ -29,9 +29,9 @@
         <div class="task-card-white-low">
           <div class="row">
             <div class="col-8 d-flex justify-content-start align-items-center">
-              <%= task.name %>
+              <p class="m-0"><%= task.name %></p>
               <%= link_to area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
-                <i class="fas fa-trash ml-1"></i>
+                <i class="far fa-trash-alt fa-sm ml-3"></i>
               <% end %>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
@@ -41,7 +41,7 @@
                   <% if task.completed == true %>
                     <img src="/assets/check-done.svg">
                   <% else %>
-                    <img src="/assets/check-undone-96bbbce41030e415f9625de214c5e86e5078d93c0f021b28c1bfe5c4c21deeb1.svg">
+                    <img src="/assets/check-undone.svg">
                   <% end %>
                 </button>
               <% end %>

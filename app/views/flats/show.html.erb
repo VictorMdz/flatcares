@@ -13,12 +13,20 @@
     <div class="col-12 justify-content-center d-flex">
       <div class="d-flex flex-column align-items-center">
         <!-- CURRENT USER AVATAR -->
-        <% if current_user.picture.attached? %>
-          <%= cl_image_tag current_user.user.picture.key, class: 'avatar-primary-gray' %>
-        <% else %>
-          <i class="fas fa-user-circle fa-3x"></i>
-        <% end %>
-        <p>You</p>
+        <div class="dropdown">
+          <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
+            <% if current_user.picture.attached? %>
+              <%= cl_image_tag current_user.user.picture.key, class: 'avatar-primary-gray' %>
+            <% else %>
+              <i class="fas fa-user-circle fa-3x"></i>
+            <% end %>
+              <p>You</p>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-remote="true">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,41 +37,30 @@
         <div class="col-3 justify-content-center d-flex">
           <div class="d-flex flex-column align-items-center">
             <!-- FLATMEMBERS AVATAR AND NAME -->
-              <% if flatmember.user.picture.attached? %>
-                <%= cl_image_tag flatmember.user.picture.key, class: 'avatar-secondary-gray' %>
-              <% else %>
-                <i class="fas fa-user-circle fa-2x"></i>
-              <% end %>
-              <p><%= flatmember.user.first_name %></p>
+            <div class="dropdown">
+              <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
+                <% if flatmember.user.picture.attached? %>
+                  <%= cl_image_tag flatmember.user.picture.key, class: 'avatar-secondary-gray' %>
+                <% else %>
+                  <i class="fas fa-user-circle fa-2x"></i>
+                <% end %>
+                  <p><%= flatmember.user.first_name %></p>
+              </button>
+              <div class="dropdown-menu p-1 text-center" aria-labelledby="dropdownMenuButton" data-remote="true">
+                <%= link_to "Delete member",
+                  flatmember_path(flatmember),
+                  class: "dropdown-item",
+                  method: :delete,
+                  data: { confirm: "Are you sure?",
+                  } %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
     <% end %>
   </div>
-  <div class="row justify-content-center my-3">
-    <div class="col-6 justify-content-end align-items-center d-flex">
-      <%= link_to "Add Member", flat_members_path(@flat), class: "btn btn-info shadow text-orange px-3 py-1" %>
-    </div>
-    <div class="col-6 justify-content-start align-items-center d-flex">
-      <div class="dropdown">
-        <a class="secondary-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Delete Member
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-remote="true">
-          <% @flat_flatmembers.each do |flatmember| %>
-            <%= link_to "Delete #{flatmember.user.first_name}",
-                flatmember_path(flatmember),
-                class: "dropdown-item",
-                method: :delete,
-                data: { confirm: "Are you sure?",
-                } %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
 <!-- NOTIFICATIONS NAME -->
 <div class="container mt-5 mb-1">
   <div class="row">

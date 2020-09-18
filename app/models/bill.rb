@@ -1,4 +1,5 @@
 class Bill < ApplicationRecord
+
   belongs_to :user
   belongs_to :flat
   belongs_to :paying_user, class_name: 'User'
@@ -7,6 +8,8 @@ class Bill < ApplicationRecord
   has_one_attached :invoice
 
   has_many :payments, dependent: :destroy
+
+  enum category: CATEGORIES
 
   validates :name, presence: true
   validates :amount_cents, presence: true
@@ -25,7 +28,6 @@ class Bill < ApplicationRecord
       bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)
     },
     notifiable_path: :bill_notifiable_path
-
   def status
     if Date.today > self.due_date
       "overdue"

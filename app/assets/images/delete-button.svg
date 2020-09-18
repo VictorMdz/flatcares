@@ -2,7 +2,6 @@
 <g filter="url(#filter0_d)">
 <circle cx="43" cy="36" r="23" fill="white"/>
 </g>
-<line x1="43" y1="27" x2="43" y2="45" stroke="#E7836B" stroke-width="2" stroke-linecap="round"/>
 <line x1="34" y1="36" x2="52" y2="36" stroke="#E7836B" stroke-width="2" stroke-linecap="round"/>
 <defs>
 <filter id="filter0_d" x="0" y="0" width="86" height="86" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">

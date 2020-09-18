@@ -7,14 +7,13 @@ BILL_ICONS = {
   other: 'fas fa-dollar-sign'
 }
 
-
-AREA_ICONS = {
+AREAS_ICONS = {
   kitchen: 'icon fas fa-utensils',
   toilet: 'icon fas fa-toilet',
-  bathroom: 'fas fa-bath',
   living_room: 'icon fas fa-couch',
-  corrido: 'icon fas fa-road',
-  stairs: 'con fas fa-shoe-prints',
+  corridor: 'icon fas fa-road',
+  stairs: 'icon fas fa-shoe-prints',
   garden: 'icon fab fa-pagelines',
-  other: 'icon fas fa-home',
-}
+  bathroom: 'fas fa-bath',
+  other: 'icon fas fa-home'
+

@@ -4,11 +4,16 @@
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-column">
           <h1><%= @area.name %> tasks</h1>
+
           <div>
-            <%= link_to "Edit", edit_area_path(@area) %> |
-            <%= link_to "Delete", area_path(@area), method: :delete, data: { confirm: "Are you sure?" } %>
-          </div>
-          <%= link_to "< Go to Areas", flat_areas_path(@flat), class: "primary-link my-3" %>
+          <%= link_to edit_area_path(@area) do %>
+            <i class="fas fa-pencil-alt mr-1"></i>
+          <% end %>
+          <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-trash ml-1"></i>
+          <% end %>
+          <p><%= link_to "< Go to Areas", flat_areas_path(@flat), class: "primary-link" %></p>
+
         </div>
         <%= link_to image_tag('add-button.svg'), new_area_task_path(@area) %>
       </div>
@@ -25,8 +30,9 @@
           <div class="row">
             <div class="col-8 d-flex justify-content-start align-items-center">
               <%= task.name %>
-              <%= link_to "Edit", edit_area_task_path(@area, task) %> |
-              <%= link_to "Delete", area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+              <%= link_to area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
+                <i class="fas fa-trash ml-1"></i>
+              <% end %>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
               <%= simple_form_for([ @area, task ], remote: true, method: :patch) do |f| %>

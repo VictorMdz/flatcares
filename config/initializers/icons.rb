@@ -7,7 +7,7 @@ BILL_ICONS = {
   other: 'fas fa-dollar-sign'
 }
 
-AREA_ICONS = {
+AREAS_ICONS = {
   kitchen: 'icon fas fa-utensils',
   toilet: 'icon fas fa-toilet',
   living_room: 'icon fas fa-couch',

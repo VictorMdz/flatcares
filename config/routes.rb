@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :flats do
     get 'members', to: 'flatmembers#invite'
     post 'invitations', to: 'flatmembers#send_invitations'
+    devise_for :users, controllers: { invitations: 'invitations' }
 
     resources :bills
     resources :events

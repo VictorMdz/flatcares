@@ -1,7 +1,8 @@
 <div class="navbar-smartphone">
   <div class="navbar-home">
-     <%= link_to flat_path(@flat) do %>
-      <i class="fas fa-home secondary-link"></i>
+    <% css_class_flat = controller?('flats') ? "primary-link" : "secondary-link" %>
+    <%= link_to flat_path(@flat) do %>
+      <i class="fas fa-home #{css_class_flat}"></i>
     <% end %>
     <p>Home</p>
   </div>
@@ -18,7 +19,7 @@
     <p>Tasks</p>
   </div>
   <div class="navbar-events">
-    <i class="far fa-calendar-alt text-orange"></i>
+    <i class="far fa-calendar-alt"></i>
     <p>Events</p>
   </div>
   <div class="navbar-chat">
@@ -27,3 +28,6 @@
   </div>
 </div>
 
+
+<% css_class_flat = controller?('flats') ? "nav-link text-orange" : "nav-link text-gray" %>
+          <%= link_to "Home", flat_path(@flat), class: "#{css_class_flat}" %>

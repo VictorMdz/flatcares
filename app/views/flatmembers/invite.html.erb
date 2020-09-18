@@ -1,20 +1,23 @@
 <div class="container mt-5">
   <div class="row d-flex justify-content-center">
-    <div class="col-6" data-controller="invitations">
-      <%= form_with(url: flat_invitations_path(@flat), class: 'd-flex flex-column') do %>
-        <div class="form-group d-flex flex-column">
-          <%= label_tag(:member, "Member") %>
-          <div data-target="invitations.field">
-            <div class="d-flex align-items-center">
-              <%= text_field_tag "member[]", nil, class: 'form-control', placeholder: 'Member email' %>
-              <%= image_tag('add-button.svg', height: '50', class: 'cursor-pointer', data: { action: "click->invitations#addField", target: "invitations.button"}) %>
-            </div>
+    <div class="col-12 col-md-6">
+      <div data-controller="invitations">
+        <%= form_with(url: flat_invitations_path(@flat), class: 'form-member') do %>
+          <div class="form-group d-flex flex-column">
+            <%= label_tag(:member, "Add your mates here") %>
+              <div data-target="invitations.field">
+                <%= text_field_tag "member[]", nil, class: 'mb-2 form-control', placeholder: "Your mate's email" %>
+                <div class="d-flex justify-content-center align-items-center" data-target="invitations.button"  >
+                  <%= image_tag('add-button.svg', height: '50', class: 'cursor-pointer', data: { action: "click->invitations#addField", target: "invitations.button"}) %>
+                  <p class="m-0">Add more</p>
+                </div>
+                <div class="mb-2 additional-fields" data-target="invitations.additionalFields" >
+                </div>
+              </div>
+            <%= submit_tag("Invite", class: 'btn btn-primary text-white')%>
           </div>
-        </div>
-        <div class="additional-fields" data-target="invitations.additionalFields">
-        </div>
-        <%=submit_tag("Invite", class: 'btn btn-primary text-white')%>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

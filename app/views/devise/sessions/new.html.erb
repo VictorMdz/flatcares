@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container bg-white border-bottom">
   <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-lg-4 p-0">
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="row">
           <div class="col-12 col-lg-4 d-flex align-items-start">
@@ -19,10 +19,14 @@
                       input_html: { autocomplete: "current-password" } %>
         </div>
         <div class="form-group d-inline text-left">
-          <%= f.input :remember_me, as: :boolean, class: "m-0" if devise_mapping.rememberable? %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
-        <%= f.button :submit, "Log in", class: "btn btn-primary text-white" %>
+        <%= f.button :submit, "Log in", class: "btn btn-primary text-white mt-4" %>
       <% end %>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-lg-4 p-0 d-flex justify-content-center align-items-center">
       <%= render "devise/shared/links" %>
     </div>
   </div>

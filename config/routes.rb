@@ -4,15 +4,17 @@ Rails.application.routes.draw do
   notify_to :users
 
   resources :areas, only: [:show, :update, :edit, :destroy] do
-    resources :tasks, only: [ :new, :create, :update, :destroy ]
+    resources :tasks, only: [ :new, :create, :update, :destroy, :edit]
   end
 
   root to: "pages#home"
 
-# devise_scope :user do
+  # devise_scope :user do
   #   root to: 'devise/sessions#new'
   # end
+
   resources :flatmembers, only: [:destroy]
+
 
   resources :flats do
     get 'members', to: 'flatmembers#invite'

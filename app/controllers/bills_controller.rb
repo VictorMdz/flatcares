@@ -41,7 +41,7 @@ class BillsController < ApplicationController
     if @bill.update(bill_params)
       redirect_to flat_bill_path
     else
-      render edit_flat_bill_path
+      render "bills/show"
     end
   end
 

@@ -9,6 +9,7 @@ class AreasController < ApplicationController
   end
 
   def show
+    @flat = @area.flat
   end
 
   def new
@@ -31,17 +32,20 @@ class AreasController < ApplicationController
   end
 
   def edit
+    @flat = @area.flat
   end
 
   def update
-    # if @area.update(bill_params)
-    #   redirect_to flat_bill_path
-    # else
-    #   render edit_flat_bill_path
-    # end
+    @flat = @area.flat
+    if @area.update(area_params)
+      redirect_to area_path(@area)
+    else
+      render area_path(@area)
+    end
   end
 
   def destroy
+    @flat = @area.flat
     @area.destroy
     redirect_to flat_areas_path(@area.flat_id)
   end

@@ -13,6 +13,7 @@ class TasksController < ApplicationController
 
   def new
     @area = Area.find(params[:area_id])
+    @flat = @area.flat
     @task = Task.new
   end
 
@@ -20,7 +21,9 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     @area = Area.find(params[:area_id])
+    @flat = @area.flat
     @task.area_id = @area.id
+
 
     if @task.save
       redirect_to area_path(@area)
@@ -31,11 +34,13 @@ class TasksController < ApplicationController
 
   def edit
     @area = Area.find(params[:area_id])
+    @flat = @area.flat
     @task = Task.find(params[:id])
   end
 
   def update
     @area = Area.find(params[:area_id])
+    @flat = @area.flat
     if @task.update(task_params)
       redirect_to area_path(@area)
     else
@@ -45,6 +50,7 @@ class TasksController < ApplicationController
 
   def destroy
     @area = Area.find(params[:area_id])
+    @flat = @area.flat
     @task = Task.find(params[:id])
 
     @task.destroy

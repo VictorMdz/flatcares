@@ -16,4 +16,4 @@ AREAS_ICONS = {
   garden: 'icon fab fa-pagelines',
   bathroom: 'fas fa-bath',
   other: 'icon fas fa-home'
-
+}

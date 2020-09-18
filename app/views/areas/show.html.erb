@@ -39,9 +39,9 @@
                 <%= f.input :completed, as: :hidden, input_html: { value: !task.completed } %>
                 <button class="bg-transparent border-0" style="outline: none;">
                   <% if task.completed == true %>
-                    <img src="/assets/check-done.svg">
+                    <%= image_tag 'check-done.svg' %>
                   <% else %>
-                    <img src="/assets/check-undone.svg">
+                    <%= image_tag 'check-undone.svg' %>
                   <% end %>
                 </button>
               <% end %>

@@ -13,7 +13,7 @@
     <div class="col-12 justify-content-center d-flex">
       <div class="d-flex flex-column align-items-center">
         <!-- CURRENT USER AVATAR -->
-        <div class="dropdown">
+        <div id="dropdown-menu-custom"  class="dropdown">
           <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
             <% if current_user.picture.attached? %>
               <%= cl_image_tag current_user.user.picture.key, class: 'avatar-primary-gray' %>

@@ -25,6 +25,6 @@
 
       <p class="alert m-0"><%= alert %></p>
     </div>
-    <%= render 'shared/navbar-smartphone' if (signed_in?) && (!current_user.flats.empty?) %>
+    <%= render 'shared/navbar-smartphone' if (signed_in?) && (!current_user.flats.empty?) && (!current_page?(edit_user_registration_path)) %>
   </body>
 </html>

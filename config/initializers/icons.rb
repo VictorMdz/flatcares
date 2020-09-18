@@ -7,7 +7,7 @@ BILL_ICONS = {
   other: 'fas fa-dollar-sign'
 }
 
-AREAS_ICONS = {
+AREA_ICONS = {
   kitchen: 'icon fas fa-utensils',
   toilet: 'icon fas fa-toilet',
   living_room: 'icon fas fa-couch',
@@ -17,3 +17,12 @@ AREAS_ICONS = {
   bathroom: 'fas fa-bath',
   other: 'icon fas fa-home'
 
+}
+
+ICONS_NAVBAR =  {
+  home: 'icon fas fa-home',
+  bill: 'fas fa-file-invoice',
+  task: 'fas fa-tasks',
+  event: 'far fa-calendar-alt',
+  chat: 'far fa-comments'
+}

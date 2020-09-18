@@ -52,14 +52,14 @@ flatmember_4.save!
 
 puts "Creating bills"
 
-bill_1 = Bill.new(name: "Rent", user_id: user_1.id, paying_user_id: user_1.id, due_date: Date.today + 10, category: "rent", amount: 1200 )
+bill_1 = Bill.new(name: "Rent", flat_id: flat.id, user_id: user_1.id, paying_user_id: user_1.id, due_date: Date.today + 10, amount: 1200 )
 bill_1.save!
 
-bill_2 = Bill.new(name: "Electricity", user_id: user_2.id, paying_user_id: user_2.id, due_date: Date.today - 10, category: "electricity", amount: 220 )
+bill_2 = Bill.new(name: "Electricity", flat_id: flat.id, user_id: user_2.id, paying_user_id: user_2.id, due_date: Date.today - 10, amount: 220 )
 bill_2.save!
 
 
-bill_3 = Bill.new(name: "Gas", user_id: user_3.id, paying_user_id: user_3.id, due_date: Date.today + 10, category: "gas", amount: 300 )
+bill_3 = Bill.new(name: "Gas", flat_id: flat.id, user_id: user_3.id, paying_user_id: user_3.id, due_date: Date.today + 10, amount: 300 )
 bill_3.save!
 
 

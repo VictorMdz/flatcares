@@ -28,6 +28,7 @@ class Bill < ApplicationRecord
       bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)
     },
     notifiable_path: :bill_notifiable_path
+    
   def status
     if Date.today > self.due_date
       "overdue"

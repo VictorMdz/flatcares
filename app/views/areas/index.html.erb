@@ -14,21 +14,7 @@
     <%= link_to flat_area_path(@flat, area), class: "secondary-link text-decoration-none" do %>
       <div class="row border-bottom mx-1 my-2 py-3">
         <div class="col-2 justify-content-start align-items-center d-flex">
-          <% if area.name.downcase == "kitchen" %>
-            <i class="icon fas fa-utensils"></i>
-          <% elsif area.name.downcase == "toilet" %>
-            <i class="icon fas fa-toilet"></i>
-          <% elsif area.name.downcase == "living room" %>
-            <i class="icon fas fa-couch"></i>
-          <% elsif area.name.downcase == "corridor" %>
-            <i class="icon fas fa-road"></i>
-          <% elsif area.name.downcase == "stairs" %>
-            <i class="icon fas fa-shoe-prints"></i>
-          <% elsif area.name.downcase == "garden" %>
-            <i class="icon fab fa-pagelines"></i>
-          <% else %>
-            <i class="icon fas fa-home"></i>
-          <% end %>
+          <i class="<%= AREA_ICONS[area.name.to_sym] %>"></i>
         </div>
         <div class="col-6 justify-content-start align-items-start">
             <h6 class="mb-1 d-block"><%= area.name.capitalize %></h6>

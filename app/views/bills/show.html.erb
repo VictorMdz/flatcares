@@ -1,7 +1,7 @@
 
   <div class="row justify-content-center m-3">
     <div class="col-12">
-      <h2> <%= @bill.name %> </h2>
+      <h2> <%= @bill.name %></h2>
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <p> <%= @bill.due_date %> </p>
@@ -27,7 +27,11 @@
         <div class="<%= (payment.user_id == @bill.paying_user_id) || (payment.paid == true) ? 'expenses-card-white' : 'card-gray' %>">
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
-              <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange" %>
+              <% if current_user.picture.attached? %>
+                <%= cl_image_tag current_user.user.picture.key, class: 'avatar-secondary-orange' %>
+              <% else %>
+                <i class="fas fa-user-circle fa-3x"></i>
+              <% end %>
               <% if payment.user_id == @bill.paying_user_id %>
                 <div class="text-left ">
                   <h3>  <%= payment.user.first_name %> </h3>

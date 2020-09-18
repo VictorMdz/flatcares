@@ -2,7 +2,7 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-12">
-      <h2 class="text-center"><%= @flat.name %></h2>
+      <h1 class="text-center">🏡 <%= @flat.name %></h1>
     </div>
   </div>
 </div>
@@ -60,6 +60,9 @@
       <% end %>
     <% end %>
   </div>
+   <div class="col-12 justify-content-center align-items-center d-flex mt-3">
+      <%= link_to "+ Add Members", flat_members_path(@flat), class: "btn btn-info shadow text-orange px-4" %>
+    </div>
 </div>
 <!-- NOTIFICATIONS NAME -->
 <div class="container mt-5 mb-1">

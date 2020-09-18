@@ -30,11 +30,11 @@ class Bill < ApplicationRecord
     notifiable_path: :bill_notifiable_path
   def status
     if Date.today > self.due_date
-      "overdue"
+      "Overdue"
     elsif self.payments.where(paid: true).count == self.payments.count
-      "paid"
+      "Paid"
     else
-      "pending"
+      "Pending"
     end
   end
 

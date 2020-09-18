@@ -25,4 +25,5 @@ ICONS_NAVBAR =  {
   task: 'fas fa-tasks',
   event: 'far fa-calendar-alt',
   chat: 'far fa-comments'
+
 }

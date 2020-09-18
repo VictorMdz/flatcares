@@ -20,7 +20,7 @@
             <h6 class="mb-1 d-block"><%= area.name.capitalize %></h6>
             <p class="mb-1 d-block"><%= area.description.capitalize %></p>
             <% if area.assigned_user.nil? %>
-              <p class="mb-0 d-block">Nobody is assigned yet</p>
+              <p class="mb-0 d-block">Nobody has been assigned yet</p>
             <% else %>
               <p class="mb-0 d-block"><%= area.assigned_user.first_name %></p>
             <% end %>

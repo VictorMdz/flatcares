@@ -14,7 +14,7 @@
     <%= link_to flat_area_path(@flat, area), class: "secondary-link text-decoration-none" do %>
       <div class="row border-bottom mx-1 my-2 py-3">
         <div class="col-2 justify-content-start align-items-center d-flex">
-          <i class="<%= AREA_ICONS[area.name.to_sym] %>"></i>
+          <i class="<%= AREAS_ICONS[area.name.downcase.to_sym] %>"></i>
         </div>
         <div class="col-6 justify-content-start align-items-start">
             <h6 class="mb-1 d-block"><%= area.name.capitalize %></h6>

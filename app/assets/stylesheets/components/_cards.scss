@@ -1,7 +1,11 @@
-.card-orange, .card-white, .card-gray, .calendar-card-white, .expenses-card-white, .task-card-white-high, .task-card-white-low {
-  border-radius: 50px;
+.card-orange, .card-white, .card-gray,
+.calendar-card-white,
+.expenses-card-white, .expenses-card-gray,
+.task-card-white-high, .task-card-white-low {
+  border-radius: 15px;
   padding: 38px;
   box-shadow: 0px 0px 23px 17px rgba(198, 198, 198, 0.08);
+  margin-bottom: 12px;
 }
 
 .task-card-white-low {
@@ -16,6 +20,14 @@
 .card-white {
   color: $orange;
   background-color: $white;
+}
+
+.expenses-card-gray {
+  background-color: $light-gray;
+}
+
+.expenses-card-gray a {
+  margin-right: 20px;
 }
 
 .card-gray {
@@ -62,7 +74,6 @@
 
 .card-half-orange {
   color: $white;
-  margin: 5px;
   padding: 16px;
   background-color: $orange;
   border-radius: 15px;
@@ -70,8 +81,10 @@
 
 
 .cards-grid {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
 }
 
 .card-half-gray {
@@ -84,7 +97,8 @@
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
-  .calendar-card-white, .expenses-card-white {
+  .calendar-card-white, .expenses-card-white,
+  .expenses-card-gray {
     padding: 20px;
   }
 }

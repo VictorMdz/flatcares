@@ -1,11 +1,11 @@
-<svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="86" height="86" viewBox="0 0 86 86" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d)">
-<circle cx="55" cy="48" r="35" fill="white"/>
+<circle cx="43" cy="36" r="23" fill="white"/>
 </g>
-<line x1="54.5" y1="32.5" x2="54.5" y2="62.5" stroke="#E7836B" stroke-width="3" stroke-linecap="round"/>
-<line x1="39.5" y1="48.5" x2="70.5" y2="48.5" stroke="#E7836B" stroke-width="3" stroke-linecap="round"/>
+<line x1="43" y1="27" x2="43" y2="45" stroke="#E7836B" stroke-width="2" stroke-linecap="round"/>
+<line x1="34" y1="36" x2="52" y2="36" stroke="#E7836B" stroke-width="2" stroke-linecap="round"/>
 <defs>
-<filter id="filter0_d" x="0" y="0" width="110" height="110" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d" x="0" y="0" width="86" height="86" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow"/>

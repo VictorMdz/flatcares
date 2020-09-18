@@ -52,15 +52,30 @@ flatmember_4.save!
 
 puts "Creating bills"
 
-bill_1 = Bill.new(name: "Rent", flat_id: flat.id, user_id: user_1.id, paying_user_id: user_1.id, due_date: Date.today + 10, amount: 1200 )
+bill_1 = Bill.new(name: "Rent", flat_id: flat.id, user_id: user_1.id, paying_user_id: user_1.id, due_date: Date.today + 10, amount: 1200, category: "rent" )
 bill_1.save!
 
-bill_2 = Bill.new(name: "Electricity", flat_id: flat.id, user_id: user_2.id, paying_user_id: user_2.id, due_date: Date.today - 10, amount: 220 )
+bill_2 = Bill.new(name: "Electricity", flat_id: flat.id, user_id: user_2.id, paying_user_id: user_2.id, due_date: Date.today - 10, amount: 220, category: "electricity" )
 bill_2.save!
 
-
-bill_3 = Bill.new(name: "Gas", flat_id: flat.id, user_id: user_3.id, paying_user_id: user_3.id, due_date: Date.today + 10, amount: 300 )
+bill_3 = Bill.new(name: "Gas", flat_id: flat.id, user_id: user_3.id, paying_user_id: user_3.id, due_date: Date.today + 10, amount: 300, category: "gas" )
 bill_3.save!
+
+bill_4 = Bill.new(name: "Internet", flat_id: flat.id, user_id: user_4.id, paying_user_id: user_4.id, due_date: Date.today + 2, amount: 100, category: "internet" )
+bill_4.save!
+
+bill_5 = Bill.new(name: "Water", flat_id: flat.id, user_id: user_3.id, paying_user_id: user_3.id, due_date: Date.today - 15, amount: 250, category: "water" )
+bill_5.save!
+
+bill_6 = Bill.new(name: "Rent", flat_id: flat.id, user_id: user_2.id, paying_user_id: user_2.id, due_date: Date.today - 25, amount: 1200, category: "rent" )
+bill_6.save!
+
+bill_7 = Bill.new(name: "Water", flat_id: flat.id, user_id: user_3.id, paying_user_id: user_3.id, due_date: Date.today - 30, amount: 250, category: "water" )
+bill_7.save!
+
+
+puts "Create areas"
+
 
 
 

@@ -32,3 +32,11 @@ form.simple_form h2 {
 form.simple_form.edit_payment {
   padding: 0;
 }
+
+form.simple_form .form-group.hidden {
+  margin-bottom:0;
+}
+
+form.simple_form.edit_task {
+  padding:0;
+}

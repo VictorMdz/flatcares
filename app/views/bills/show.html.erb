@@ -5,7 +5,6 @@
         <div class="mr-4">
           <h1><%= @bill.name %></h1>
           <p> <%= @bill.due_date %> </p>
-
         </div>
         <div>
           <%= link_to edit_flat_bill_path(@flat, @bill) do %>
@@ -40,7 +39,7 @@
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
               <%if payment.user.picture.attached?%>
-                  <%= cl_image_tag car.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+                  <%= cl_image_tag payment.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
               <%else%>
                 <i class="fas fa-user-circle fa-2x mr-2"></i>
               <%end%>
@@ -67,20 +66,14 @@
                 <div class="text-right">
                   <h2> <%= humanized_money_with_symbol(payment.amount) %> </h2>
                   <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
-                    <%= simple_form_for payment, class: "background-none", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
-                    <%= f.input :paid, :as => :hidden, :input_html => { :value => :false } %>
-                    <%= f.submit "Hasn't paid", class: "btn btn-link primary-link" %>
-                <% end %>
+                  <%= render 'form_bill_hasnt_paid', payment: payment %>
                 </div>
               <% end %>
             </div>
             <% if (payment.user_id != @bill.paying_user_id) & (payment.paid == false) %>
               <div class="d-flex justify-content-between align-items-center background-none">
                 <%= link_to "Request Payment", flat_bills_path, class: "secondary-link" %>
-                <%= simple_form_for payment, class: "background-none p-0", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
-                  <%= f.input :paid, :as => :hidden, :input_html => { :value => :true } %>
-                  <%= f.submit "Has paid", class: "btn shadow text-orange" %>
-                <% end %>
+                <%= render 'form_bill_has_paid', payment: payment %>
               </div>
             <% end %>
           </div>

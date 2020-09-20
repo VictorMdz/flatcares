@@ -61,9 +61,7 @@
         <% @bills.order('created_at desc').each do |bill| %>
           <%= link_to flat_bill_path(@flat, bill), class: "secondary-link text-decoration-none" do %>
             <div class="<%= (bill.status == "Pending") || (bill.status == "Overdue") ? 'card-half-gray' : 'card-half-orange' %>">
-
               <%= render 'bill_name_icon', bill: bill %>
-
               <p><%=bill.due_date%></p>
               <div class="d-flex justify-content-between align-items-end">
                 <p class="secondary-p m-0"><br><%=bill.status%></p>

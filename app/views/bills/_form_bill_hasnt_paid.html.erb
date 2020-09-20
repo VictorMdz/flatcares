@@ -1,0 +1,4 @@
+<%= simple_form_for payment, class: "background-none", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
+  <%= f.input :paid, :as => :hidden, :input_html => { :value => :false } %>
+  <%= f.submit "Hasn't paid", class: "btn btn-link primary-link" %>
+<% end %>

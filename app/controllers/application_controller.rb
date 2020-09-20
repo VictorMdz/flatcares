@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:first_name, :last_name])
     # For additional in app/views/devise/registrations/edit.html.erb
-    # devise_parameter_sanitizer.permit(:account_update, keys: [:picture])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:picture])
   end
 
   def after_sign_in_path_for(resource)
@@ -21,5 +21,4 @@ class ApplicationController < ActionController::Base
       flats_path
     end
   end
-
 end

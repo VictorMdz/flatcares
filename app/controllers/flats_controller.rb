@@ -2,7 +2,6 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :set_flatmembers]
 
   def show
-
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
     @notifications = current_user.notifications
@@ -27,11 +26,10 @@ class FlatsController < ApplicationController
     end
   end
 
-
   private
 
   def set_flat
-    @flat = Flat.find(params[:id])
+      @flat = Flat.find(params[:id])
   end
 
   def flat_params

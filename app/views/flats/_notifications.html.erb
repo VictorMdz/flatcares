@@ -56,7 +56,7 @@
 
           <!-- NEW AREA ASSINGMENT -->
           <% elsif notification.notifiable_type == "Area" %>
-            <%= link_to flat_event_path(notification.notifiable.flat_id, notification.notifiable.id), class: "secondary-link text-decoration-none" do %>
+            <%= link_to flat_area_path(notification.notifiable.flat_id, notification.notifiable.id), class: "secondary-link text-decoration-none" do %>
               <% if notification.notifiable.assigned_user_id == current_user.id %>
                 <div class="row calendar-card-white my-3">
                   <div class="col-10 justify-content-start align-items-start">

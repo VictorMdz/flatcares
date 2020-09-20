@@ -12,7 +12,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if (user_signed_in?) && (!current_user.flats.empty?) && (!current_page?(edit_user_registration_path)) %>
+      <% if (user_signed_in?) && (!current_user.flats.empty?) && (!@flats.nil?) %>
         <li class="nav-item">
           <% css_class_flat = controller?('flats') ? "nav-link text-orange" : "nav-link text-gray" %>
           <%= link_to "Home", flat_path(@flat), class: "#{css_class_flat}" %>
@@ -34,17 +34,29 @@
           <%= link_to "Chat", "#", class: "#{css_class_chat}" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "dropdown-toggle avatar-secondary-orange ml-5", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
+          <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
+            <% if current_user.picture.attached? %>
+              <%= cl_image_tag current_user.picture.key, class: "avatar-secondary-orange", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <i class="fas fa-user-circle fa-2x"></i>
+            <% end %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </button>
         </li>
-      <% elsif (user_signed_in?) && (current_user.flats.empty?) && current_page?(edit_user_registration_path) %>
+      <% elsif (user_signed_in?) && (@flats.nil?) %>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "dropdown-toggle avatar-secondary-orange ml-5", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
+          <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
+            <% if current_user.picture.attached? %>
+              <%= cl_image_tag current_user.picture.key, class: "avatar-secondary-orange", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <i class="fas fa-user-circle fa-2x"></i>
+            <% end %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </button>
         </li>
       <% else %>
         <li class="nav-item">
@@ -54,3 +66,5 @@
     </ul>
   </div>
 </div>
+
+

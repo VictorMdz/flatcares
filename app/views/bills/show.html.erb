@@ -39,7 +39,11 @@
         <div class="<%= (payment.user_id == @bill.paying_user_id) || (payment.paid == true) ? 'expenses-card-white' : 'expenses-card-gray' %>">
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
-              <%= image_tag "victor-mendoza.jpg", class: "avatar-secondary-orange" %>
+              <%if payment.user.picture.attached?%>
+                  <%= cl_image_tag car.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+              <%else%>
+                <i class="fas fa-user-circle fa-2x mr-2"></i>
+              <%end%>
               <% if payment.user_id == @bill.paying_user_id %>
                 <div class="text-left ">
                   <h3>  <%= payment.user.first_name %> </h3>

@@ -3,6 +3,7 @@ class Area < ApplicationRecord
   belongs_to :previously_assigned_user, class_name: "User", optional: true
   belongs_to :flat
   has_many :tasks, dependent: :destroy
+
   validates :name, presence: true
 
   after_create :notify_users

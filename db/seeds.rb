@@ -24,7 +24,7 @@ user_4.save!
 
 puts "Creating a flat"
 
-flat = Flat.new( name: "Le Wagon Madrid 😍")
+flat = Flat.new( name: "Le Wagon Madrid 😍", full_address: "Calle Pío Baroja 23 1F, 26773")
 flat.save!
 
 

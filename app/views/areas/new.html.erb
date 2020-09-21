@@ -3,7 +3,6 @@
     <div class="col-md-8">
       <%= simple_form_for [@flat, @area] do |f| %>
         <h2>Create a new Area </h2>
-        <%#= f.input :name, placeholder: "Area's name", label: false %>
         <%= f.input :name,
                     required: true,
                     include_blank: "Area's Name",

@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-12">
       <h1 class="text-center">🏡 <%= @flat.name %></h1>
+      <p class="text-center"> <%= @flat.full_address %></p>
     </div>
   </div>
 </div>
@@ -16,7 +17,7 @@
         <div id="dropdown-menu-custom"  class="dropdown">
           <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
             <% if current_user.picture.attached? %>
-              <%= cl_image_tag current_user.picture.key, class: 'avatar-primary-gray' %>
+              <%= cl_image_tag current_user.picture.key, :quality=>100, class: 'avatar-primary-gray' %>
             <% else %>
               <i class="fas fa-user-circle fa-3x"></i>
             <% end %>
@@ -24,6 +25,7 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-remote="true">
             <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Delete Flat", flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
@@ -40,7 +42,7 @@
             <div class="dropdown">
               <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
                 <% if flatmember.user.picture.attached? %>
-                  <%= cl_image_tag flatmember.user.picture.key, class: 'avatar-secondary-gray' %>
+                  <%= cl_image_tag flatmember.user.picture.key, :quality=>100, class: 'avatar-secondary-gray' %>
                 <% else %>
                   <i class="fas fa-user-circle fa-2x"></i>
                 <% end %>

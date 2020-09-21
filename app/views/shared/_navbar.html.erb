@@ -12,7 +12,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if (user_signed_in?) && (!current_user.flats.empty?) && (!@flats.nil?) %>
+      <% if (user_signed_in?) && (!current_user.flats.empty?) && (!@flat.nil?) %>
         <li class="nav-item">
           <% css_class_flat = controller?('flats') ? "nav-link text-orange" : "nav-link text-gray" %>
           <%= link_to "Home", flat_path(@flat), class: "#{css_class_flat}" %>

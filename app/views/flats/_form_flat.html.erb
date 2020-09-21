@@ -1,5 +1,6 @@
 <%= simple_form_for [@flat] do |f| %>
   <h2>Create a new Flat</h2>
   <%= f.input :name, placeholder: "Flat's Name", label: false %>
+  <%= f.input :full_address, placeholder: "Full address", label: false %>
   <%= f.submit "Create flat", class: "btn btn-success text-white"%>
 <% end %>

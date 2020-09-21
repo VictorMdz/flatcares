@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # end
 
   resources :flatmembers, only: [:destroy]
+  resources :chatrooms
 
 
   resources :flats do
@@ -27,16 +28,18 @@ Rails.application.routes.draw do
     resources :areas do
       resources :tasks
     end
+
+    resources :chatrooms, only: :show do
+      resources :messages, only: [:create]
+    end
+  
   end
 
   resources :bills, only: [] do
     resources :payments, only: [:update]
   end
 
-  resources :chatroom do
-    resources :messages
-  end
-
+  
 
   resources :events
 

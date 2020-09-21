@@ -11,8 +11,7 @@ class BillsController < ApplicationController
       @bills = @bills.by_category(params[:category])
     end
 
-    if params[:amount_cents] != "" && params[:amount_cents].present?
-      raise
+    if params[:amount_cents].present? && params[:amount_cents] != ""
       @bills = @bills.by_amount(@amounts[params[:amount_cents].to_sym].to_a)
     end
 
@@ -87,12 +86,12 @@ class BillsController < ApplicationController
     @categories.uniq!
 
     @amounts = {
-      "€0 - €50": 0..5000,
-      "€50 - €100": 5000..10000,
-      "€100 - €150": 10000..15000,
-      "€150 - €200": 15000..20000,
-      "€200 - €250": 20000..25000,
-      "€250 +": 25000..50000000
+      "€0 - €50": [0, 50],
+      "€50 - €100": [50, 100],
+      "€100 - €150": [100, 150],
+      "€150 - €200": [150, 200],
+      "€200 - €250": [200, 250],
+      "€250 +": [250, 50000000]
     }
   end
 

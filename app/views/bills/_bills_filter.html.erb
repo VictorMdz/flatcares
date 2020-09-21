@@ -1,12 +1,22 @@
 <%= form_tag flat_bills_path, method: :get do %>
-    <div class="btn-group mb-2 mr-2">
-      <%= select_tag :category, options_for_select(@categories, params[:category]), include_blank: "Bill Type", class: "btn inactive-filter border-0" %>
+    <div class="btn-group mb-2 mr-2 button">
+      <div data-action="onclick->bills#toggleActive">
+        <%= select_tag :category, options_for_select(@categories, params[:category]), include_blank: "Bill Type", class: "btn inactive-filter border-0" %>
+      </div>
     </div>
 
-    <div class="btn-group mb-2 mr-2">
-      <%= select_tag :amount_cents, options_for_select(@amounts.keys, params[:amount_cents]), include_blank: "Bill Amount", class: 'btn inactive-filter border-0' %>
+    <div class="btn-group mb-2 mr-2 button">
+      <div data-action="click->bills#toggleActive">
+        <%= select_tag :amount_cents, options_for_select(@amounts.keys, params[:amount_cents]), include_blank: "Bill Amount", class: 'btn inactive-filter border-0' %>
+      </div>
     </div>
-  <%= submit_tag "Apply filters", class: "btn btn-dark rounded-pill mr-1" %>
+
+    <div class="btn-group mb-2 mr-2 button">
+      <div data-action="click->bills#toggleActive">
+        <%= select_tag :due_date, options_for_select(@amounts.keys, params[:due_date]), include_blank: "Bill Amount", class: 'btn inactive-filter border-0' %>
+      </div>
+    </div>
+  <%= submit_tag "Apply filters", class: "btn btn-info shadow text-orange" %>
 <% end %>
 
     <%#= simple_form_for(flat_bills_path, remote: true, method: :get) do |f| %>
@@ -20,13 +30,14 @@
         </div> -->
     <%# end %>
 
-<!-- <div class="btn-group mb-2 mr-2">
+<div class="btn-group mb-2 mr-2">
   <button
     type="button"
     class="btn inactive-filter"
     data-action="bills#toggleActive"
   >Electricity</button>
 </div>
+<!--
 <div class="btn-group mb-2 mr-2">
   <button
     type="button"

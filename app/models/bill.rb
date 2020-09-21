@@ -42,7 +42,7 @@ class Bill < ApplicationRecord
 
   include PgSearch::Model
   scope :by_category, -> (category) { where(category: category) }
-  scope :by_amount, -> (amounts) { where(amount_cents: amounts) }
+  scope :by_amount, -> (amounts) { where('amount_cents >= ? AND amount_cents <= ?', amounts.first * 100, amounts.last * 100) }
 
   private
 

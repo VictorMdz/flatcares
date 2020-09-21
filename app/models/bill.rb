@@ -12,6 +12,7 @@ class Bill < ApplicationRecord
   enum category: CATEGORIES
 
   validates :name, presence: true
+  validates :category, presence: :true
   validates :amount_cents, presence: true
   validates :due_date, presence: true
 

@@ -27,7 +27,7 @@ class AreasController < ApplicationController
     if @area.save
       redirect_to flat_areas_path(@flat)
     else
-      render "areas/index"
+      render "areas/new"
     end
   end
 

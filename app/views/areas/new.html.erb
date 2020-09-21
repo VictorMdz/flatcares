@@ -4,19 +4,15 @@
       <%= simple_form_for [@flat, @area] do |f| %>
         <h2>Create a new Area </h2>
         <%= f.input :name,
-                    required: true,
-                    include_blank: "Area's Name",
-                    label: false,
-                    collection: [
-                      "Kitchen","Toilet", "Bathroom",
-                      "Living Room", "Garden", "Corridor",
-                      "Stairs", "Other"
-                      ]
-                      %>
-        <%= f.input :description,
-                    placeholder: "Description",
+                    placeholder: "Area's name",
                     label: false
                     %>
+        <%= f.input :category,
+                    required: true,
+                    include_blank: "Area's type",
+                    label: false,
+                    collection: AREA_CATEGORIES
+                      %>
         <%= f.submit "Create Area", class: "btn btn-success text-white"%>
       <% end %>
     </div>

@@ -4,6 +4,8 @@ class Area < ApplicationRecord
   belongs_to :flat
   has_many :tasks, dependent: :destroy
 
+  enum category: AREA_CATEGORIES
+
   validates :name, presence: true
 
   after_create :notify_users

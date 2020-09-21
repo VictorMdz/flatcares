@@ -2,14 +2,18 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex flex-column justify-content-between mb-3">
-          <div class="d-flex">
-            <div class="mr-4">
-              <h1 class="mb-3"><%= @area.name %> tasks</h1>
+          <div class="d-flex" data-controller="tasks">
+            <div
+              class="mr-4"
+              data-action="click->tasks#changeNameToInput"
+              data-id="<%= @area.id %>"
+              data-target="tasks.title"
+            >
+              <h1 class="mb-3">
+                <%= @area.name %> tasks
+              </h1>
             </div>
             <div>
-            <%= link_to edit_area_path(@area) do %>
-              <i class="far fa-edit secondary-link mr-1"></i>
-            <% end %>
             <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="far fa-trash-alt secondary-link ml-1"></i>
             <% end %>
@@ -19,7 +23,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="container">
   <div class="row">

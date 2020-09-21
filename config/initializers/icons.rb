@@ -24,6 +24,6 @@ ICONS_NAVBAR =  {
   bill: 'fas fa-file-invoice',
   task: 'fas fa-tasks',
   event: 'far fa-calendar-alt',
-  chat: 'far fa-comments'
+  chatroom: 'far fa-comments'
 
 }

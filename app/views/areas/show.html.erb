@@ -10,7 +10,6 @@
             <%= link_to edit_area_path(@area) do %>
               <i class="far fa-edit secondary-link mr-1"></i>
             <% end %>
-            |
             <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="far fa-trash-alt secondary-link ml-1"></i>
             <% end %>
@@ -29,10 +28,10 @@
         <div class="task-card-white-low">
           <div class="row">
             <div class="col-8 d-flex justify-content-start align-items-center">
-              <p class="m-0"><%= task.name %></p>
               <%= link_to area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
-                <i class="far fa-trash-alt fa-sm ml-3"></i>
+                <i class="far fa-trash-alt fa-sm mr-3"></i>
               <% end %>
+              <p class="m-0"><%= task.name %></p>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
               <%= simple_form_for([ @area, task ], remote: true, method: :patch) do |f| %>

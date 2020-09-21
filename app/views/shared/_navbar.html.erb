@@ -36,7 +36,7 @@
         <li class="nav-item dropdown">
           <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
             <% if current_user.picture.attached? %>
-              <%= cl_image_tag current_user.picture.key, class: "avatar-secondary-orange", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= cl_image_tag current_user.picture.key, :quality=>100, class: "avatar-secondary-orange", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
               <i class="fas fa-user-circle fa-2x"></i>
             <% end %>
@@ -49,7 +49,7 @@
         <li class="nav-item dropdown">
           <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
             <% if current_user.picture.attached? %>
-              <%= cl_image_tag current_user.picture.key, class: "avatar-secondary-orange", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= cl_image_tag current_user.picture.key, :quality=>100, class: "avatar-secondary-orange", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
               <i class="fas fa-user-circle fa-2x"></i>
             <% end %>

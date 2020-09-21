@@ -3,7 +3,8 @@
   border-radius: 50%;
   // border: 5px solid $orange;
   height: 70px;
-  background-size: cover;
+  // background-size: cover;
+  object-fit: cover;
 }
 
 .avatar-primary-gray {
@@ -11,19 +12,24 @@
   border-radius: 50%;
   // border: 5px solid $light-gray;
   height: 70px;
-  background-size: cover;
+  // background-size: cover;
+  object-fit: cover;
 }
 
 .avatar-secondary-orange {
   width: 33px;
   border-radius: 50%;
+  height: 33px;
   // border: 3px solid $orange;
+  object-fit: cover;
 }
 
 .avatar-secondary-gray {
   width: 33px;
   border-radius: 50%;
   // border: 3px solid $light-gray;
+  height: 33px;
+  object-fit: cover;
 }
 
 .avatar-large {

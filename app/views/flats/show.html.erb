@@ -16,7 +16,7 @@
         <div id="dropdown-menu-custom"  class="dropdown">
           <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
             <% if current_user.picture.attached? %>
-              <%= cl_image_tag current_user.picture.key, class: 'avatar-primary-gray' %>
+              <%= cl_image_tag current_user.picture.key, :quality=>100, class: 'avatar-primary-gray' %>
             <% else %>
               <i class="fas fa-user-circle fa-3x"></i>
             <% end %>
@@ -40,7 +40,7 @@
             <div class="dropdown">
               <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
                 <% if flatmember.user.picture.attached? %>
-                  <%= cl_image_tag flatmember.user.picture.key, class: 'avatar-secondary-gray' %>
+                  <%= cl_image_tag flatmember.user.picture.key, :quality=>100, class: 'avatar-secondary-gray' %>
                 <% else %>
                   <i class="fas fa-user-circle fa-2x"></i>
                 <% end %>

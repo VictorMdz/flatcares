@@ -14,7 +14,7 @@ AREAS_ICONS = {
   corridor: 'icon fas fa-road',
   stairs: 'icon fas fa-shoe-prints',
   garden: 'icon fab fa-pagelines',
-  bathroom: 'fas fa-bath',
+  bathroom: 'icon fas fa-bath',
   other: 'icon fas fa-home'
 
 }

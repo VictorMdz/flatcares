@@ -73,4 +73,5 @@ gem 'activity_notification'
 
 gem 'money-rails'
 
+gem 'pg_search'
 

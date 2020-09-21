@@ -40,6 +40,10 @@ class Bill < ApplicationRecord
     end
   end
 
+  include PgSearch::Model
+  scope :by_category, -> (category) { where(category: category) }
+  scope :by_amount, -> (amounts) { where(amount_cents: amounts) }
+
   private
 
   def bill_notifiable_path

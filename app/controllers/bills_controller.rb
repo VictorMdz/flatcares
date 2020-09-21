@@ -1,9 +1,21 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :update, :edit, :destroy]
+  before_action :set_bills, only: :index
+  before_action :check_display_index, only: :index
 
   def index
     @flat = Flat.find(params[:flat_id])
     @bills = Bill.where(flat_id: params[:flat_id])
+
+    if params[:category].present? && params[:category] != ""
+      @bills = @bills.by_category(params[:category])
+    end
+
+    if params[:amount_cents] != "" && params[:amount_cents].present?
+      raise
+      @bills = @bills.by_amount(@amounts[params[:amount_cents].to_sym].to_a)
+    end
+
   end
 
   def show
@@ -66,5 +78,25 @@ class BillsController < ApplicationController
 
   def set_bill
     @bill = Bill.find(params[:id])
+  end
+
+  def set_bills
+    @bills = Bill.all
+
+    @categories = @bills.map { |bill| bill.category }
+    @categories.uniq!
+
+    @amounts = {
+      "€0 - €50": 0..5000,
+      "€50 - €100": 5000..10000,
+      "€100 - €150": 10000..15000,
+      "€150 - €200": 15000..20000,
+      "€200 - €250": 20000..25000,
+      "€250 +": 25000..50000000
+    }
+  end
+
+  def check_display_index
+    @your_index = !params[:user_id].present?
   end
 end

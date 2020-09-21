@@ -1,0 +1,51 @@
+<%= form_tag flat_bills_path, method: :get do %>
+    <div class="btn-group mb-2 mr-2">
+      <%= select_tag :category, options_for_select(@categories, params[:category]), include_blank: "Bill Type", class: "btn inactive-filter border-0" %>
+    </div>
+
+    <div class="btn-group mb-2 mr-2">
+      <%= select_tag :amount_cents, options_for_select(@amounts.keys, params[:amount_cents]), include_blank: "Bill Amount", class: 'btn inactive-filter border-0' %>
+    </div>
+  <%= submit_tag "Apply filters", class: "btn btn-dark rounded-pill mr-1" %>
+<% end %>
+
+    <%#= simple_form_for(flat_bills_path, remote: true, method: :get) do |f| %>
+      <%#= f.input :category, as: :hidden, options_for_select(category, params[:category]) %>
+        <!-- <div class="btn-group mb-2 mr-2">
+          <button
+            type="button"
+            class="btn inactive-filter"
+            data-action="bills#toggleActive"
+          ><%#= category %></button>
+        </div> -->
+    <%# end %>
+
+<!-- <div class="btn-group mb-2 mr-2">
+  <button
+    type="button"
+    class="btn inactive-filter"
+    data-action="bills#toggleActive"
+  >Electricity</button>
+</div>
+<div class="btn-group mb-2 mr-2">
+  <button
+    type="button"
+    class="btn inactive-filter"
+    data-action="bills#toggleActive"
+  >Water</button>
+</div>
+<div class="btn-group mb-2 mr-2">
+  <button
+    type="button"
+    class="btn inactive-filter"
+    data-action="bills#toggleActive"
+  >Internet</button>
+</div>
+<div class="btn-group mb-2 mr-2">
+  <button
+    type="button"
+    class="btn inactive-filter"
+    data-action="bills#toggleActive"
+  >Gas</button>
+</div> -->
+

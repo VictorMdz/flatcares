@@ -1,5 +1,5 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [:show, :set_flatmembers]
+  before_action :set_flat, only: [:show, :set_flatmembers, :destroy]
 
   def show
     @flat_flatmembers =  @flat.flatmembers
@@ -24,6 +24,11 @@ class FlatsController < ApplicationController
     else
       render "flats/new"
     end
+  end
+
+  def destroy
+    @flat.destroy
+    redirect_to flats_path
   end
 
   private

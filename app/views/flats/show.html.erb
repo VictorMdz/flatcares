@@ -39,7 +39,7 @@
         <div class="col-3 justify-content-center d-flex">
           <div class="d-flex flex-column align-items-center">
             <!-- FLATMEMBERS AVATAR AND NAME -->
-            <div class="dropdown">
+            <div id="dropdown-menu-custom" class="dropdown">
               <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
                 <% if flatmember.user.picture.attached? %>
                   <%= cl_image_tag flatmember.user.picture.key, :quality=>100, class: 'avatar-secondary-gray' %>

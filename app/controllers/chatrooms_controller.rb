@@ -1,8 +1,8 @@
 class ChatroomsController < ApplicationController
-  
+
   def index
     @flat = Flat.find(params[:flat_id])
-    @chatrooms = Chatroom.where(flat_id: params[:flat_id])
+    @chatrooms = Chatroom.where(flat_id: @flat.id)
     @message = Message.new
   end
 
@@ -12,7 +12,7 @@ class ChatroomsController < ApplicationController
   #   @message = Message.new
   # end
 
-  
+
 
 
 end

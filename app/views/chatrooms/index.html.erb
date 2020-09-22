@@ -1,15 +1,30 @@
-<h1>Your chats :D </h1>
-<%= link_to image_tag('add-button.svg'), new_flat_chatroom_path %>
-
-<div class="expenses-card-gray">
-    <% @chatrooms.each do |chatroom| %>
-      <%= link_to flat_chatroom_path(@flat, chatroom, anchor: "message-#{chatroom.messages.last.id}"), class: "secondary-link text-decoration-none" do %>
-    <h3><%= chatroom.name %></h3>
-    <div class="d-flex">
-      <p class= "mr-2"> <%= chatroom.messages.last.user.first_name %></p>
-      <p><strong>has sent: <%= chatroom.messages.last.content %></strong></p>
-      <p class="ml-1"> at <%= chatroom.messages.last.created_at%> </p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+      <h1>All your chats</h1>
+      <%= link_to image_tag('add-button.svg'), new_flat_chatroom_path %>
+      </div>
     </div>
-    <%end%>
-  <%end%>
+  </div>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-gray">
+          <% @chatrooms.each do |chatroom| %>
+            <%= link_to flat_chatroom_path(@flat, chatroom, anchor: "message-#{chatroom.messages.last.id}"), class: "secondary-link text-decoration-none" do %>
+          <h2><%= chatroom.name %></h2>
+          <div class="">
+            <p class= "mr-2"> <%= chatroom.messages.last.user.first_name %></p>
+            <p><strong>Has sent: <%= chatroom.messages.last.content %></strong></p>
+            <p class="m-0">Sent at <%= chatroom.messages.last.created_at.strftime("%l:%M%p")%> </p>
+          </div>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+

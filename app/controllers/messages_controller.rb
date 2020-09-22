@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.chatroom = @chatroom
-    @flat = @chatroom.flat
+    # @flat = @chatroom.flat
     @message.user = current_user
 
     if @message.save
@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
         render_to_string(partial: "message", locals: { message: @message })
       )
     else
-      render "chatrooms/show"
+      render "chatrooms/index"
     end
   end
 

@@ -1,1 +1,13 @@
-<h1>Hello</h1>
+<h1>Your chats :D </h1>
+<div class="expenses-card-gray">
+    <% @chatrooms.each do |chatroom| %>
+      <%= link_to flat_chatroom_path(@flat, chatroom), class: "secondary-link text-decoration-none" do %>
+    <h3><%= chatroom.name %></h3>
+    <div class="d-flex">
+      <p class= "mr-2"> <%= chatroom.messages.last.user.first_name %></p>
+      <p><strong>has sent: <%= chatroom.messages.last.content %></strong></p>
+      <p class="ml-1"> at <%= chatroom.messages.last.created_at%> </p>
+    </div>
+    <%end%>
+  <%end%>
+</div>

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :bills
     resources :events
 
+    resources :flatmembers, only: :update
+
     resources :areas do
       resources :tasks
     end
@@ -32,14 +34,14 @@ Rails.application.routes.draw do
     resources :chatrooms, only: [:index, :new, :create] do
       resources :messages, only: [:create]
     end
-  
+
   end
 
   resources :bills, only: [] do
     resources :payments, only: [:update]
   end
 
-  
+
 
   resources :events
 

@@ -1,11 +1,9 @@
 #messages {
   .message--sender {
+    flex-direction: row-reverse;
     margin-left: auto;
     h3 {
       color: $orange;
-    }
-    .image-lockup {
-      flex-direction: row-reverse;
     }
   }
 
@@ -16,17 +14,6 @@
     }
   }
 }
-
-// .message--sender:after {
-//    content: "";
-//    position: absolute;
-//    top: 100%;
-//    left: 20px;
-//    border-top: 20px solid black;
-//    border-top-color: inherit;
-//    border-left: 20px solid transparent;
-//    border-right: 20px solid transparent;
-// }
 
 
 .main-content.chatrooms.show {
@@ -41,11 +28,11 @@
 }
 
 .message-container {
-  max-width: 75%;
+  max-width: 80%;
   margin-bottom: 5px;
 }
 
-.message-container .text-send {
+.message-container .text-message {
   font-size: 20px;
 }
 

@@ -15,14 +15,14 @@
       <div class="row border-bottom mx-1 my-2 py-3">
         <div class="col-2 justify-content-start align-items-center d-flex">
           <% if area.name.downcase.include?(' ') %>
-            <i class="<%= AREAS_ICONS[area.name.downcase.gsub!(" ","_").to_sym] %>"></i>
+            <i class="<%= AREAS_ICONS[area.category.to_sym] %>"></i>
           <% else %>
-            <i class="<%= AREAS_ICONS[area.name.downcase.to_sym] %>"></i>
+            <i class="<%= AREAS_ICONS[area.category.to_sym] %>"></i>
           <% end %>
         </div>
         <div class="col-6 justify-content-start align-items-start">
             <h6 class="mb-1 d-block"><%= area.name.capitalize %></h6>
-            <p class="mb-1 d-block"><%= area.description.capitalize %></p>
+
             <% if area.assigned_user.nil? %>
               <p class="mb-0 d-block">Nobody has been assigned yet</p>
             <% else %>
@@ -42,7 +42,6 @@
     <% end %>
   <% end %>
 </div>
-
 
 
 

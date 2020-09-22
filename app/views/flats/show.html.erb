@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-12">
       <h1 class="text-center">🏡 <%= @flat.name %></h1>
+      <p class="text-center"> <%= @flat.full_address %></p>
     </div>
   </div>
 </div>
@@ -24,6 +25,9 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-remote="true">
             <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+            <% if current_user.flatmembers.first.is_admin == true %>
+              <%= link_to "Delete Flat", flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
+            <% end %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
@@ -37,7 +41,7 @@
         <div class="col-3 justify-content-center d-flex">
           <div class="d-flex flex-column align-items-center">
             <!-- FLATMEMBERS AVATAR AND NAME -->
-            <div class="dropdown">
+            <div id="dropdown-menu-custom" class="dropdown">
               <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
                 <% if flatmember.user.picture.attached? %>
                   <%= cl_image_tag flatmember.user.picture.key, :quality=>100, class: 'avatar-secondary-gray' %>
@@ -46,14 +50,24 @@
                 <% end %>
                   <p><%= flatmember.user.first_name %></p>
               </button>
-              <div class="dropdown-menu p-1 text-center" aria-labelledby="dropdownMenuButton" data-remote="true">
-                <%= link_to "Delete member",
-                  flatmember_path(flatmember),
-                  class: "dropdown-item",
-                  method: :delete,
-                  data: { confirm: "Are you sure?",
-                  } %>
-              </div>
+              <% if current_user.flatmembers.first.is_admin == true %>
+                <div class="dropdown-menu p-1 text-center" aria-labelledby="dropdownMenuButton" data-remote="true">
+                  <%= link_to "Delete member",
+                    flatmember_path(flatmember),
+                    class: "dropdown-item",
+                    method: :delete,
+                    data: { confirm: "Are you sure?",
+                    } %>
+                  <% if flatmember.is_admin %>
+                    <p class="dropdown-item m-0 background-admin">Admin</p>
+                  <% else %>
+                    <%= simple_form_for flatmember, class: "dropdown-item background-none p-0 m-0", url: flat_flatmember_path(@flat, flatmember), method: :patch, remote: true do |f| %>
+                      <%= f.input :is_admin, :as => :hidden, :input_html => { :value => :true } %>
+                      <%= f.submit "Make admin", class: "dropdown-item submit-tag p-0" %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

@@ -11,19 +11,19 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-user="<%= current_user&.id %>">
 
     <%= render 'shared/navbar' %>
-
-    <div class="main-content">
+    <div class="main-content <%= params[:controller] %> <%= params[:action] %>">
       <%= yield %>
 
 
       <!-- example flash messages  -->
 
       <p class="notice m-0"><%= notice %></p>
-
-      <p class="alert m-0"><%= alert %></p>
+      <% if alert %>
+        <p class="alert-danger alert m-0"><%= alert %></p>
+      <% end %>
     </div>
     <%= render 'shared/navbar-smartphone' if (signed_in?) && (!current_user.flats.empty?) && (!@flat.nil?) %>
     <script src="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.js"></script>

@@ -11,29 +11,30 @@
         <div class="form-row">
           <div class="col text-left">
             <%= f.input :first_name,
-            required: true, class: "form-control" %>
+                        required: true,
+                        class: "form-control" %>
           </div>
           <div class="col text-left">
             <%= f.input :last_name,
-            required: true, class: "form-control" %>
+                        class: "form-control" %>
           </div>
         </div>
         <div class="form-group text-left">
           <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
         </div>
         <div class="form-group text-left">
           <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
         </div>
         <div class="form-group text-left">
           <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
         </div>
         <%= f.button :submit, "Sign up", class: "btn btn-primary text-white mt-4" %>
       <% end %>

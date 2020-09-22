@@ -25,7 +25,10 @@
     <p>Events</p>
   </div>
   <div class="navbar-chat">
-    <i class="far fa-comments text-gray"></i>
+    <%= link_to flat_chatrooms_path(@flat) do %>
+      <% css_class_chatroom = controller?('chatrooms') ? "text-orange" : "text-gray" %>
+        <i class=" <%= "#{ICONS_NAVBAR[:chatroom]} #{css_class_chatroom}" %> "></i>
+      <% end %>
     <p>Chat</p>
   </div>
 </div>

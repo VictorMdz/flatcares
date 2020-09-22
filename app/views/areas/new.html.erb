@@ -3,9 +3,16 @@
     <div class="col-md-8">
       <%= simple_form_for [@flat, @area] do |f| %>
         <h2>Create a new Area </h2>
-        <%#= f.input :name, placeholder: "Area's name", label: false %>
-        <%= f.input :name, placeholder: "Area's name", label: false, collection: [ "Kitchen", "Toilet", "Bathroom", "living_room".humanize, "Garden", "Corridor", "Stairs", "Other" ] %>
-        <%= f.input :description, placeholder: "Description", label: false %>
+        <%= f.input :name,
+                    placeholder: "Area's name",
+                    label: false
+                    %>
+        <%= f.input :category,
+                    required: true,
+                    include_blank: "Area's type",
+                    label: false,
+                    collection: AREA_CATEGORIES
+                      %>
         <%= f.submit "Create Area", class: "btn btn-success text-white"%>
       <% end %>
     </div>

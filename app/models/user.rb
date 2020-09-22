@@ -9,6 +9,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :first_name, presence: true
+
   has_many :flatmembers, dependent: :destroy
   has_many :flats, through: :flatmembers
 

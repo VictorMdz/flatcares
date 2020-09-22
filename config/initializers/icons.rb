@@ -10,7 +10,7 @@ BILL_ICONS = {
 AREAS_ICONS = {
   kitchen: 'icon fas fa-utensils',
   toilet: 'icon fas fa-toilet',
-  living_room: 'icon fas fa-couch',
+  lounge: 'icon fas fa-couch',
   corridor: 'icon fas fa-road',
   stairs: 'icon fas fa-shoe-prints',
   garden: 'icon fab fa-pagelines',
@@ -24,9 +24,8 @@ ICONS_NAVBAR =  {
   bill: 'fas fa-file-invoice',
   task: 'fas fa-tasks',
   event: 'far fa-calendar-alt',
-  chat: 'far fa-comments'
+  chatroom: 'far fa-comments'
 }
-
 
 ICONS_EVENT_TYPE = {
   party: 'fas fa-cocktail',

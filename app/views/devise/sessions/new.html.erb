@@ -2,20 +2,23 @@
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-12 col-lg-4 p-0">
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
         <div class="row">
           <div class="col-12 col-lg-4 d-flex align-items-start">
             <h2>Log in</h2>
           </div>
         </div>
+
         <div class="form-group text-left">
           <%= f.input :email,
-                      required: false,
+                      required: true,
                       autofocus: true,
                       input_html: { autocomplete: "email" } %>
         </div>
         <div class="form-group text-left">
           <%= f.input :password,
-                      required: false,
+                      required: true,
                       input_html: { autocomplete: "current-password" } %>
         </div>
 

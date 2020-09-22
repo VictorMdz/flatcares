@@ -1,13 +1,43 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :update, :edit, :destroy]
+  before_action :set_bills, only: :index
+  before_action :check_display_index, only: :index
 
   def index
     @flat = Flat.find(params[:flat_id])
+
     @bills = Bill.where(flat_id: params[:flat_id])
+  
+    if params[:category].present? && params[:category] != ""
+      @bills = @bills.by_category(params[:category])
+    end
+
+    if params[:amount_cents].present? && params[:amount_cents] != ""
+      @bills = @bills.by_amount(@amounts[params[:amount_cents].to_sym].to_a)
+    end
+
+    if (params[:pending].present? && params[:pending] == "true") && (params[:overdue].present? && params[:overdue] == "true")
+      @bills = @bills.by_pending + @bills.by_overdue
+    elsif params[:pending].present? && params[:pending] == "true"
+      @bills = @bills.by_pending
+    elsif params[:overdue].present? && params[:overdue] == "true"
+      @bills = @bills.by_overdue
+    end
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {
+          bills: json_with_html(@bills)
+        }
+      }
+    end
+    
   end
 
   def show
     @flat = Flat.find(params[:flat_id])
+    @chatroom = @flat.chatrooms.first
   end
 
   def new
@@ -28,7 +58,7 @@ class BillsController < ApplicationController
     if @bill.save
       redirect_to flat_bill_path(@flat, @bill)
     else
-      render "bills/show"
+      render "bills/new"
     end
   end
 
@@ -41,7 +71,7 @@ class BillsController < ApplicationController
     if @bill.update(bill_params)
       redirect_to flat_bill_path
     else
-      render "bills/show"
+      render "bills/new"
     end
   end
 
@@ -52,6 +82,7 @@ class BillsController < ApplicationController
   end
 
   private
+
 
   def bill_params
     params.require(:bill).permit(
@@ -66,5 +97,35 @@ class BillsController < ApplicationController
 
   def set_bill
     @bill = Bill.find(params[:id])
+  end
+
+  def set_bills
+    @bills = Bill.all
+
+    @categories = @bills.map { |bill| bill.category }
+    @categories.uniq!
+
+    @amounts = {
+      "€0 - €50": [0, 50],
+      "€50 - €100": [50, 100],
+      "€100 - €150": [100, 150],
+      "€150 - €200": [150, 200],
+      "€200 - €250": [200, 250],
+      "€250 +": [250, 50000000]
+    }
+  end
+
+  def check_display_index
+    @your_index = !params[:user_id].present?
+  end
+
+  def json_with_html(bills)
+    bills.map do |bill|
+      bill_hash = bill.as_json
+
+      bill_hash.merge({
+        html: render_to_string(partial: "bills/bill_card", locals: { bill: bill }, formats: :html)
+      })
+    end
   end
 end

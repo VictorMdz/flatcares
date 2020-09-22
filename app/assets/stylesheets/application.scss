@@ -16,13 +16,11 @@
 @import "components/forms";
 @import "components/tasks";
 @import "components/calendar";
+@import "components/chats";
 
-body {
-  margin-bottom: 95px;
-}
 
 .main-content {
-  margin-top: 30px;
+  margin-bottom: 60px;
 }
 
 .navbar-flatcares {
@@ -57,7 +55,12 @@ body {
   body {
     margin-bottom: 0px;
   }
+
+  .main-content {
+  margin-bottom: 0;
+  }
 }
+
 li a.text-orange {
   color: $orange;
 }

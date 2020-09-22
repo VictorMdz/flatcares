@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # end
 
   resources :flatmembers, only: [:destroy]
+  resources :chatrooms
 
 
   resources :flats do
@@ -27,18 +28,22 @@ Rails.application.routes.draw do
       resources :participations
     end
 
+    resources :flatmembers, only: :update
+
     resources :areas do
       resources :tasks
     end
+
+    resources :chatrooms, only: [:index, :new, :create] do
+      resources :messages, only: [:create]
+    end
+
   end
 
   resources :bills, only: [] do
     resources :payments, only: [:update]
   end
 
-  resources :chatroom do
-    resources :messages
-  end
 
   resources :components
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

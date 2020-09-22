@@ -1,6 +1,7 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :update, :edit, :destroy]
   before_action :set_tasks, only: [:show]
+  skip_before_action :verify_authenticity_token, :only => [:update]
 
   def index
     @flat = Flat.find(params[:flat_id])
@@ -10,6 +11,7 @@ class AreasController < ApplicationController
 
   def show
     @flat = @area.flat
+  
   end
 
   def new
@@ -27,7 +29,7 @@ class AreasController < ApplicationController
     if @area.save
       redirect_to flat_areas_path(@flat)
     else
-      render "areas/index"
+      render "areas/new"
     end
   end
 
@@ -37,11 +39,11 @@ class AreasController < ApplicationController
 
   def update
     @flat = @area.flat
-    if @area.update(area_params)
-      redirect_to area_path(@area)
-    else
-      render area_path(@area)
-    end
+    @area.update(area_params)
+      respond_to do |format|
+        format.html
+        format.json { render json: { area: @area } }
+      end
   end
 
   def destroy
@@ -52,13 +54,14 @@ class AreasController < ApplicationController
 
 
   private
+  
 
   def set_area
     @area = Area.find(params[:id])
   end
 
   def area_params
-    params.require(:area).permit(:name, :description)
+    params.require(:area).permit(:name, :category)
   end
 
   def set_tasks

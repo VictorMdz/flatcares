@@ -3,7 +3,7 @@
 
 <div class="expenses-card-gray">
     <% @chatrooms.each do |chatroom| %>
-      <%= link_to flat_chatroom_path(@flat, chatroom), class: "secondary-link text-decoration-none" do %>
+      <%= link_to flat_chatroom_path(@flat, chatroom, anchor: "message-#{chatroom.messages.last.id}"), class: "secondary-link text-decoration-none" do %>
     <h3><%= chatroom.name %></h3>
     <div class="d-flex">
       <p class= "mr-2"> <%= chatroom.messages.last.user.first_name %></p>

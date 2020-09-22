@@ -1,4 +1,5 @@
 class ChatroomsController < ApplicationController
+  
   def index
     @flat = Flat.find(params[:flat_id])
     @chatrooms = Chatroom.all

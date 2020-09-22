@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       resources :tasks
     end
 
-    resources :chatrooms, only: :show do
+    resources :chatrooms, only: [:index, :show, :new, :create] do
       resources :messages, only: [:create]
     end
   

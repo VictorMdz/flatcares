@@ -31,6 +31,7 @@ class BillsController < ApplicationController
         }
       }
     end
+    
   end
 
   def show

@@ -1,1 +1,38 @@
-show.html.erb
+      <div class="chat-container" data-controller="chatroom">
+        <div class="chat-name-container p-4">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <h1 class="m-0">#<%= @chatroom.name %></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-conversations py-2" data-target="chatroom.conversation">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex flex-column" id="messages" data-chatroom-id="<%= @chatroom.id %>" data-target="chatroom.messages">
+                  <% @chatroom.messages.each do |message| %>
+                    <%= render 'messages/message', message: message %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input py-2">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <%= simple_form_for [@flat, @chatroom, @message] do |f| %>
+                  <%= f.input :content, label: false, :input_html => { :class => 'card-send-message', data: { target: 'chatroom.input'} }, placeholder: "Type your message here..."%>
+                    <%= button_tag type: 'submit', class: "send-button" do %>
+                        <%= image_tag 'send-button.svg' %>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

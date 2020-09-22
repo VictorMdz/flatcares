@@ -25,5 +25,13 @@ ICONS_NAVBAR =  {
   task: 'fas fa-tasks',
   event: 'far fa-calendar-alt',
   chat: 'far fa-comments'
+}
 
+
+ICONS_EVENT_TYPE = {
+  party: 'fas fa-cocktail',
+  holiday: 'fas fa-suitcase-rolling',
+  dinner: 'fas fa-utensils',
+  repair: 'fas fa-tools',
+  other: 'fab fa-elementor'
 }

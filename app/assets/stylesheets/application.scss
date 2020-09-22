@@ -15,6 +15,7 @@
 @import "components/buttons";
 @import "components/forms";
 @import "components/tasks";
+@import "components/calendar";
 
 body {
   margin-bottom: 95px;
@@ -75,6 +76,8 @@ a.text-gray {
 .text-gray {
   color: $gray;
 }
+
+
 
 
 

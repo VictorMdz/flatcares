@@ -1,2 +1,22 @@
-<div id="calendarContainer"></div>
-<div id="organizerContainer"></div>
+<div class="container calendar-container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="ml-3">Events</h1>
+        <%= link_to image_tag('add-button.svg'), new_flat_event_path %>
+      </div>
+    </div>
+    <div class="col-12 offset-lg-2">
+      <div class="d-flex">
+        <div data-controller="calendar">
+          <div
+            class="d-flex flex-column"
+            data-target="calendar.container"
+            data-events="<%= @formatted_events %>"
+            id="calendar"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

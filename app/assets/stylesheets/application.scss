@@ -21,7 +21,6 @@
 
 
 .main-content {
-  margin-top: 30px;
   margin-bottom: 60px;
 }
 
@@ -56,6 +55,10 @@
 
   body {
     margin-bottom: 0px;
+  }
+
+  .main-content {
+  margin-bottom: 0;
   }
 }
 

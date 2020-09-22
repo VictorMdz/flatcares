@@ -10,12 +10,13 @@ class Flat < ApplicationRecord
   has_many :chatrooms, dependent: :destroy
   validates :name, presence: true
   validates :name, length: { minimum: 2 }
+
   # after_create :create_flatmember
 
   # def create_flatmember
 
   #   Flatmember.create(flat_id: id, user_id: user.id)
   # end
-  
+
 end
 

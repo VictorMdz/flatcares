@@ -1,27 +1,41 @@
 <div class="container">
+<!-- TITLE AND AVATAR -->
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between m-4">
-        <h1> <%= @event.name %> </h1>
-        <% if @event.user.picture.attached? %>
-          <%= cl_image_tag @event.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
-        <%else%>
-          <i class="fas fa-user-circle fa-2x mr-2"></i>
-        <% end %>
+        <div class="mt-2">
+          <h1> <%= @event.name %> </h1>
+          <div class="ml-1">
+            <%= link_to edit_flat_event_path(@flat, @event) do %>
+              <i class="far fa-edit secondary-link mr-1"></i>
+            <% end %>
+            <%= link_to flat_event_path(@flat, @event), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="far fa-trash-alt secondary-link ml-1"></i>
+            <% end %>
+          </div>
+        </div>
+        <div>
+          <% if @event.user.picture.attached? %>
+            <%= cl_image_tag @event.user.picture.key, :quality=>100, class: 'avatar-primary-orange'%>
+          <%else%>
+            <i class="fas fa-user-circle fa-2x mr-2"></i>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 
+<!-- EVENT CARD -->
   <div class="row">
     <div class="col-12">
-      <div class="calendar-card-white">
+      <div class="calendar-card-white m-3">
         <div class="d-flex justify-content-between">
           <h3 class="mb-3"> <%= @event.event_type.capitalize %></h3>
           <h3><i class="<%= ICONS_EVENT_TYPE[@event.event_type.to_sym] %>"></i></h3>
         </div>
         <div class="d-flex justify-content-between">
-          <%= @event.start_date.strftime("%H:%M") %> - <%= @event.end_date.strftime("%H:%M") %>
-          - <%= Date::MONTHNAMES[@event.start_date.month] %>, <%= @event.start_date.day %>
+          <%= @event.start_time.strftime("%H:%M") %> - <%= @event.end_time.strftime("%H:%M") %>
+          - <%= Date::MONTHNAMES[@event.date.month] %>, <%= @event.date.day %>
           <h3><i class="far fa-calendar"></i></h3>
         </div>
         <div class="d-flex justify-content-between">
@@ -32,11 +46,21 @@
     </div>
   </div>
 
+<!-- MEMBERS -->
   <div class="row">
     <div class="col-12">
-      <div class="m-4">
-        <h3>Members (3) <i class="fas fa-users">  </i></h3>
+      <div class="m-4 ml-5">
+        <h3>Members (<%= @event_participations.size %>) <i class="fas fa-users">  </i></h3>
+        <% @event_participations.each do |participation| %>
+          <% if participation.user.picture.attached? %>
+            <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+          <%else%>
+            <i class="fas fa-user-circle fa-2x mr-2"></i>
+          <% end %>
+        <% end %>
+        <% if current_user != @event.user_id %>
+        <% end %>
       </div>
+    </div>
   </div>
-
 </div>

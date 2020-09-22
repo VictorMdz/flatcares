@@ -12,8 +12,17 @@
           </div>
         </div>
         <%= f.input :location, class: "form-control", placeholder: "Event's Location", label: false %>
-        <%= f.input :start_date, class: "form-control", placeholder: 'Starting Date'%>
-        <%= f.input :end_date, class: "form-control", placeholder: 'Ending Date'%>
+        <%= f.input :date, class: "form-control", placeholder: "Event's Date", label: false  %>
+
+        <div class="form-row">
+          <div class="col">
+            <%= f.input :start_time, class: "form-control", placeholder: 'Starting Time'%>
+          </div>
+          <div class="col">
+            <%= f.input :end_time, class: "form-control", placeholder: 'Ending Time'%>
+          </div>
+        </div>
+
         <%= f.submit "Submit the Event", class: "btn btn-success text-white"%>
       <% end %>
     </div>

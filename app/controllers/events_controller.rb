@@ -4,12 +4,12 @@ class EventsController < ApplicationController
   def index
     @flat = Flat.find(params[:flat_id])
     @events = Event.where(flat_id: params[:flat_id])
-
     @formatted_events = Event.format_json @events
   end
 
   def show
     @flat = Flat.find(params[:flat_id])
+    @event_participations =  @event.participations
   end
 
   def new
@@ -17,6 +17,7 @@ class EventsController < ApplicationController
     @users = @flat.users
     @user = current_user
     @event = Event.new
+    @participation = Participation.new
   end
 
   def create
@@ -40,7 +41,7 @@ class EventsController < ApplicationController
   def update
     @flat = Flat.find(params[:flat_id])
     if @event.update(event_params)
-      redirect_to flat_events_path(@flat)
+      redirect_to flat_event_path(@flat, @event)
     else
       redirect_to flat_events_path(@flat)
     end
@@ -55,7 +56,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :start_date, :end_date, :event_type, :location)
+    params.require(:event).permit(:name, :date, :start_time, :end_time, :event_type, :location)
   end
 
   def set_event

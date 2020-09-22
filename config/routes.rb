@@ -22,7 +22,10 @@ Rails.application.routes.draw do
 
     resources :users
     resources :bills
-    resources :events
+
+    resources :events do
+      resources :participations
+    end
 
     resources :areas do
       resources :tasks
@@ -36,9 +39,6 @@ Rails.application.routes.draw do
   resources :chatroom do
     resources :messages
   end
-
-
-  resources :events
 
   resources :components
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

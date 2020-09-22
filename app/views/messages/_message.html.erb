@@ -1,8 +1,13 @@
-
-  <div class="message-container" id="message-<%= message.id %>">
-    <i class="author">
-      <span><%= message.user.first_name %></span>
-      <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-    </i>
-    <p><%= message.content %></p>
-  </div>
+<% if message.user.id == current_user.id %>
+<div class="message-container name-orange ml-auto bd-highlight" id="message-<%= message.id %>">
+  <h3>You</h3>
+  <p><%= message.content %></p>
+  <p class="secondary-p"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></p>
+</div>
+<% else %>
+<div class="message-container name-blue" id="message-<%= message.id %>">
+  <h3><%= message.user.first_name %></h3>
+  <p><%= message.content %></p>
+  <p class="secondary-p"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></p>
+</div>
+<% end %>

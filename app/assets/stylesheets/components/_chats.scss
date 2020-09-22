@@ -1,42 +1,49 @@
-.card-message, .card-send-message {
+.main-content.chatrooms.show {
+  margin: 0;
+}
+
+.message-container, .card-send-message {
   padding: 13px;
   background-color: $white;
   border: 1px solid #E4E4E4;
-  border-radius: 7px;
+  border-radius: 3px;
 }
 
-.card-message {
-  width: 80%;
+.message-container {
+  width: 75%;
+  margin-bottom: 5px;
 }
 
 .card-send-message {
   height: 100px;
   position: relative;
 }
-.card-message p {
+.message-container p {
   margin: 0;
 }
 
-.card-message .secondary-p {
+.message-container .secondary-p {
   color: rgba(83, 83, 83, 0.6);
 }
 
-.card-message.name-blue h3 {
+.message-container.name-blue h3 {
   color: $blue;
 }
 
-.card-message.name-orange h3 {
+.message-container.name-orange h3 {
   color: $orange;
 }
 
-.card-message.float-right {
+.float-right {
   float: right;
 }
 
 .send-button {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 15px;
+  bottom: 6px;
+  background-color: transparent;
+  border: none;
 }
 
 .tabs {
@@ -57,4 +64,45 @@
   background-color: $orange;
   height: 2px;
   width: 100%;
+}
+
+.simple_form.new_message {
+  padding: 0px;
+  background-color: $white-bone;
+}
+
+.simple_form.new_message #message_content {
+  height: 90px;
+}
+
+.form-group.text.message_content {
+  margin-bottom: 0;
+}
+
+.chat-container {
+    height: calc(100vh - 58px);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-conversations {
+  flex-grow: 1;
+  overflow: scroll;
+}
+
+.chat-input {
+  border-top: 1px solid #E4E4E4;
+  background-color: $white-bone;
+}
+
+.chat-name-container {
+  border-bottom: 1px solid #E4E4E4;
+  background-color: $white-bone;
+}
+
+@media (max-width: 576px) {
+
+  .chat-container {
+    height: calc(100vh - 60px);
+  }
 }

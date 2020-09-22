@@ -14,8 +14,7 @@
   <body>
 
     <%= render 'shared/navbar' %>
-
-    <div class="main-content">
+    <div class="main-content <%= params[:controller] %> <%= params[:action] %>">
       <%= yield %>
 
 

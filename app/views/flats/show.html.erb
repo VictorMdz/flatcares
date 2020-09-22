@@ -2,7 +2,13 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center">🏡 <%= @flat.name %></h1>
+      <div
+        data-action="click->flats#changeNameToInput"
+        data-id="<%= @flat.id %>"
+        data-target="flats.title"
+        >
+        <h1 class="text-center">🏡 <%= @flat.name %></h1>
+      </div>
       <p class="text-center"> <%= @flat.full_address %></p>
     </div>
   </div>

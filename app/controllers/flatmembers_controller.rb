@@ -1,13 +1,15 @@
 class FlatmembersController < ApplicationController
 
-  before_action :set_flat, only: [:invite, :update, :send_invitations, :destroy]
-  before_action :set_flatmember, only: :update
+before_action :set_flat, only: [:invite, :update, :send_invitations, :destroy]
+before_action :set_flatmember, only: :update
   def invite
+
+    @flat = Flat.find(params[:flat_id])
+
   end
 
   def send_invitations
     user_emails = params[:member]
-
     user_emails.each do |email|
       user = User.find_by email: email
 
@@ -20,6 +22,7 @@ class FlatmembersController < ApplicationController
       end
     end
     redirect_to flat_path(@flat)
+
   end
 
   def update

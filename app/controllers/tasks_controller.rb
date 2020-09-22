@@ -3,7 +3,6 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-
     if @task.update(task_params)
       redirect_to area_path(@task.area_id)
     else
@@ -19,7 +18,6 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
     @area = Area.find(params[:area_id])
     @flat = @area.flat
     @task.area_id = @area.id

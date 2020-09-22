@@ -71,22 +71,22 @@ bill_8.save!
 
 puts "Create areas"
 
-area_1 = Area.new(name: "Kitchen", flat_id: flat.id, assigned_user_id: user_3.id, previously_assigned_user_id: user_2.id )
+area_1 = Area.new(name: "Kitchen", flat_id: flat.id, assigned_user_id: user_3.id, previously_assigned_user_id: user_2.id, category: 1 )
 area_1.save!
 
-area_2 = Area.new(name: "Toilet", flat_id: flat.id, assigned_user_id: user_4.id, previously_assigned_user_id: user_2.id )
+area_2 = Area.new(name: "Toilet", flat_id: flat.id, assigned_user_id: user_4.id, previously_assigned_user_id: user_2.id, category: 2  )
 area_2.save!
 
-area_3 = Area.new(name: "Living Room", flat_id: flat.id, assigned_user_id: user_3.id, previously_assigned_user_id: user_3.id )
+area_3 = Area.new(name: "Living Room", flat_id: flat.id, assigned_user_id: user_3.id, previously_assigned_user_id: user_3.id, category: 3 )
 area_3.save!
 
-area_4 = Area.new(name: "Garden", flat_id: flat.id, assigned_user_id: user_4.id, previously_assigned_user_id: user_1.id )
+area_4 = Area.new(name: "Garden", flat_id: flat.id, assigned_user_id: user_4.id, previously_assigned_user_id: user_1.id, category: 4 )
 area_4.save!
 
-area_5 = Area.new(name: "Stairs", flat_id: flat.id, description: "Be carefull with the dog", assigned_user_id: user_2.id, previously_assigned_user_id: user_3.id )
+area_5 = Area.new(name: "Stairs", flat_id: flat.id, assigned_user_id: user_2.id, previously_assigned_user_id: user_3.id, category: 1  )
 area_5.save!
 
-area_6 = Area.new(name: "Bathroom", flat_id: flat.id, description: "Try to clean in the morning!", assigned_user_id: user_1.id, previously_assigned_user_id: user_2.id )
+area_6 = Area.new(name: "Bathroom", flat_id: flat.id, assigned_user_id: user_1.id, previously_assigned_user_id: user_2.id, category: 2 )
 area_6.save!
 
 

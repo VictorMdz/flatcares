@@ -21,7 +21,10 @@
     <p>Tasks</p>
   </div>
   <div class="navbar-events">
-    <i class="far fa-calendar-alt text-gray"></i>
+      <%= link_to flat_areas_path(@flat, @area) do %>
+        <% css_class_event = controller?('events') ? "text-orange" : "text-gray" %>
+          <i class=" <%= "#{ICONS_NAVBAR[:event]} #{css_class_event}" %> "></i>
+      <% end %>
     <p>Events</p>
   </div>
   <div class="navbar-chat">

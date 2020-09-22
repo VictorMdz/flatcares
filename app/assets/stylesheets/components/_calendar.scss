@@ -153,3 +153,7 @@ div.cjslib-date span {
 .cjslib-list {
   padding-top: 15px;
 }
+
+a:-webkit-any-link {
+  text-decoration: none;
+}

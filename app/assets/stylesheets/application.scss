@@ -17,12 +17,12 @@
 @import "components/tasks";
 @import "components/chats";
 
-body {
-  margin-bottom: 95px;
-}
+
+
 
 .main-content {
   margin-top: 30px;
+  margin-bottom: 60px;
 }
 
 .navbar-flatcares {
@@ -58,6 +58,7 @@ body {
     margin-bottom: 0px;
   }
 }
+
 li a.text-orange {
   color: $orange;
 }

@@ -11,12 +11,10 @@ class Flat < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: 2 }
   validates :full_address, presence: true
-  # after_create :create_flatmember
+  after_create :update_admin
 
-  # def create_flatmember
-
-  #   Flatmember.create(flat_id: id, user_id: user.id)
-  # end
-  
+  def update_admin
+    flatmembers.first.update(is_admin: true)
+  end
 end
 

@@ -2,6 +2,7 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :set_flatmembers, :destroy]
 
   def show
+    Flat.find(@flat.id)
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
     @chatroom = @flat.chatrooms.last
@@ -19,7 +20,6 @@ class FlatsController < ApplicationController
     current_user.flats.push(Flat.create(flat_params))
     # @flat = current_user.flats.push(Flat.create(flat_params))
     # # @flat.users.push(current_user)
-
     if current_user.flats.last.save
       redirect_to flat_path(current_user.flats.last)
     else

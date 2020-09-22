@@ -1,10 +1,11 @@
 class FlatmembersController < ApplicationController
+
+  before_action :set_flat, only: [:invite, :update, :send_invitations, :destroy]
+  before_action :set_flatmember, only: :update
   def invite
-    @flat = Flat.find(params[:flat_id])
   end
 
   def send_invitations
-    @flat = Flat.find(params[:flat_id])
     user_emails = params[:member]
 
     user_emails.each do |email|
@@ -21,9 +22,30 @@ class FlatmembersController < ApplicationController
     redirect_to flat_path(@flat)
   end
 
+  def update
+    if @flatmember.update(flatmember_params)
+      redirect_to flat_path(@flat)
+    else
+      render flat_path(@flat)
+    end
+  end
+
   def destroy
-    @flatmember = Flatmember.find(params[:id])
     @flatmember.destroy
     redirect_to flat_path(@flatmember.flat_id)
+  end
+
+  private
+
+  def set_flat
+    @flat = Flat.find(params[:flat_id])
+  end
+
+  def set_flatmember
+    @flatmember = Flatmember.find(params[:id])
+  end
+
+  def flatmember_params
+    params.require(:flatmember).permit(:is_admin)
   end
 end

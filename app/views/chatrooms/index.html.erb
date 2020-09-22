@@ -1,4 +1,6 @@
 <h1>Your chats :D </h1>
+<%= link_to image_tag('add-button.svg'), new_flat_chatroom_path %>
+
 <div class="expenses-card-gray">
     <% @chatrooms.each do |chatroom| %>
       <%= link_to flat_chatroom_path(@flat, chatroom), class: "secondary-link text-decoration-none" do %>

@@ -1,0 +1,42 @@
+<%= form_tag flat_bills_path, method: :get, data: { target: "bills.form", flat: @flat.id } do %>
+
+  <div class="btn-group mb-2 mr-2 change-to-active">
+    <div data-action="change->bills#filterBills" data-target="bills.active">
+      <%= select_tag :category,
+        options_for_select(@categories, params[:category]),
+        include_blank: "Bill Type",
+        class: "btn inactive-filter border-0",
+        data: { filter: 'category' }
+      %>
+    </div>
+  </div>
+
+  <div class="btn-group mb-2 mr-2 select">
+    <div data-action="change->bills#filterBills">
+      <%= select_tag :amount_cents,
+        options_for_select(@amounts.keys, params[:amount_cents]),
+        include_blank: "Bill Amount",
+        class: 'btn inactive-filter border-0',
+        data: { filter: 'amount_cents' }
+      %>
+    </div>
+  </div>
+
+  <div class="btn-group mb-2 mr-2 button">
+    <button data-action="click->bills#filterBills" data-filter="pending" class="btn inactive-filter border-0">
+      Pending
+    </button>
+  </div>
+
+  <div class="btn-group mb-2 mr-2 button">
+    <button data-action="click->bills#filterBills" data-filter="overdue" class="btn inactive-filter border-0">
+      Overdue
+    </button>
+  </div>
+
+  <div class="btn-group mb-2 mr-2 button">
+    <%= link_to "Reset Filters", flat_bills_path %>
+  </div>
+<% end %>
+
+

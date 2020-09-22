@@ -1,79 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-    <div class="d-flex justify-content-between align-items-center">
-      <h1 class="ml-3">House Bills</h1>
-      <%= link_to image_tag('add-button.svg'), new_flat_bill_path %>
-    </div>
-      <div class="pt-2" data-controller="bills">
-        <div class="btn-group mb-2 mr-1">
-          <button
-            type="button"
-            class="btn inactive-filter active"
-            data-target="bills.filter"
-            data-action="bills#toggleActive"
-          >All</button>
+<div data-controller="bills">
+  <% if @your_index %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 class="ml-3">House Bills</h1>
+          <%= link_to image_tag('add-button.svg'), new_flat_bill_path %>
         </div>
-        <div class="btn-group mb-2 mr-1">
-          <button
-            type="button"
-            class="btn inactive-filter"
-            data-target="bills.filter"
-            data-action="bills#toggleActive"
-          >Rent</button>
-        </div>
-        <div class="btn-group mb-2 mr-2">
-          <button
-            type="button"
-            class="btn inactive-filter"
-            data-action="bills#toggleActive"
-          >Electricity</button>
-        </div>
-        <div class="btn-group mb-2 mr-2">
-          <button
-            type="button"
-            class="btn inactive-filter"
-            data-action="bills#toggleActive"
-          >Water</button>
-        </div>
-        <div class="btn-group mb-2 mr-2">
-          <button
-            type="button"
-            class="btn inactive-filter"
-            data-action="bills#toggleActive"
-          >Internet</button>
-        </div>
-        <div class="btn-group mb-2 mr-2">
-          <button
-            type="button"
-            class="btn inactive-filter"
-            data-action="bills#toggleActive"
-          >Gas</button>
+
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="">
-      <div class="cards-grid">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="pt-2">
+            <%= render "bills_filter" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="cards-grid" data-target="bills.bills">
         <% @bills.order('created_at desc').each do |bill| %>
-          <%= link_to flat_bill_path(@flat, bill), class: "secondary-link text-decoration-none" do %>
-            <div class="<%= (bill.status == "Pending") || (bill.status == "Overdue") ? 'card-half-gray' : 'card-half-orange' %>">
-              <%= render 'bill_name_icon', bill: bill %>
-              <p><%=bill.due_date%></p>
-              <div class="d-flex justify-content-between align-items-end">
-                <p class="secondary-p m-0"><br><%=bill.status%></p>
-                <h3 class="m-0"><%= humanized_money_with_symbol(bill.amount) %></h3>
-              </div>
-            </div>
-          <%end%>
+          <%= render 'bill_card', bill: bill %>
         <% end %>
       </div>
     </div>
+
+  <% end %>
+
   </div>
+
 </div>
-
-
 

@@ -4,16 +4,16 @@ export default class extends Controller {
   static targets = ["title", "input"]
 
   changeNameToInput () {
-    console.log("Hello")
     if (this.titleTarget.querySelector('h1')) {
       this.titleTarget.innerHTML = `
-        <input autofocus type="text" data-action="blur->flats#saveValueOfInput" class="input-group-text mb-3" data-target="flats.input">
+      <div class="mb-2" style="text-align:center;">
+        <input autofocus placeholder="edit flat name" type="text" data-action="blur->flats#saveValueOfInput" class="text-center" data-target="flats.input">
+      </div>
       `
     }
   }
 
   saveValueOfInput () {
-    console.log(this.titleTarget.dataset.id)
     fetch(`/flats/${this.titleTarget.dataset.id}`, {
       headers: { accept: "application/json", 'content-type': 'application/json' },
       method: "PATCH",
@@ -32,7 +32,7 @@ export default class extends Controller {
   changeInputToName (name) {
     if (this.titleTarget.querySelector('input')) {
       this.titleTarget.innerHTML = `
-        <h1 class="text-center">${name} tasks</h1>
+        <h1 class="text-center">${name}</h1>
       `
     }
   }

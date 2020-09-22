@@ -1,5 +1,6 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [:show, :set_flatmembers, :destroy]
+  before_action :set_flat, only: [:show, :update, :set_flatmembers, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:update]
 
   def show
     Flat.find(@flat.id)
@@ -31,6 +32,19 @@ class FlatsController < ApplicationController
     redirect_to flats_path
   end
 
+  def destroy
+    @flat.destroy
+    redirect_to flats_path
+  end
+
+  def update
+    @flat.update(flat_params)
+      respond_to do |format|
+        format.html
+        format.json { render json: { flat: @flat } }
+      end
+  end
+
   private
 
   def set_flat
@@ -38,6 +52,6 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(:flat).permit(:name, :full_address)
+    params.require(:flat).permit(:name)
   end
 end

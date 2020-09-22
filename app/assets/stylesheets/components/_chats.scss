@@ -1,0 +1,60 @@
+.card-message, .card-send-message {
+  padding: 13px;
+  background-color: $white;
+  border: 1px solid #E4E4E4;
+  border-radius: 7px;
+}
+
+.card-message {
+  width: 80%;
+}
+
+.card-send-message {
+  height: 100px;
+  position: relative;
+}
+.card-message p {
+  margin: 0;
+}
+
+.card-message .secondary-p {
+  color: rgba(83, 83, 83, 0.6);
+}
+
+.card-message.name-blue h3 {
+  color: $blue;
+}
+
+.card-message.name-orange h3 {
+  color: $orange;
+}
+
+.card-message.float-right {
+  float: right;
+}
+
+.send-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.tabs {
+  background-color: $white;
+  border: 1px solid #E4E4E4;
+  height: 45px;
+}
+
+.tabs h3 {
+  margin-bottom: 0;
+}
+
+.tab {
+  height: 100%;
+}
+
+.orange-line {
+  background-color: $orange;
+  height: 2px;
+  width: 100%;
+}

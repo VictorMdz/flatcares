@@ -5,7 +5,7 @@
       <div class="d-flex justify-content-between m-4">
         <div class="mt-2">
           <h1> <%= @event.name %> </h1>
-          <div class="ml-1">
+          <div class="ml-1 mb-3">
             <%= link_to edit_flat_event_path(@flat, @event) do %>
               <i class="far fa-edit secondary-link mr-1"></i>
             <% end %>
@@ -13,6 +13,7 @@
               <i class="far fa-trash-alt secondary-link ml-1"></i>
             <% end %>
           </div>
+          <%= link_to "< See all events", flat_events_path, class: "primary-link" %>
         </div>
         <div>
           <% if @event.user.picture.attached? %>

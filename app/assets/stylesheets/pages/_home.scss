@@ -1,1 +1,40 @@
-// Specific CSS for your home-page
+.main-content.pages.home {
+  margin-bottom: 0;
+}
+
+.main-content.pages.home .wrapper {
+  height: calc(100vh - 77px);
+  display: flex;
+  align-items: center;
+}
+
+.main-content.pages.home h1 {
+  font-size: 40px;
+}
+
+.main-content.pages.home p {
+ margin-bottom: 21px;
+}
+
+body .main-content.pages.home {
+  color: $white;
+  background-color: $orange;
+}
+
+.main-content.pages.home ul {
+  list-style: none;
+  padding: 0;
+}
+
+.main-content.pages.home ul li {
+  display: inline;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+@media (min-width: 576px) {
+  .main-content.pages.home .wrapper {
+    height: calc(100vh - 57.5px);
+  }
+}
+

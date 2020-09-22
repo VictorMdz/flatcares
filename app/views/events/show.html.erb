@@ -46,20 +46,60 @@
     </div>
   </div>
 
+<!-- BUTTON EVENTS -->
+<div class="d-flex justify-content-center">
+  <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch, remote: true do |f| %>
+    <%= f.input :participating, :as => :hidden, :input_html => { :value => :true } %>
+    <%= f.submit "Going", class: "btn shadow text-orange" %>
+  <% end %>
+
+  <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch, remote: true do |f| %>
+    <%= f.input :participating, :as => :hidden, :input_html => { :value => :false } %>
+    <%= f.submit "Can't go", class: "btn shadow text-orange" %>
+  <% end %>
+</div>
+
 <!-- MEMBERS -->
   <div class="row">
     <div class="col-12">
       <div class="m-4 ml-5">
         <h3>Members (<%= @event_participations.size %>) <i class="fas fa-users">  </i></h3>
-        <% @event_participations.each do |participation| %>
-          <% if participation.user.picture.attached? %>
-            <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
-          <%else%>
-            <i class="fas fa-user-circle fa-2x mr-2"></i>
+        <p class="border-bottom mb-3">Going</p>
+        <div class="d-flex align-items-center justify-content-start">
+          <% @event_participations.each do |participation| %>
+            <% if participation.participating %>
+              <% if participation.user.picture.attached? %>
+                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+              <%else%>
+                <i class="fas fa-user-circle fa-2x ml-2"></i>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if current_user != @event.user_id %>
-        <% end %>
+        </div>
+        <p class="border-bottom mb-3 mt-3">Not Going</p>
+        <div class="d-flex align-items-center justify-content-start">
+          <% @event_participations.each do |participation| %>
+            <% if participation.participating == false %>
+              <% if participation.user.picture.attached? %>
+                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+              <%else%>
+                <i class="fas fa-user-circle fa-2x mr-2"></i>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="border-bottom mb-3 mt-3">Invited</p>
+        <div class="d-flex align-items-center justify-content-start">
+          <% @event_participations.each do |participation| %>
+            <% if participation.participating.nil? %>
+              <% if participation.user.picture.attached? %>
+                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+              <%else%>
+                <i class="fas fa-user-circle fa-2x mr-2"></i>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(version: 2020_09_22_153048) do
     t.json "json"
     t.string "location"
     t.date "date"
-    t.boolean "participating", default: false
     t.index ["flat_id"], name: "index_events_on_flat_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -144,6 +143,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_153048) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "participating"
     t.index ["event_id"], name: "index_participations_on_event_id"
     t.index ["user_id"], name: "index_participations_on_user_id"
   end

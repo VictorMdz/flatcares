@@ -57,6 +57,12 @@ class Event < ApplicationRecord
   private
 
   def create_participation
-    Participation.create(user_id: user_id, event_id: id)
+    Participation.create(user_id: user_id, event_id: id, participating: true)
+
+    flat.users.where.not(id: user_id).each do |user|
+      Participation.create(user_id: user.id, event_id: id)
+    end
   end
 end
+
+

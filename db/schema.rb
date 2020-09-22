@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_105810) do
+
+ActiveRecord::Schema.define(version: 2020_09_22_153048) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,13 +77,16 @@ ActiveRecord::Schema.define(version: 2020_09_21_105810) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.time "start_time"
+    t.time "end_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "flat_id"
     t.integer "event_type"
+    t.json "json"
+    t.string "location"
+    t.date "date"
     t.index ["flat_id"], name: "index_events_on_flat_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -141,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_105810) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "participating"
     t.index ["event_id"], name: "index_participations_on_event_id"
     t.index ["user_id"], name: "index_participations_on_user_id"
   end

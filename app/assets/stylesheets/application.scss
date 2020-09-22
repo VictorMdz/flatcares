@@ -15,9 +15,8 @@
 @import "components/buttons";
 @import "components/forms";
 @import "components/tasks";
+@import "components/calendar";
 @import "components/chats";
-
-
 
 
 .main-content {
@@ -80,6 +79,8 @@ a.text-gray {
 .text-gray {
   color: $gray;
 }
+
+
 
 
 

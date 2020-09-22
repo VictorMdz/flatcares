@@ -23,7 +23,10 @@ Rails.application.routes.draw do
 
     resources :users
     resources :bills
-    resources :events
+
+    resources :events do
+      resources :participations
+    end
 
     resources :flatmembers, only: :update
 
@@ -41,9 +44,6 @@ Rails.application.routes.draw do
     resources :payments, only: [:update]
   end
 
-
-
-  resources :events
 
   resources :components
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -14,9 +14,11 @@
               </h1>
             </div>
             <div>
+              
             <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="far fa-trash-alt secondary-link ml-1"></i>
             <% end %>
+
           </div>
           </div>
         <p><%= link_to "< Go to Areas", flat_areas_path(@flat), class: "primary-link" %></p>

@@ -15,6 +15,22 @@ class BillsController < ApplicationController
       @bills = @bills.by_amount(@amounts[params[:amount_cents].to_sym].to_a)
     end
 
+    if (params[:pending].present? && params[:pending] == "true") && (params[:overdue].present? && params[:overdue] == "true")
+      @bills = @bills.by_pending + @bills.by_overdue
+    elsif params[:pending].present? && params[:pending] == "true"
+      @bills = @bills.by_pending
+    elsif params[:overdue].present? && params[:overdue] == "true"
+      @bills = @bills.by_overdue
+    end
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {
+          bills: json_with_html(@bills)
+        }
+      }
+    end
   end
 
   def show
@@ -97,5 +113,15 @@ class BillsController < ApplicationController
 
   def check_display_index
     @your_index = !params[:user_id].present?
+  end
+
+  def json_with_html(bills)
+    bills.map do |bill|
+      bill_hash = bill.as_json
+
+      bill_hash.merge({
+        html: render_to_string(partial: "bills/bill_card", locals: { bill: bill }, formats: :html)
+      })
+    end
   end
 end

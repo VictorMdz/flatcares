@@ -43,6 +43,8 @@ class Bill < ApplicationRecord
   include PgSearch::Model
   scope :by_category, -> (category) { where(category: category) }
   scope :by_amount, -> (amounts) { where('amount_cents >= ? AND amount_cents <= ?', amounts.first * 100, amounts.last * 100) }
+  scope :by_pending, -> () { where('due_date >= ?', Date.today) }
+  scope :by_overdue, -> () { where('due_date <= ?', Date.today) }
 
   private
 
@@ -53,7 +55,6 @@ class Bill < ApplicationRecord
   def notify_users
     notify :users, key: "bill.create"
   end
-
 
   def create_payments
     amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count

@@ -5,8 +5,9 @@ class BillsController < ApplicationController
 
   def index
     @flat = Flat.find(params[:flat_id])
-    @bills = Bill.where(flat_id: params[:flat_id])
 
+    @bills = Bill.where(flat_id: params[:flat_id])
+  
     if params[:category].present? && params[:category] != ""
       @bills = @bills.by_category(params[:category])
     end
@@ -36,6 +37,7 @@ class BillsController < ApplicationController
 
   def show
     @flat = Flat.find(params[:flat_id])
+    @chatroom = @flat.chatrooms.first
   end
 
   def new
@@ -80,6 +82,7 @@ class BillsController < ApplicationController
   end
 
   private
+
 
   def bill_params
     params.require(:bill).permit(

@@ -11,6 +11,7 @@ class AreasController < ApplicationController
 
   def show
     @flat = @area.flat
+  
   end
 
   def new
@@ -53,6 +54,7 @@ class AreasController < ApplicationController
 
 
   private
+  
 
   def set_area
     @area = Area.find(params[:id])

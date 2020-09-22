@@ -1,12 +1,15 @@
 class FlatmembersController < ApplicationController
+
   def invite
+
     @flat = Flat.find(params[:flat_id])
+    @chatroom = @flat.chatrooms.first
+
   end
 
   def send_invitations
     @flat = Flat.find(params[:flat_id])
     user_emails = params[:member]
-
     user_emails.each do |email|
       user = User.find_by email: email
 
@@ -19,6 +22,7 @@ class FlatmembersController < ApplicationController
       end
     end
     redirect_to flat_path(@flat)
+
   end
 
   def destroy

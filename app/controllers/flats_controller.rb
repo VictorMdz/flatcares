@@ -4,7 +4,6 @@ class FlatsController < ApplicationController
   def show
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
-    @chatroom = @flat.chatrooms.last
     @notifications = current_user.notifications
     @notifications = @notifications.sort_by(&:updated_at)
     @notifications.reverse!

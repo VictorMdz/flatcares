@@ -11,12 +11,11 @@ class Flat < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: 2 }
   validates :full_address, presence: true
-  # after_create :create_flatmember
+  after_create :create_chatroom
 
-  # def create_flatmember
-
-  #   Flatmember.create(flat_id: id, user_id: user.id)
-  # end
+  def create_chatroom
+    Chatroom.create(flat_id: self.id, name: "General")
+  end
   
 end
 

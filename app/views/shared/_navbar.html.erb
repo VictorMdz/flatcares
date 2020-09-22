@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item">
           <% css_class_chatroom = controller?('chatrooms') ? "nav-link text-orange" : "nav-link text-gray" %>
-          <%= link_to "Chat", flat_chatrooms_path(@flat, @chatroom), class: "#{css_class_chatroom}" %>
+          <%= link_to "Chat", flat_chatrooms_path(@flat), class: "#{css_class_chatroom}" %>
         </li>
         <li class="nav-item dropdown">
           <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">

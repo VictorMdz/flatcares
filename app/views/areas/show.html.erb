@@ -5,7 +5,7 @@
           <div class="d-flex" data-controller="tasks">
             <div
               class="mr-4"
-              data-action="click->tasks#changeNameToInput"
+              data-action="click->tasks#changeName"
               data-id="<%= @area.id %>"
               data-target="tasks.title"
             >
@@ -14,7 +14,7 @@
               </h1>
             </div>
             <div>
-              
+
             <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="far fa-trash-alt secondary-link ml-1"></i>
             <% end %>

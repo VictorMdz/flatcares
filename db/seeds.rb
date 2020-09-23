@@ -32,7 +32,7 @@ flat.save!
 
 puts "Creating Flat Members"
 
-flatmember_1 = Flatmember.new(flat_id: flat.id, user_id: user_1.id, is_admin: false )
+flatmember_1 = Flatmember.new(flat_id: flat.id, user_id: user_1.id, is_admin: true )
 flatmember_1.save!
 
 flatmember_2 = Flatmember.new(flat_id: flat.id, user_id: user_2.id )
@@ -128,7 +128,29 @@ area_6.save!
 puts "Create events"
 
 
-event_1 = Event.create(name: "Mara's birthday", date: Date.today + 5, location: "Our house", user_id: user_1.id, event_type: "party", flat_id: flat.id, start_time: Time.now + 2500, end_time: Time.now + 3000 )
+event_1 = Event.create(name: "Mara's birthday", date: Date.today + 5, location: "Teatro Barceló", user_id: user_3.id, event_type: "party", flat_id: flat.id, start_time: Time.now + 6*60*60, end_time: Time.now + 12*60*60 )
 event_1.save!
+
+event_2 = Event.create(name: "Dinner with Victor's friends", date: Date.today - 6, location: "House", user_id: user_1.id, event_type: "dinner", flat_id: flat.id, start_time: Time.now + 8*60*60, end_time: Time.now + 10*60*60 )
+event_2.save!
+
+event_3 = Event.create(name: "Plumber", date: Date.today + 4, location: "House", user_id: user_4.id, event_type: "repair", flat_id: flat.id, start_time: Time.now + 3*60*60, end_time: Time.now + 4*60*60 )
+event_3.save!
+
+event_4 = Event.create(name: "Flight to Egypt", date: Date.today + 4, location: "Airport", user_id: user_3.id, event_type: "holiday", flat_id: flat.id, start_time: Time.now + 10*60*60, end_time: Time.now + 10*60*60 )
+event_4.save!
+
+event_5 = Event.create(name: "Electrician", date: Date.today - 10, location: "House", user_id: user_2.id, event_type: "repair", flat_id: flat.id, start_time: Time.now + 1*60*60, end_time: Time.now + 1*60*60 )
+event_5.save!
+
+event_6 = Event.create(name: "Buy tickets for Justin Bieber Concert", date: Date.today + 2, location: "Sol, Madrid", user_id: user_4.id, event_type: "other", flat_id: flat.id, start_time: Time.now + 11*60*60, end_time: Time.now + 12*60*60 )
+event_6.save!
+
+event_7 = Event.create(name: "Dinner in 'La Tesqueria'", date: Date.today - 12, location: "Calle Duque de Sesto, 17", user_id: user_1.id, event_type: "dinner", flat_id: flat.id, start_time: Time.now + 11*60*60, end_time: Time.now + 12*60*60 )
+event_7.save!
+
+event_8 = Event.create(name: "Going for Tacos!!", date: Date.today - 18, location: "Plza Mayor", user_id: user_3.id, event_type: "dinner", flat_id: flat.id, start_time: Time.now + 10*60*60, end_time: Time.now + 10*60*60 )
+event_8.save!
+
 
 

@@ -30,7 +30,7 @@ module ApplicationHelper
       when "Area"
         Rails.application.routes.url_helpers.flat_area_path(notification.notifiable.flat_id, notification.notifiable.id)
       when "Message"
-        Rails.application.routes.url_helpers.flat_chatrooms_path(notification.notifiable.chatroom.flat_id, notification.notifiable.id)
+        Rails.application.routes.url_helpers.flat_chatrooms_path(notification.notifiable.chatroom.flat_id, message_id: notification.notifiable.id)
       end
   end
 end

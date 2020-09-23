@@ -21,10 +21,5 @@ export default class extends Controller {
     });
   }
 
-  changeNotificationBackground () {
-    event.preventDefault();
-    const element = document.querySelector(".calendar-card-white");
-    element.classList.remove("notification-background-notseen");
-    element.classList.add("notification-background-seen");
-  }
+
 }

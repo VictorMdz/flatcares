@@ -16,10 +16,13 @@ form.simple_form.edit_flatmember {
   background-color: #f8f9fa;
 }
 
-.notification-background-notseen {
-  background-color: rgba(233, 140, 118, 0.1) !important ;
+
+.notification {
+    background-color:rgba(233, 140, 118, 0.1) !important;
+    &-background-seen {
+    background-color: #ffffff !important ;
+  }
 }
 
-.notification-background-seen {
-  background-color: #ffffff !important;
-}
+
+

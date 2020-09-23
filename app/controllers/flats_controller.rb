@@ -7,7 +7,7 @@ class FlatsController < ApplicationController
     @flat_areas = @flat.areas
     @notifications = current_user.notifications
     @notifications = @notifications.sort_by(&:updated_at)
-    @notifications.reverse!
+
   end
 
   def new

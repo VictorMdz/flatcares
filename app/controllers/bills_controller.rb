@@ -7,7 +7,7 @@ class BillsController < ApplicationController
     @flat = Flat.find(params[:flat_id])
 
     @bills = Bill.where(flat_id: params[:flat_id])
-  
+
     if params[:category].present? && params[:category] != ""
       @bills = @bills.by_category(params[:category])
     end
@@ -32,10 +32,16 @@ class BillsController < ApplicationController
         }
       }
     end
-    
+
   end
 
   def show
+    @notification = current_user.notifications.find_by(notifiable_id: params[:id], notifiable_type: "Bill")
+
+    if @notification
+      @notification.update opened_at: Date.today
+    end
+
     @flat = Flat.find(params[:flat_id])
     @chatroom = @flat.chatrooms.first
   end

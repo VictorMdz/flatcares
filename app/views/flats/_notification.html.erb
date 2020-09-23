@@ -1,27 +1,21 @@
-<%= link_to ApplicationController.helpers.notification_path(notification), class: "secondary-link text-decoration-none notification-background-notseen" do %>
-  <div
-    data-action="click->notifications#changeNotificationBackground"
-    data-id="<%= @flat.id %>"
-    data-target="notifications.card"
-  >
-    <div class="row calendar-card-white my-3 notification-background-notseen">
-      <div class="col-2 justify-content-start align-items-center d-flex">
-        <!-- AVATAR -->
-        <% if ApplicationController.helpers.notification_user(notification)&.picture&.attached? %>
-          <%= cl_image_tag ApplicationController.helpers.notification_user(notification).picture.key, class: 'avatar-secondary-gray' %>
-        <% else %>
-          <i class="fas fa-user-circle fa-2x"></i>
-        <% end %>
-      </div>
-      <div class="col-8 justify-content-start align-items-start">
-        <!-- USER NAME -->
-        <h6><%= ApplicationController.helpers.notification_user(notification)&.first_name %></h6>
-        <!-- NOTIFICATION NAME -->
-        <p><%= ApplicationController.helpers.notification_message(notification).try(:html_safe) %></p>
-      </div>
-      <div class="col-2 justify-content-end align-items-center d-flex">
-        <i class="<%= NOTIFICATIONS_ICONS[notification.notifiable_type.to_sym] %> fa-2x text-primary"></i>
-      </div>
+<%= link_to ApplicationController.helpers.notification_path(notification), class: "secondary-link text-decoration-none " do %>
+  <div class="row calendar-card-white my-3 notification <%= "notification-background-seen" if !(notification.opened_at.nil?) %>">
+    <div class="col-2 justify-content-start align-items-center d-flex">
+      <!-- AVATAR -->
+      <% if ApplicationController.helpers.notification_user(notification)&.picture&.attached? %>
+        <%= cl_image_tag ApplicationController.helpers.notification_user(notification).picture.key, class: 'avatar-secondary-gray' %>
+      <% else %>
+        <i class="fas fa-user-circle fa-2x"></i>
+      <% end %>
+    </div>
+    <div class="col-8 justify-content-start align-items-start">
+      <!-- USER NAME -->
+      <h6><%= ApplicationController.helpers.notification_user(notification)&.first_name %></h6>
+      <!-- NOTIFICATION NAME -->
+      <p><%= ApplicationController.helpers.notification_message(notification).try(:html_safe) %></p>
+    </div>
+    <div class="col-2 justify-content-end align-items-center d-flex">
+      <i class="<%= NOTIFICATIONS_ICONS[notification.notifiable_type.to_sym] %> fa-2x text-primary"></i>
     </div>
   </div>
 <% end %>

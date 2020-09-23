@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container mt-3">
       <div class="cards-grid" data-target="bills.bills">
         <% @bills.order('due_date desc').each do |bill| %>
           <%= render 'bill_card', bill: bill %>

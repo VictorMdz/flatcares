@@ -10,14 +10,10 @@ class Flat < ApplicationRecord
   validates :name, length: { minimum: 2 }
   validates :full_address, presence: true
 
-  after_create :create_chatroom, :update_admin
+  after_create :create_chatroom
 
   def create_chatroom
     Chatroom.create(flat_id: self.id, name: "General")
-  end
-
-  def update_admin
-    flatmembers.first.update(is_admin: true)
   end
 end
 

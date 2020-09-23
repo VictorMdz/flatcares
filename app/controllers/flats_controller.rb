@@ -3,7 +3,6 @@ class FlatsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:update]
 
   def show
-    Flat.find(@flat.id)
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
     @notifications = current_user.notifications
@@ -17,10 +16,10 @@ class FlatsController < ApplicationController
   end
 
   def create
-    current_user.flats.push(Flat.create(flat_params))
-    # @flat = current_user.flats.push(Flat.create(flat_params))
-    # # @flat.users.push(current_user)
-    if current_user.flats.last.save
+    @flat = Flat.create(flat_params)
+    @member = Flatmember.create(user: current_user, flat: @flat, is_admin: true)
+
+    if @flat.save && @member.save
       redirect_to flat_path(current_user.flats.last)
     else
       render "flats/new"

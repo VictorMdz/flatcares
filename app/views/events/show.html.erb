@@ -9,6 +9,7 @@
             <%= link_to edit_flat_event_path(@flat, @event) do %>
               <i class="far fa-edit secondary-link mr-1"></i>
             <% end %>
+            |
             <%= link_to flat_event_path(@flat, @event), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="far fa-trash-alt secondary-link ml-1"></i>
             <% end %>

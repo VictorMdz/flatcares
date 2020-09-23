@@ -1,4 +1,4 @@
-.card-orange, .card-white, .card-gray,
+.card-orange, .card-gray,
 .calendar-card-white,
 .expenses-card-white, .expenses-card-gray,
 .task-card-white-high, .task-card-white-low {
@@ -18,8 +18,10 @@
 }
 
 .card-white {
-  color: $orange;
   background-color: $white;
+  border-radius: 15px;
+  box-shadow: 0px 0px 23px 17px rgba(198, 198, 198, 0.08);
+  padding: 30px;
 }
 
 .expenses-card-gray {

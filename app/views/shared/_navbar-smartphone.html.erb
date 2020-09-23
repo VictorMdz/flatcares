@@ -7,7 +7,7 @@
     <p>Home</p>
   </div>
   <div class="navbar-bills">
-    <%= link_to flat_bills_path(@flat, @bill) do %>
+    <%= link_to flat_bills_path(@flat) do %>
       <% css_class_bill = controller?('bills') ? "text-orange" : "text-gray" %>
       <i class=" <%= "#{ICONS_NAVBAR[:bill]} #{css_class_bill}" %> "></i>
     <% end %>

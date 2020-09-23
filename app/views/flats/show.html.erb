@@ -1,5 +1,5 @@
 <!-- FLAT NAME -->
-<div class="container my-5">
+<div class="container mt-5 mb-3">
   <div class="row">
     <div class="col-12" data-controller="flats">
       <div
@@ -7,9 +7,9 @@
         data-id="<%= @flat.id %>"
         data-target="flats.title"
       >
-        <h1 class="text-center m-0">🏡 <%= @flat.name %></h1>
+        <h1 class="text-center">🏡 <%= @flat.name %></h1>
       </div>
-      <p class="text-center"> <i class="fas fa-map-marker-alt text-orange"></i> <%= @flat.full_address %></p>
+      <p class="text-center secondary-p"> <i class="fas fa-map-marker-alt text-orange"></i> <%= @flat.full_address %></p>
     </div>
   </div>
 </div>

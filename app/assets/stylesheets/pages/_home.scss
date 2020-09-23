@@ -32,6 +32,12 @@ body .main-content.pages.home {
   font-weight: 300;
 }
 
+.logo-container {
+  padding: 25px;
+  background-color: $white-bone;
+  text-align: center;
+}
+
 @media (min-width: 576px) {
   .main-content.pages.home .wrapper {
     height: calc(100vh - 57.5px);

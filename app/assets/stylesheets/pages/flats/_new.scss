@@ -1,0 +1,13 @@
+.main-content.flats.new {
+  margin-bottom: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 576px) {
+  .main-content.flats.new {
+    height: calc(100vh - 54.77px);
+  }
+}

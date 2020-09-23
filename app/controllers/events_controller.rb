@@ -11,6 +11,9 @@ class EventsController < ApplicationController
     @flat = Flat.find(params[:flat_id])
     @event_participations =  @event.participations
     @current_user_participation = @event_participations.where(user_id: current_user).first
+    @event_participations_going = @event_participations.where(participating: true)
+    @event_participations_notgoing = @event_participations.where(participating: false)
+    @event_participations_invited = @event_participations.where(participating: nil)
   end
 
   def new

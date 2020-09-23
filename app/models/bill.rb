@@ -3,7 +3,7 @@ class Bill < ApplicationRecord
   belongs_to :user
   belongs_to :flat
   belongs_to :paying_user, class_name: 'User'
-  
+
 
   has_one_attached :invoice
 
@@ -53,7 +53,11 @@ class Bill < ApplicationRecord
   end
 
   def notify_users
-    notify :users, key: "bill.create"
+    notifications = notify :users, key: "bill.create"
+    NotificationChannel.broadcast_to(
+      self.flat,
+      ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
+    )
   end
 
   def create_payments

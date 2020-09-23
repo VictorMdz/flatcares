@@ -13,7 +13,7 @@
 
   <body data-user="<%= current_user&.id %>">
 
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar' if !controller?('pages') %>
     <div class="main-content <%= params[:controller] %> <%= params[:action] %>">
       <%= yield %>
 

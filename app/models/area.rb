@@ -8,7 +8,9 @@ class Area < ApplicationRecord
 
   validates :name, presence: true
 
+  before_create :assign_user
   after_create :notify_users
+
   after_destroy :clean_notifications
 
   acts_as_notifiable :users,
@@ -21,8 +23,16 @@ class Area < ApplicationRecord
     area_path(area)
   end
 
+  def assign_user
+    self.assigned_user = self.flat.users.sample
+  end
+
   def notify_users
-    notify :users, key: "area.update"
+    notifications = notify :users, key: "area.update"
+    NotificationChannel.broadcast_to(
+      self.flat,
+      ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
+    )
   end
 
   def clean_notifications

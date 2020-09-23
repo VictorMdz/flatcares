@@ -47,7 +47,11 @@ class Event < ApplicationRecord
   end
 
   def notify_users
-    notify :users, key: "event.create"
+    notifications = notify :users, key: "event.create"
+    NotificationChannel.broadcast_to(
+      self.flat,
+      ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
+    )
   end
 
   def clean_notifications

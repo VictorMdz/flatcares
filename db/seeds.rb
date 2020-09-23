@@ -101,9 +101,6 @@ bill_18 = Bill.new(name: "Internet", flat_id: flat.id, user_id: user_4.id, payin
 bill_18.save!
 
 
-
-
-
 puts "Create areas"
 
 area_1 = Area.new(name: "Kitchen", flat_id: flat.id, assigned_user_id: user_3.id, previously_assigned_user_id: user_2.id, category: "kitchen" )

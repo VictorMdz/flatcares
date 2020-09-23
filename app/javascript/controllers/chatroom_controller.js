@@ -4,13 +4,19 @@ import consumer from "../channels/consumer";
 export default class extends Controller {
   static targets = ['messages', 'author', 'conversation', 'input']
   connect() {
+    this.scrollToLastMessage()
     this.initActionCable()
+  }
+
+  scrollToLastMessage() {
+    this.conversationTarget.scrollTop = this.conversationTarget.scrollHeight
   }
 
   initActionCable() {
     const container = this.messagesTarget
-    const conversation = this.conversationTarget
     const input = this.inputTarget
+
+    const self = this
 
     const id = container.dataset.chatroomId
 
@@ -35,7 +41,7 @@ export default class extends Controller {
 
         container.insertAdjacentElement('beforeend', message)
 
-        conversation.scrollTop = conversation.scrollHeight
+        self.scrollToLastMessage()
 
         input.value = ''
       },

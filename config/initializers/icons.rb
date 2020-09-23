@@ -34,3 +34,10 @@ ICONS_EVENT_TYPE = {
   repair: 'fas fa-tools',
   other: 'fab fa-elementor'
 }
+
+NOTIFICATIONS_ICONS = {
+  Event: "fas fa-calendar-alt",
+  Area: "fas fa-house-user",
+  Bill: "fas fa-file-invoice-dollar",
+  Message: "far fa-comment-dots"
+}

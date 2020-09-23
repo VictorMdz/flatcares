@@ -11,7 +11,11 @@ class AreasController < ApplicationController
 
   def show
     @flat = @area.flat
-  
+    @notification = current_user.notifications.find_by(notifiable_id: params[:id], notifiable_type: "Area")
+
+    if @notification
+      @notification.update opened_at: Date.today
+    end
   end
 
   def new
@@ -54,7 +58,7 @@ class AreasController < ApplicationController
 
 
   private
-  
+
 
   def set_area
     @area = Area.find(params[:id])

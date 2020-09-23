@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["title", "input"]
+  static targets = ["title", "input", "card"]
 
   changeNameToInput () {
     if (this.titleTarget.querySelector('h1')) {

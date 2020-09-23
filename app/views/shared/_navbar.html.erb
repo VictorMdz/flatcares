@@ -19,15 +19,15 @@
         </li>
         <li class="nav-item">
           <% css_class_bill = controller?('bills') ? "nav-link text-orange" : "nav-link text-gray" %>
-          <%= link_to "Bills", flat_bills_path(@flat, @bill), class: "#{css_class_bill}" %>
+          <%= link_to "Bills", flat_bills_path(@flat), class: "#{css_class_bill}" %>
         </li>
         <li class="nav-item">
           <% css_class_area = controller?('areas') ? "nav-link text-orange" : "nav-link text-gray" %>
-          <%= link_to "Tasks", flat_areas_path(@flat, @area), class: "#{css_class_area}" %>
+          <%= link_to "Tasks", flat_areas_path(@flat), class: "#{css_class_area}" %>
         </li>
         <li class="nav-item">
           <% css_class_event = controller?('events') ? "nav-link text-orange" : "nav-link text-gray" %>
-          <%= link_to "Events", flat_events_path(@flat, @event), class: "#{css_class_event}" %>
+          <%= link_to "Events", flat_events_path(@flat), class: "#{css_class_event}" %>
         </li>
         <li class="nav-item">
           <% css_class_chatroom = controller?('chatrooms') ? "nav-link text-orange" : "nav-link text-gray" %>

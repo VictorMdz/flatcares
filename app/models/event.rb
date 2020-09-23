@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :flat
-  has_many :participations
+  has_many :participations, dependent: :destroy
 
   validates :name, presence:true
   # validates :type, presence:true

@@ -1,7 +1,6 @@
 class FlatmembersController < ApplicationController
-
-before_action :set_flat, only: [:invite, :update, :send_invitations, :destroy]
-before_action :set_flatmember, only: :update
+before_action :set_flat, only: [:invite, :update, :send_invitations]
+before_action :set_flatmember, only: [:update, :destroy]
   def invite
 
     @flat = Flat.find(params[:flat_id])
@@ -34,8 +33,9 @@ before_action :set_flatmember, only: :update
   end
 
   def destroy
+    @flat = @flatmember.flat
     @flatmember.destroy
-    redirect_to flat_path(@flatmember.flat_id)
+    redirect_to flat_path(@flat)
   end
 
   private

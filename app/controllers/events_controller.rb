@@ -17,6 +17,11 @@ class EventsController < ApplicationController
     if @notification
       @notification.update opened_at: Date.today
     end
+
+    @event_participations_going = @event_participations.where(participating: true)
+    @event_participations_notgoing = @event_participations.where(participating: false)
+    @event_participations_invited = @event_participations.where(participating: nil)
+
   end
 
   def new

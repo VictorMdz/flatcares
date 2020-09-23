@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   private
 
   def configure_permitted_parameters
@@ -21,4 +25,6 @@ class ApplicationController < ActionController::Base
       flats_path
     end
   end
+
+
 end

@@ -13,7 +13,7 @@ class Flat < ApplicationRecord
   after_create :create_chatroom
 
   def create_chatroom
-    Chatroom.create(flat_id: self.id, name: "General")
+    Chatroom.create(flat_id: self.id, name: "Chatflat 💬")
   end
 end
 

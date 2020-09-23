@@ -8,7 +8,7 @@
             <%= f.input :name, placeholder: "Event's Name", label: false %>
           </div>
           <div class="col">
-            <%= f.input :event_type, collection: EVENT_TYPE, placeholder: "Event's Type", label: false %>
+            <%= f.input :event_type, collection: EVENT_TYPE, include_blank: "Event's Type", label: false %>
           </div>
         </div>
         <%= f.input :location, class: "form-control", placeholder: "Event's Location", label: false %>

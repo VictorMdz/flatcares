@@ -3,6 +3,7 @@ class FlatsController < ApplicationController
 
   def show
     Flat.find(@flat.id)
+    Flat.find(@flat.id).flatmembers.first.update(is_admin: true)
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
     @notifications = current_user.notifications

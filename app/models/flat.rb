@@ -15,9 +15,5 @@ class Flat < ApplicationRecord
   def create_chatroom
     Chatroom.create(flat_id: self.id, name: "General")
   end
-
-  def update_admin
-    flatmembers.first.update(is_admin: true)
-  end
 end
 

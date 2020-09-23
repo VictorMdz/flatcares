@@ -26,7 +26,7 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-6">
-                <%= simple_form_for [@flat, chatroom, @message] do |f| %>
+                <%= simple_form_for [@flat, chatroom, @message], remote: true do |f| %>
                   <%= f.input :content, label: false, :input_html => { :class => 'card-send-message', data: { target: 'chatroom.input'} }, placeholder: "Type your message here..."%>
                     <%= button_tag type: 'submit', class: "send-button" do %>
                         <%= image_tag 'send-button.svg' %>

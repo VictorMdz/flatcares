@@ -111,6 +111,9 @@ class BillsController < ApplicationController
     @categories = @bills.map { |bill| bill.category }
     @categories.uniq!
 
+    @dates = @bills.map { |bill| bill.due_date }
+    @dates.uniq!
+
     @amounts = {
       "€0 - €50": [0, 50],
       "€50 - €100": [50, 100],

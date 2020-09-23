@@ -1,16 +1,13 @@
-.new-flat-container {
+.main-content.flats.index {
+  margin-bottom: 0;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.main-content.flats.index {
-  margin-bottom: 0;
-}
-
 @media (min-width: 576px) {
-  .new-flat-container {
-    height: calc(100vh - 57.5px);
+  .main-content.flats.index {
+    height: calc(100vh - 54.77px);
   }
 }

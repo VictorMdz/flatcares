@@ -22,16 +22,18 @@
     </div>
   </div>
 
-  <div class="btn-group mb-2 mr-2 button">
-    <button data-action="click->bills#filterBills" data-filter="pending" class="btn inactive-filter border-0">
-      Pending
+  <div class="btn-group mb-2 mr-2 select dropdown ">
+    <button class="dropdown-toggle btn inactive-filter border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Bill status
     </button>
-  </div>
-
-  <div class="btn-group mb-2 mr-2 button">
-    <button data-action="click->bills#filterBills" data-filter="overdue" class="btn inactive-filter border-0">
-      Overdue
-    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <button data-action="click->bills#filterBills" data-filter="pending" class="btn inactive-filter border-0 dropdown-item">
+        Pending
+      </button>
+      <button data-action="click->bills#filterBills" data-filter="overdue" class="btn inactive-filter dropdown-item border-0">
+        Overdue
+      </button>
+    </div>
   </div>
 
   <div class="btn-group mb-2 mr-2 button">

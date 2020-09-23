@@ -1,4 +1,3 @@
-
 import { Controller } from 'stimulus'
 import places from 'places.js';
 

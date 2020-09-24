@@ -7,7 +7,6 @@ export default class extends Controller {
   static targets = ['container', 'card']
 
   connect() {
-    console.log("hello")
     this.initActionCable()
   }
 
@@ -17,12 +16,16 @@ export default class extends Controller {
 
     consumer.subscriptions.create({ channel: "NotificationChannel", id }, {
       received(data) {
+        const userId = container.dataset.userId
         container.insertAdjacentHTML('afterbegin', data.html)
-        toastr.options.timeOut = 5000
-        toastr.options.onclick = () => window.location.href = data.url
-        // toastr.info(data.message)
-        toastr.success(data.message);
-        console.log(data)
+        if (userId != data.id.id) {
+          toastr.options.timeOut = 5000
+          toastr.options.onclick = () => window.location.href = data.url
+          // toastr.info(data.message)
+          toastr.success(data.message);
+          console.log(data.id.id)
+          console.log(userId)
+        }
       },
     });
   }

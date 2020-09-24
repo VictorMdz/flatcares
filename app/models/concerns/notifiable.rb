@@ -25,6 +25,7 @@ module Notifiable
       self.class.method_defined?(:chatroom) ? self.chatroom.flat : self.flat,
       message: ApplicationController.helpers.notification_message(notifications.first).try(:html_safe),
       url: ApplicationController.helpers.notification_path(notifications.first),
+      id: ApplicationController.helpers.notification_target(notifications.first),
       html: ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
     )
   end

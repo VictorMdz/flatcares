@@ -1,1 +1,1 @@
-EVENT_TYPE = [:party, :holiday, :dinner, :repair, :other ]
+EVENT_TYPE = [:Party, :Holiday, :Dinner, :Repair, :Other ]

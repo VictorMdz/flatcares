@@ -1,7 +1,7 @@
-CATEGORIES = [:rent, :electricity, :water, :internet, :gas, :other ]
+CATEGORIES = [:Rent, :Electricity, :Water, :Internet, :Gas, :Other ]
 
 AREA_CATEGORIES = [
-  :kitchen,:toilet, :bathroom,
-  :lounge, :garden, :corridor,
-  :stairs, :other
+  :Kitchen,:Toilet, :Bathroom,
+  :Lounge, :Garden, :Corridor,
+  :Stairs, :Other
 ]

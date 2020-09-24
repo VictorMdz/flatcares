@@ -15,7 +15,7 @@
       <% end %>
       <!-- NOTIFICATION NAME -->
       <p><%= ApplicationController.helpers.notification_message(notification).try(:html_safe) %></p>
-      <p><%= distance_of_time_in_words(Time.now, notification.created_at)%></p>
+      <p class="smaller-text"><%= distance_of_time_in_words(Time.now, notification.created_at)%> ago</p>
     </div>
     <div class="col-2 justify-content-end align-items-center d-flex">
       <i class="<%= NOTIFICATIONS_ICONS[notification.notifiable_type.to_sym] %> fa-2x text-primary"></i>

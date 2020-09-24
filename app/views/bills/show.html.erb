@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-12">
+    <div class="col-12 col-md-8">
       <div class="d-flex justify-content-left align-items-start">
         <div class="mr-4">
           <h1><%= @bill.name %></h1>
@@ -33,7 +33,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12">
+    <div class="col-12 col-md-8">
       <% @bill.payments.order("created_at asc").each do |payment| %>
         <div class="<%= (payment.user_id == @bill.paying_user_id) || (payment.paid == true) ? 'expenses-card-white' : 'expenses-card-gray' %>">
           <div class="d-flex justify-content-between">

@@ -1,38 +1,44 @@
 <div class="navbar-smartphone">
-  <div class="navbar-home">
+
+  <%= link_to flat_path(@flat) do %>
     <% css_class_flat = controller?('flats') ? "text-orange" : "text-gray" %>
-    <%= link_to flat_path(@flat) do %>
-      <i class=" <%= "#{ICONS_NAVBAR[:home]} #{css_class_flat}" %> "></i>
-    <% end %>
-    <p>Home</p>
-  </div>
-  <div class="navbar-bills">
-    <%= link_to flat_bills_path(@flat) do %>
-      <% css_class_bill = controller?('bills') ? "text-orange" : "text-gray" %>
-      <i class=" <%= "#{ICONS_NAVBAR[:bill]} #{css_class_bill}" %> "></i>
-    <% end %>
-    <p>Bills</p>
-  </div>
-  <div class="navbar-tasks">
-      <%= link_to flat_areas_path(@flat, @area) do %>
-        <% css_class_task = controller?('areas') ? "text-orange" : "text-gray" %>
-          <i class=" <%= "#{ICONS_NAVBAR[:task]} #{css_class_task}" %> "></i>
-      <% end %>
-    <p>Tasks</p>
-  </div>
-  <div class="navbar-events">
-      <%= link_to flat_events_path(@flat, @event) do %>
-        <% css_class_event = controller?('events') ? "text-orange" : "text-gray" %>
-          <i class=" <%= "#{ICONS_NAVBAR[:event]} #{css_class_event}" %> "></i>
-      <% end %>
-    <p>Events</p>
-  </div>
-  <div class="navbar-chat">
-    <%= link_to flat_chatrooms_path(@flat) do %>
-      <% css_class_chatroom = controller?('chatrooms') ? "text-orange" : "text-gray" %>
-        <i class=" <%= "#{ICONS_NAVBAR[:chatroom]} #{css_class_chatroom}" %> "></i>
-      <% end %>
-    <p>Chat</p>
-  </div>
+    <div class="navbar-home <%= css_class_flat %>">
+      <i class=" <%= "#{ICONS_NAVBAR[:home]}" %> "></i>
+      <p>Home</p>
+    </div>
+  <% end %>
+
+  <%= link_to flat_bills_path(@flat) do %>
+    <% css_class_bill = controller?('bills') ? "text-orange" : "text-gray" %>
+    <div class="navbar-bills <%= css_class_bill %>">
+      <i class=" <%= "#{ICONS_NAVBAR[:bill]}" %> "></i>
+      <p>Bills</p>
+    </div>
+  <% end %>
+
+  <%= link_to flat_areas_path(@flat, @area) do %>
+    <% css_class_task = controller?('areas') ? "text-orange" : "text-gray" %>
+    <div class="navbar-tasks <%= css_class_task %> ">
+      <i class=" <%= "#{ICONS_NAVBAR[:task]}" %> "></i>
+      <p>Tasks</p>
+    </div>
+  <% end %>
+
+  <%= link_to flat_events_path(@flat, @event) do %>
+    <% css_class_event = controller?('events') ? "text-orange" : "text-gray" %>
+    <div class="navbar-events <%= css_class_event %> ">
+      <i class=" <%= "#{ICONS_NAVBAR[:event]}" %> "></i>
+      <p>Events</p>
+    </div>
+  <% end %>
+
+  <%= link_to flat_chatrooms_path(@flat) do %>
+    <% css_class_chatroom = controller?('chatrooms') ? "text-orange" : "text-gray" %>
+      <div class="navbar-chat <%= css_class_chatroom %> ">
+        <i class=" <%= "#{ICONS_NAVBAR[:chatroom]}" %> "></i>
+        <p>Chat</p>
+      </div>
+  <% end %>
+
 </div>
 

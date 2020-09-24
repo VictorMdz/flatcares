@@ -12,8 +12,8 @@ form.simple_form input.form-control-file {
   border-radius: 0px;
 }
 
-form.simple_form input, form.simple_form select option {
-  color: #a0a0a0;
+form.simple_form input {
+  color: $gray;
 }
 
 
@@ -25,9 +25,6 @@ form.simple_form select {
   color: #6F747C;
 }
 
-form.simple_form h2 {
-  margin-bottom: 30px;
-}
 
 form.simple_form.edit_payment {
   padding: 0;

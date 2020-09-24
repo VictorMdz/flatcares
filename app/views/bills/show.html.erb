@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8">
-      <div class="d-flex justify-content-left align-items-start">
+      <div class="d-flex justify-content-between align-items-start">
         <div class="mr-4">
           <h1><%= @bill.name %></h1>
           <p> <%= @bill.due_date %> </p>
@@ -22,7 +22,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <%= link_to "< Go to Bills", flat_bills_path, class: "primary-link" %>
         <% if @bill.invoice.attached? %>
-          <a href="<%= cl_image_path @bill.invoice.key %>" target="_blank">Invoice file</a>
+          <a href="<%= cl_image_path @bill.invoice.key %>" class="my-3" target="_blank">Invoice file</a>
         <% else %>
           <p class="mt-3">No invoice attached</p>
         <% end %>

@@ -5,9 +5,7 @@ class FlatsController < ApplicationController
   def show
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
-    @notifications = current_user.notifications
-    @notifications = @notifications.sort_by(&:updated_at)
-
+    @notifications = current_user.notifications.order(created_at: :desc).limit(15)
   end
 
   def new

@@ -39,7 +39,7 @@
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
               <%if payment.user.picture.attached?%>
-                  <%= cl_image_tag payment.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+                  <%= cl_image_tag payment.user.picture.key, :quality=>100, class: 'avatar-secondary-orange mr-2'%>
               <%else%>
                 <i class="fas fa-user-circle fa-2x mr-2"></i>
               <%end%>
@@ -78,6 +78,7 @@
             <% end %>
           </div>
       <% end %>
+    </div>
   </div>
 </div>
 

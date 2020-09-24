@@ -23,13 +23,13 @@ export default class extends Controller {
     const input = event.target;
     const filter = input.dataset.filter;
     const tag = input.tagName;
-    const value = tag === 'BUTTON' ? true : input.value;
+    const value = input.dataset.value || true
 
     if (this.getFilter(filter)) {
-      if (tag === 'BUTTON') {
-        this.removeFilter(filter, value);
-      } else {
+      if (input.dataset.value) {
         this.getFilter(filter).value = value;
+      } else {
+        this.removeFilter(filter, value);
       }
     } else {
       this.addFilter(filter, value);
@@ -43,8 +43,29 @@ export default class extends Controller {
         const bills = data.bills.map(bill => bill.html).join('');
         this.billsTarget.innerHTML = bills;
 
+        const currentActive = input.parentNode.querySelector('.active')
+
+        if (currentActive && currentActive.dataset.value) {
+          currentActive.classList.remove('active')
+        }
+
         input.classList.toggle('active')
+
+        this.activateFilter(input)
       });
+  }
+
+  activateFilter(input) {
+    const dropdown = input.parentNode
+    const activator = dropdown.previousElementSibling
+
+    if (dropdown.querySelector('.active')) {
+      activator.classList.add('active')
+      activator.innerHTML = input.innerText
+    } else {
+      activator.classList.remove('active')
+      activator.innerHTML = activator.dataset.text
+    }
   }
 
   removeFilter(filter, value) {

@@ -11,7 +11,7 @@
           data-action="click->bills#filterBills"
           data-filter="category"
           data-value="<%= category %>"
-          class="btn inactive-filter border-0 dropdown-item"
+          class="inactive-filter border-0 dropdown-item"
         >
           <%= category %>
         </button>
@@ -31,7 +31,7 @@
           data-action="click->bills#filterBills"
           data-filter="amount_cents"
           data-value="<%= amount %>"
-          class="btn inactive-filter border-0 dropdown-item"
+          class="inactive-filter border-0 dropdown-item"
         >
           <%= amount %>
         </button>
@@ -44,10 +44,10 @@
       Bill status
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <button data-action="click->bills#filterBills" data-filter="pending" class="btn inactive-filter border-0 dropdown-item">
+      <button data-action="click->bills#filterBills" data-filter="pending" class="inactive-filter border-0 dropdown-item">
         Pending
       </button>
-      <button data-action="click->bills#filterBills" data-filter="overdue" class="btn inactive-filter dropdown-item border-0">
+      <button data-action="click->bills#filterBills" data-filter="overdue" class="inactive-filter dropdown-item border-0">
         Overdue
       </button>
     </div>

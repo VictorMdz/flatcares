@@ -5,3 +5,7 @@
 .tracker {
   font-size: 12px;
 }
+
+.area > .border-dashed:not(:last-child) {
+  border-bottom: 1px dashed #E4E4E4;
+}

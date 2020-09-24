@@ -34,7 +34,7 @@
     <div class="col-12 col-md-6">
       <% @tasks.each do |task| %>
         <div class="task-card-white-low">
-          <div class="row">
+          <div class="row" id="task-<%= task.id %>">
             <div class="col-8 d-flex justify-content-start align-items-center">
               <%= link_to area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
                 <i class="far fa-trash-alt fa-sm mr-3"></i>

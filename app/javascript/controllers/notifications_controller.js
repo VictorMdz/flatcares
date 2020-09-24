@@ -1,5 +1,6 @@
 import { Controller } from 'stimulus'
 import consumer from "../channels/consumer";
+import toastr from "toastr";
 
 export default class extends Controller {
 
@@ -16,10 +17,13 @@ export default class extends Controller {
 
     consumer.subscriptions.create({ channel: "NotificationChannel", id }, {
       received(data) {
-        container.insertAdjacentHTML('afterbegin', data)
+        container.insertAdjacentHTML('afterbegin', data.html)
+        toastr.options.timeOut = 50000
+        toastr.options.onclick = () => window.location.href = data.url
+        // toastr.info(data.message)
+        toastr.success(data.message);
+        console.log(data)
       },
     });
   }
-
-
 }

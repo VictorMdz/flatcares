@@ -9,11 +9,11 @@ module ApplicationHelper
       when "Bill"
         "Added #{ notification.notifiable.name }"
       when "Event"
-        "Created a new event <strong>#{notification.notifiable.name}</strong> for #{notification.notifiable.date.day}/#{notification.notifiable.date.month}"
+        "#{notification.target.first_name} created a new event <strong>#{notification.notifiable.name}</strong> for #{notification.notifiable.date.day}/#{notification.notifiable.date.month}"
       when "Area"
         "You have been assigned to <strong>#{notification.notifiable.name}</strong>"
       when "Message"
-        "#{notification.notifiable.content}"
+        "<strong>#{notification.notifiable.user.first_name}</strong>: #{notification.notifiable.content}"
       end
   end
 

@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  include Notifiable
+
   belongs_to :user
   belongs_to :flat
   has_many :participations, dependent: :destroy
@@ -7,15 +9,7 @@ class Event < ApplicationRecord
   # validates :type, presence:true
   enum event_type: EVENT_TYPE
 
-  after_create :notify_users, :create_participation
-  after_destroy :clean_notifications
-
-  acts_as_notifiable :users,
-    targets: ->(event, key) {
-      event.flat.users - [event.user] - event.flat.flatmembers.where(is_landlord: true)
-    },
-    notifiable_path: :event_notifiable_path
-
+  after_create :create_participation
 
   def self.format_json(events)
     json = {}
@@ -40,22 +34,6 @@ class Event < ApplicationRecord
     end
 
     json.to_json
-  end
-
-  def event_notifiable_path
-    event_path(event)
-  end
-
-  def notify_users
-    notifications = notify :users, key: "event.create"
-    NotificationChannel.broadcast_to(
-      self.flat,
-      ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
-    )
-  end
-
-  def clean_notifications
-    ActivityNotification::Notification.where(notifiable: self).destroy_all
   end
 
   private

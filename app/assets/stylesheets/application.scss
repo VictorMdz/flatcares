@@ -32,10 +32,18 @@
   display: none;
 }
 
+
+.filter-dropdown.dropdown-menu {
+  border-radius: 20px !important;
+  text-align: center !important;
+}
+
+
 .btn-success:hover {
   background-color: #82C695;
   border-color: #82C695;
 }
+
 
 .cursor-pointer {
   cursor: pointer;

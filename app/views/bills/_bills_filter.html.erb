@@ -5,7 +5,7 @@
       Bill type
     </button>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
       <% @categories.each do |category| %>
         <button
           data-action="click->bills#filterBills"
@@ -25,7 +25,7 @@
       Bill amount
     </button>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
       <% @amounts.keys.each do |amount| %>
         <button
           data-action="click->bills#filterBills"
@@ -43,7 +43,7 @@
     <button data-text="Bill status" class="dropdown-toggle btn inactive-filter border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Bill status
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
       <button data-action="click->bills#filterBills" data-filter="pending" class="inactive-filter border-0 dropdown-item">
         Pending
       </button>

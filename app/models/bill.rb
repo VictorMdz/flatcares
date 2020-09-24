@@ -1,4 +1,5 @@
 class Bill < ApplicationRecord
+  include Notifiable
 
   belongs_to :user
   belongs_to :flat
@@ -16,19 +17,11 @@ class Bill < ApplicationRecord
   validates :amount_cents, presence: true
   validates :due_date, presence: true
 
-  after_create :notify_users, :create_payments
+  after_create :create_payments
 
   after_update :update_payments
-  after_destroy :clean_notifications
 
   monetize :amount_cents
-
-
-  acts_as_notifiable :users,
-    targets: ->(bill, key) {
-      bill.flat.users - [bill.user] - bill.flat.flatmembers.where(is_landlord: true)
-    },
-    notifiable_path: :bill_notifiable_path
 
   def status
     if (Date.today > self.due_date) && self.payments.where(paid: false).size > 0
@@ -48,18 +41,6 @@ class Bill < ApplicationRecord
 
   private
 
-  def bill_notifiable_path
-    bill_path(bill)
-  end
-
-  def notify_users
-    notifications = notify :users, key: "bill.create"
-    NotificationChannel.broadcast_to(
-      self.flat,
-      ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
-    )
-  end
-
   def create_payments
     amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
 
@@ -76,10 +57,6 @@ class Bill < ApplicationRecord
     payments.each do |payment|
       payment.update(amount: amount_by_users, paid: payment.user == paying_user)
     end
-  end
-
-  def clean_notifications
-    ActivityNotification::Notification.where(notifiable: self).destroy_all
   end
 
 end

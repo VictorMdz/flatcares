@@ -18,7 +18,7 @@ export default class extends Controller {
     consumer.subscriptions.create({ channel: "NotificationChannel", id }, {
       received(data) {
         container.insertAdjacentHTML('afterbegin', data.html)
-        toastr.options.timeOut = 50000
+        toastr.options.timeOut = 5000
         toastr.options.onclick = () => window.location.href = data.url
         // toastr.info(data.message)
         toastr.success(data.message);

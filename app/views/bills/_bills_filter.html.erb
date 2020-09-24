@@ -1,29 +1,46 @@
 <%= form_tag flat_bills_path, method: :get, data: { target: "bills.form", flat: @flat.id } do %>
 
-  <div class="btn-group mb-2 mr-2 change-to-active">
-    <div data-action="change->bills#filterBills" data-target="bills.active">
-      <%= select_tag :category,
-        options_for_select(@categories, params[:category]),
-        include_blank: "Bill Type",
-        class: "btn inactive-filter border-0",
-        data: { filter: 'category' }
-      %>
+  <div class="btn-group mb-2 mr-2 select dropdown ">
+    <button class="dropdown-toggle btn inactive-filter border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Bill type
+    </button>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% @categories.each do |category| %>
+        <button
+          data-action="click->bills#filterBills"
+          data-filter="category"
+          data-value="<%= category %>"
+          class="btn inactive-filter border-0 dropdown-item"
+        >
+          <%= category %>
+        </button>
+      <% end %>
     </div>
   </div>
 
-  <div class="btn-group mb-2 mr-2 select">
-    <div data-action="change->bills#filterBills">
-      <%= select_tag :amount_cents,
-        options_for_select(@amounts.keys, params[:amount_cents]),
-        include_blank: "Bill Amount",
-        class: 'btn inactive-filter border-0',
-        data: { filter: 'amount_cents' }
-      %>
+
+  <div class="btn-group mb-2 mr-2 select dropdown ">
+    <button class="dropdown-toggle btn inactive-filter border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Bill amount
+    </button>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% @amounts.keys.each do |amount| %>
+        <button
+          data-action="click->bills#filterBills"
+          data-filter="amount_cents"
+          data-value="<%= amount %>"
+          class="btn inactive-filter border-0 dropdown-item"
+        >
+          <%= amount %>
+        </button>
+      <% end %>
     </div>
   </div>
 
   <div class="btn-group mb-2 mr-2 select dropdown ">
-    <button class="dropdown-toggle btn inactive-filter border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button data-text="Bill status" class="dropdown-toggle btn inactive-filter border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Bill status
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

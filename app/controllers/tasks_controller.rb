@@ -1,15 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:update]
 
-  def update
-    @task = Task.find(params[:id])
-    if @task.update(task_params)
-      redirect_to area_path(@task.area_id)
-    else
-      render area_path(@task.area_id)
-    end
-  end
-
   def new
     @area = Area.find(params[:area_id])
     @flat = @area.flat
@@ -37,12 +28,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @area = Area.find(params[:area_id])
-    @flat = @area.flat
+    @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to area_path(@area)
+      redirect_to area_path(@task.area_id, anchor: "task-#{@task.id}")
     else
-      render edit_area_path
+      render area_path(@task.area_id)
     end
   end
 

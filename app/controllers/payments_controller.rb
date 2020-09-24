@@ -3,7 +3,7 @@ class PaymentsController < ApplicationController
 
   def update
     if @payment.update(payment_params)
-      redirect_to flat_bill_path(@payment.bill.flat, @payment.bill)
+      redirect_to flat_bill_path(@payment.bill.flat, @payment.bill, anchor: "payment-#{@payment.id}")
     else
       render flat_bill_path
     end

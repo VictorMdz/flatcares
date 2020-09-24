@@ -12,8 +12,10 @@
               <h1 class="mb-3">
                 <%= @area.name %> tasks
               </h1>
+              <p>Assigned to: <%= @area.assigned_user.first_name %> <%= @area.assigned_user.last_name[0] %>.</p>
             </div>
-            <div>
+            
+          <div>
 
             <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="far fa-trash-alt secondary-link ml-1"></i>

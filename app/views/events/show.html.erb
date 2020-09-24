@@ -1,38 +1,37 @@
 <div class="container mt-5 mb-3">
-  <div class="row">
-    <div class="col">
-      <div class="d-flex justify-content-between">
-        <!-- TITLE AND AVATAR -->
-        <div class="">
-          <h1> <%= @event.name %> </h1>
-          <div class="ml-1 mb-3">
-            <%= link_to edit_flat_event_path(@flat, @event) do %>
-              <i class="far fa-edit secondary-link mr-1"></i>
-            <% end %>
-            |
-            <%= link_to flat_event_path(@flat, @event), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="far fa-trash-alt secondary-link ml-1"></i>
-            <% end %>
-          </div>
-          <%= link_to "< See all events", flat_events_path, class: "primary-link" %>
-        </div>
-        <div>
-          <% if @event.user.picture.attached? %>
-            <%= cl_image_tag @event.user.picture.key, :quality=>100, class: 'avatar-primary-orange'%>
-          <%else%>
-            <i class="fas fa-user-circle fa-2x mr-2"></i>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 d-flex justify-content-between">
+      <div class="w-75">
+        <h1> <%= @event.name %> </h1>
+        <div class="ml-1 mb-3">
+          <%= link_to edit_flat_event_path(@flat, @event) do %>
+            <i class="far fa-edit secondary-link mr-1"></i>
+          <% end %>
+          |
+          <%= link_to flat_event_path(@flat, @event), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="far fa-trash-alt secondary-link ml-1"></i>
           <% end %>
         </div>
+        <%= link_to "< See all events", flat_events_path, class: "primary-link" %>
       </div>
+      <div class="text-right">
+          <!-- AVATAR -->
+            <% if @event.user.picture.attached? %>
+              <%= cl_image_tag @event.user.picture.key, :quality=>100, class: 'avatar-tertiary-orange'%>
+            <%else%>
+              <i class="fas fa-user-circle fa-2x mr-2"></i>
+            <% end %>
+      </div>
+
     </div>
   </div>
 </div>
 
 <div class="container">
   <!-- EVENT CARD -->
-  <div class="row">
-    <div class="col-12">
-      <div class="calendar-card-white m-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="calendar-card-white mt-3">
         <div class="d-flex justify-content-between">
           <h3 class="mb-3"> <%= @event.event_type.capitalize %></h3>
           <h3><i class="<%= ICONS_EVENT_TYPE[@event.event_type.to_sym] %>"></i></h3>
@@ -53,8 +52,8 @@
 
 
 <!-- BUTTON EVENTS -->
-  <div class="row">
-    <div class="col-12">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
       <div class="d-flex justify-content-center p-0">
         <% css_class_going_button = @current_user_participation.participating ? "btn btn-primary text-white" : "btn shadow text-orange" %>
         <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch, remote: true do |f| %>
@@ -72,41 +71,41 @@
   </div>
 
 <!-- MEMBERS -->
-  <div class="calendar-card-white mt-3">
-    <div class="row">
-      <div class="col-12">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="calendar-card-white mt-3">
 
         <h3 class='mb-3'>Participants <i class="fas fa-users"></i></h3>
-        <p class="border-bottom mb-3">Going (<%= @event_participations_going.size %>)</p>
+        <p class="mb-3">Going (<%= @event_participations_going.size %>)</p>
         <div class="d-flex align-items-center justify-content-start">
           <% @event_participations_going.each do |participation| %>
             <% if participation.participating %>
               <% if participation.user.picture.attached? %>
-                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'mr-2 avatar-secondary-orange'%>
               <%else%>
                 <i class="fas fa-user-circle fa-2x mr-2 ml-2"></i>
               <% end %>
             <% end %>
           <% end %>
         </div>
-        <p class="border-bottom mb-3 mt-3">Not Going (<%= @event_participations_notgoing.size %>)</p>
+        <p class="mb-3 mt-3">Not Going (<%= @event_participations_notgoing.size %>)</p>
         <div class="d-flex align-items-center justify-content-start">
           <% @event_participations_notgoing.each do |participation| %>
             <% if participation.participating == false %>
               <% if participation.user.picture.attached? %>
-                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'mr-2 avatar-secondary-orange'%>
               <%else%>
                 <i class="fas fa-user-circle fa-2x mr-2 ml-2"></i>
               <% end %>
             <% end %>
           <% end %>
         </div>
-        <p class="border-bottom mb-3 mt-3">Invited (<%= @event_participations_invited.size %>)</p>
+        <p class="mb-3 mt-3">Invited (<%= @event_participations_invited.size %>)</p>
         <div class="d-flex align-items-center justify-content-start">
           <% @event_participations_invited.each do |participation| %>
             <% if participation.participating.nil? %>
               <% if participation.user.picture.attached? %>
-                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'avatar-secondary-orange'%>
+                <%= cl_image_tag participation.user.picture.key, :quality=>100, class: 'mr-2 avatar-secondary-orange'%>
               <%else%>
                 <i class="fas fa-user-circle fa-2x mr-2 ml-2"></i>
               <% end %>
@@ -117,4 +116,5 @@
       </div>
     </div>
   </div>
+
 </div>

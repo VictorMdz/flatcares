@@ -6,7 +6,9 @@ class FlatsController < ApplicationController
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
     @notifications = current_user.notifications
-    @notifications = @notifications.sort_by(&:updated_at)
+    # @notifications = @notifications.sort_by(:updated_at)
+    @notifications = @notifications.sort_by {|x| [x.id, x.updated_at] }
+    @notifications.reverse!
 
   end
 

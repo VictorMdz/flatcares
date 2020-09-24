@@ -8,7 +8,7 @@
           data-target="notifications.container"
           data-flat-id="<%= @flat.id %>"
         >
-          <% @notifications.each_with_index do |notification, index| %>
+          <% @notifications.each do |notification| %>
             <%= render 'notification', notification: notification %>
           <% end %>
         </div>

@@ -10,7 +10,9 @@
     </div>
     <div class="col-8 justify-content-start align-items-start">
       <!-- USER NAME -->
-      <h6><%= ApplicationController.helpers.notification_user(notification)&.first_name %></h6>
+      <% if notification.notifiable_type != "Message" %>
+        <h6><%= ApplicationController.helpers.notification_user(notification)&.first_name %></h6>
+      <% end %>
       <!-- NOTIFICATION NAME -->
       <p><%= ApplicationController.helpers.notification_message(notification).try(:html_safe) %></p>
     </div>

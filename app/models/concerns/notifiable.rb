@@ -26,7 +26,7 @@ module Notifiable
       message: ApplicationController.helpers.notification_message(notifications.first).try(:html_safe),
       notification_id: "#{notifications.first.notifiable_type}_#{notifications.first.notifiable_id}",
       url: ApplicationController.helpers.notification_path(notifications.first),
-      user: ApplicationController.helpers.notification_target(notifications.first),
+      user: ApplicationController.helpers.notification_user(notifications.first),
       html: ActionController::Base.new.render_to_string(partial: "flats/notification", locals: { notification: notifications.first })
     )
   end

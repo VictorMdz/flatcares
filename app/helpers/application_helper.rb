@@ -21,10 +21,6 @@ module ApplicationHelper
     notification.notifiable_type == "Area" ? notification.notifiable.assigned_user : notification.notifiable.user
   end
 
-  def notification_target(notification)
-    notification.notifiable.user
-  end
-
   def notification_path(notification)
     case notification.notifiable_type
       when "Bill"

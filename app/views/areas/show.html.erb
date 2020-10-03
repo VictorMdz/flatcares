@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-6">
       <div class="d-flex flex-column justify-content-between mb-3">
-          <div class="d-flex" data-controller="tasks">
+          <div class="d-flex justify-content-between" data-controller="tasks">
             <div
               class="mr-4"
               data-action="click->tasks#changeNameToInput"
@@ -18,12 +18,12 @@
           <div>
 
             <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="far fa-trash-alt secondary-link ml-1"></i>
+              <i class="far fa-trash-alt secondary-link mr-2"></i>
             <% end %>
 
           </div>
           </div>
-        <p><%= link_to "< Go to Areas", flat_areas_path(@flat), class: "primary-link" %></p>
+        <p><%= link_to "< Go to all tasks", flat_areas_path(@flat), class: "primary-link" %></p>
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
     <div class="col-12 col-md-6">
       <% @tasks.each do |task| %>
         <div class="task-card-white-low">
-          <div class="row">
+          <div class="row" id="task-<%= task.id %>">
             <div class="col-8 d-flex justify-content-start align-items-center">
               <%= link_to area_task_path(@area, task), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
                 <i class="far fa-trash-alt fa-sm mr-3"></i>

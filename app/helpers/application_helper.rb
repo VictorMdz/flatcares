@@ -7,9 +7,9 @@ module ApplicationHelper
   def notification_message(notification)
     case notification.notifiable_type
       when "Bill"
-        "Added #{ notification.notifiable.name }"
+        "#{ notification.notifiable.user.first_name } added #{ notification.notifiable.name }"
       when "Event"
-        "#{notification.target.first_name} created a new event <strong>#{notification.notifiable.name}</strong> for #{notification.notifiable.date.day}/#{notification.notifiable.date.month}"
+        "#{notification.notifiable.user.first_name} created a new event <strong>#{notification.notifiable.name}</strong> for #{notification.notifiable.date.day}/#{notification.notifiable.date.month}"
       when "Area"
         "You have been assigned to <strong>#{notification.notifiable.name}</strong>"
       when "Message"

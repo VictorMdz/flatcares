@@ -25,7 +25,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body data-user="<%= current_user&.id %>">
+  <body data-user="<%= current_user&.id %>" data-flat="<%= @flat&.id %>" data-controller="notifications">
 
     <%= render 'shared/navbar' if !controller?('pages') %>
     <div class="main-content <%= params[:controller] %> <%= params[:action] %>">

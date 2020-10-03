@@ -32,6 +32,20 @@ import "controllers"
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
+  // Google Analytics Tracking Code
+  window.dataLayer = window.dataLayer || []
+  function gtag() { dataLayer.push(arguments) }
+
+  gtag('js', new Date())
+
+  const trackGoogleAnalytics = (event) => {
+    gtag('config', 'UA-179567155-1', {
+      'cookie_flags': 'max-age=7200;secure;samesite=none'
+    })
+  }
+
+  document.addEventListener('turbolinks:load', trackGoogleAnalytics)
 });
 
 

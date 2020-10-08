@@ -42,7 +42,7 @@
               <p class="m-0 text-left"><%= task.name %></p>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-              <%= simple_form_for([ @area, task ], remote: true, method: :patch) do |f| %>
+              <%= simple_form_for([ @area, task ], method: :patch) do |f| %>
                 <%= f.input :completed, as: :hidden, input_html: { value: !task.completed }, remote: true %>
                 <button class="bg-transparent border-0" style="outline: none;">
                   <% if task.completed == true %>

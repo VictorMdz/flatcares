@@ -128,9 +128,15 @@
 
 }
 
-.cjslib-day.cjslib-day-listed>.cjslib-day-num {
+.cjslib-day.cjslib-day-listed > .cjslib-day-num {
   font-size: 14px;
   color: #4F4F4F;
+}
+
+.cjslib-day.cjslib-day-listed > .cjslib-day-num[data-longpressed="false"] {
+color: $white;
+background-color: $orange;
+border-radius: 50px;
 }
 
 .cjslib-day.cjslib-day-diluted>.cjslib-day-num {

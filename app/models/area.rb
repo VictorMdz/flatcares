@@ -9,6 +9,7 @@ class Area < ApplicationRecord
   enum category: AREA_CATEGORIES
 
   validates :name, presence: true
+  validates :category, presence: true
 
   before_create :assign_user
 

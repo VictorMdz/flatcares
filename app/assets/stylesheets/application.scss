@@ -18,6 +18,7 @@
 @import "components/tasks";
 @import "components/calendar";
 @import "components/chats";
+@import "components/suggestalgolia";
 
 #toast-container > .toast-success {
   background-image: url(house.png)!important;

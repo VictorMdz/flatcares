@@ -6,6 +6,7 @@ export default class extends Controller {
   connect() {
     this.scrollToLastMessage()
     this.initActionCable()
+    this.addEnterListener()
   }
 
   scrollToLastMessage() {
@@ -45,6 +46,18 @@ export default class extends Controller {
 
         input.value = ''
       },
+    });
+  }
+
+  addEnterListener(event) {
+    const input = document.getElementById("message_content")
+    const submit = document.querySelector(".send-button")
+    event.preventDefault();
+    input.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        submit.click();
+      }
     });
   }
 }

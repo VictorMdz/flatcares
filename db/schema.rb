@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_153048) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "flat_id"
     t.integer "event_type"
+    t.json "json"
     t.string "location"
     t.date "date"
     t.index ["flat_id"], name: "index_events_on_flat_id"

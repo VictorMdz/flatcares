@@ -56,14 +56,14 @@
     <div class="col-12 col-md-6">
       <div class="d-flex justify-content-center p-0">
         <% css_class_going_button = @current_user_participation.participating ? "btn btn-primary text-white" : "btn shadow text-orange" %>
-        <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch, remote: true do |f| %>
-          <%= f.input :participating, :as => :hidden, :input_html => { :value => :true } %>
+        <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch do |f| %>
+          <%= f.input :participating, :as => :hidden, :input_html => { :value => :true }, remote: true %>
           <%= f.submit "I'm going", class: "#{css_class_going_button} px-4" %>
         <% end %>
 
         <% css_class_notgoing_button = @current_user_participation.participating == false ? "btn btn-primary text-white" : "btn shadow text-orange" %>
-        <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch, remote: true do |f| %>
-          <%= f.input :participating, :as => :hidden, :input_html => { :value => :false } %>
+        <%= simple_form_for @current_user_participation, class: "background-none p-0", url: flat_event_participation_path(@flat.id, @event.id, @current_user_participation.id), method: :patch do |f| %>
+          <%= f.input :participating, :as => :hidden, :input_html => { :value => :false }, remote: true %>
           <%= f.submit "Can't go", class: "#{css_class_notgoing_button} px-4" %>
         <% end %>
       </div>

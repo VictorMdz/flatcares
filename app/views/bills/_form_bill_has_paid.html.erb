@@ -1,4 +1,4 @@
-<%= simple_form_for payment, class: "background-none p-0", url: bill_payment_path(@bill, payment), method: :patch, remote: true do |f| %>
-  <%= f.input :paid, :as => :hidden, :input_html => { :value => :true } %>
+<%= simple_form_for payment, class: "background-none p-0", url: bill_payment_path(@bill, payment), method: :patch do |f| %>
+  <%= f.input :paid, :as => :hidden, :input_html => { :value => :true }, remote: true %>
   <%= f.submit "Mark as paid", class: "btn btn-info shadow text-orange px-3" %>
 <% end %>

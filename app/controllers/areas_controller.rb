@@ -1,6 +1,7 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :update, :edit, :destroy]
   before_action :set_tasks, only: [:show]
+  before_action :set_users, only: [:show, :update, :edit, :destroy]
   skip_before_action :verify_authenticity_token, :only => [:update]
 
   def index
@@ -39,10 +40,12 @@ class AreasController < ApplicationController
 
   def edit
     @flat = @area.flat
+    @user = @area.assigned_user
   end
 
   def update
-    @flat = @area.flat
+    # @flat = @area.flat
+    @user = @area.assigned_user
     @area.update(area_params)
       respond_to do |format|
         format.html
@@ -65,10 +68,18 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name, :category)
+    params.require(:area).permit(:name, :category, :assigned_user_id)
   end
 
   def set_tasks
     @tasks = @area.tasks.all.order("created_at")
+  end
+
+  def set_users
+    @users = @flat.users
+    # all_users = []
+    # @users.each do |user|
+    #   all_users << user.first_name
+    # end
   end
 end

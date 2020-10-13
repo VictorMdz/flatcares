@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6">
-      <div class="d-flex flex-column justify-content-between mb-3">
+      <div class="mb-3">
           <div class="d-flex justify-content-between" data-controller="tasks">
             <div
               class="mr-4"
@@ -12,17 +12,17 @@
               <h1 class="mb-3">
                 <%= @area.name %> tasks
               </h1>
-              <p>Assigned to: <%= @area.assigned_user.first_name %> <%= @area.assigned_user.last_name[0] %>.</p>
+            </div>
+            <div>
+              <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="far fa-trash-alt secondary-link mr-2"></i>
+              <% end %>
             </div>
 
-          <div>
-
-            <%= link_to area_path(@area), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="far fa-trash-alt secondary-link mr-2"></i>
-            <% end %>
-
           </div>
-          </div>
+            <div>
+              <p>Assigned to: <%= @area.assigned_user.first_name %> <%= @area.assigned_user.last_name[0] %></p>
+            </div>
         <p><%= link_to "< Go to all tasks", flat_areas_path(@flat), class: "primary-link" %></p>
       </div>
     </div>

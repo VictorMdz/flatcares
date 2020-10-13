@@ -6,6 +6,9 @@ class FlatsController < ApplicationController
     @flat_flatmembers =  @flat.flatmembers
     @flat_areas = @flat.areas
 
+    user = current_user
+    authorize @flat
+
     @notifications = current_user.notifications.limit(15).order(created_at: :desc)
   end
 
@@ -27,13 +30,11 @@ class FlatsController < ApplicationController
 
   def destroy
     @flat.destroy
+    authorize @flat
+
     redirect_to flats_path
   end
 
-  def destroy
-    @flat.destroy
-    redirect_to flats_path
-  end
 
   def update
     @flat.update(flat_params)
@@ -41,6 +42,7 @@ class FlatsController < ApplicationController
         format.html
         format.json { render json: { flat: @flat } }
       end
+    authorize @flat
   end
 
   private

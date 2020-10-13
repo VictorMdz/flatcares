@@ -23,6 +23,7 @@ class Bill < ApplicationRecord
 
   monetize :amount_cents
 
+
   def status
     if (Date.today > self.due_date) && self.payments.where(paid: false).size > 0
       "Overdue"

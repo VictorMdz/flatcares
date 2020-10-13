@@ -8,6 +8,8 @@ class BillsController < ApplicationController
 
     @bills = Bill.where(flat_id: params[:flat_id])
 
+    authorize @bills
+
     if params[:category].present? && params[:category] != ""
       @bills = @bills.by_category(params[:category])
     end
@@ -44,6 +46,7 @@ class BillsController < ApplicationController
 
     @flat = Flat.find(params[:flat_id])
     @chatroom = @flat.chatrooms.first
+
   end
 
   def new

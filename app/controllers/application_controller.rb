@@ -31,5 +31,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  def pundit_user
+    UserContext.new(current_user, session)
+  end
 end

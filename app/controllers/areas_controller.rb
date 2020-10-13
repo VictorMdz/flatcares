@@ -7,6 +7,8 @@ class AreasController < ApplicationController
     @flat = Flat.find(params[:flat_id])
     @areas = Area.all
     @areas = Area.where(flat_id: params[:flat_id])
+
+    authorize @areas
   end
 
   def show

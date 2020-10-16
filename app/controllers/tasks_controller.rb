@@ -2,14 +2,16 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:update]
 
   def new
-    @area = Area.find(params[:area_id])
+    # @area = Area.find(params[:area_id])
+    @area = policy_scope(Area).find(params[:area_id])
     @flat = @area.flat
     @task = Task.new
   end
 
   def create
     @task = Task.new(task_params)
-    @area = Area.find(params[:area_id])
+    # @area = Area.find(params[:area_id])
+    @area = policy_scope(Area).find(params[:area_id])
     @flat = @area.flat
     @task.area_id = @area.id
 
@@ -22,7 +24,8 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @area = Area.find(params[:area_id])
+    # @area = Area.find(params[:area_id])
+    @area = policy_scope(Area).find(params[:area_id])
     @flat = @area.flat
     @task = Task.find(params[:id])
   end
@@ -37,7 +40,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @area = Area.find(params[:area_id])
+    # @area = Area.find(params[:area_id])
+    @area = policy_scope(Area).find(params[:area_id])
     @flat = @area.flat
     @task = Task.find(params[:id])
 

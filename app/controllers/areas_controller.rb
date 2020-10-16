@@ -4,13 +4,14 @@ class AreasController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:update]
 
   def index
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @areas = Area.all
     @areas = Area.where(flat_id: params[:flat_id])
   end
 
   def show
     @flat = @area.flat
+    authorize @area
     @notification = current_user.notifications.find_by(notifiable_id: params[:id], notifiable_type: "Area")
 
     if @notification
@@ -19,7 +20,7 @@ class AreasController < ApplicationController
   end
 
   def new
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @users = @flat.users
     @user = current_user
     @area = Area.new
@@ -27,7 +28,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @area.flat_id = @flat.id
 
     if @area.save
@@ -39,9 +40,11 @@ class AreasController < ApplicationController
 
   def edit
     @flat = @area.flat
+    authorize @area
   end
 
   def update
+    flat = policy_scope(Flat).find(params[:flat_id])
     @flat = @area.flat
     @area.update(area_params)
       respond_to do |format|
@@ -53,6 +56,7 @@ class AreasController < ApplicationController
   def destroy
     @flat = @area.flat
     @area.destroy
+    authorize @area
     redirect_to flat_areas_path(@area.flat_id)
   end
 

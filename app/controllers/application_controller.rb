@@ -30,8 +30,4 @@ class ApplicationController < ActionController::Base
       flats_path
     end
   end
-
-  def pundit_user
-    UserContext.new(current_user, session)
-  end
 end

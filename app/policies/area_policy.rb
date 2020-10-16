@@ -1,16 +1,20 @@
 class AreaPolicy < ApplicationPolicy
 
-  def index?
-    record.first.flat == user.flats.first
+  def show?
+    user.flats.first.id == record.flat.id
   end
 
-  def show?
-    record.first.areas.first.flat == user.flats.first
+  def edit?
+    show?
+  end
+
+  def destroy?
+    show?
   end
 
   class Scope < Scope
     def resolve
-      scope.all
+      user.flats.first.areas
     end
   end
 end

@@ -4,11 +4,10 @@ class BillsController < ApplicationController
   before_action :check_display_index, only: :index
 
   def index
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
 
     @bills = Bill.where(flat_id: params[:flat_id])
 
-    authorize @bills
 
     if params[:category].present? && params[:category] != ""
       @bills = @bills.by_category(params[:category])
@@ -38,6 +37,7 @@ class BillsController < ApplicationController
   end
 
   def show
+    authorize @bill
     @notification = current_user.notifications.find_by(notifiable_id: params[:id], notifiable_type: "Bill")
 
     if @notification
@@ -50,7 +50,7 @@ class BillsController < ApplicationController
   end
 
   def new
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @users = @flat.users
     @user = current_user
     @bill = Bill.new
@@ -61,7 +61,7 @@ class BillsController < ApplicationController
     @bill = Bill.new(bill_params)
     @bill.user_id = current_user.id
 
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @bill.flat_id = @flat.id
 
     if @bill.save
@@ -73,10 +73,11 @@ class BillsController < ApplicationController
 
   def edit
     @flat = Flat.find(params[:flat_id])
+    authorize @bill
   end
 
   def update
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     if @bill.update(bill_params)
       redirect_to flat_bill_path
     else
@@ -87,6 +88,7 @@ class BillsController < ApplicationController
   def destroy
     @flat = Flat.find(params[:flat_id])
     @bill.destroy
+    authorize @bill
     redirect_to flat_bills_path
   end
 

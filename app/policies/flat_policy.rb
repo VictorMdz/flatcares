@@ -27,7 +27,7 @@ class FlatPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.all
+      user.flats
     end
   end
 end

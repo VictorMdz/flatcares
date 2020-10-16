@@ -1,4 +1,4 @@
-class BillPolicy < ApplicationPolicy
+class EventPolicy < ApplicationPolicy
 
   def show?
     user.flats.first.id == record.flat.id

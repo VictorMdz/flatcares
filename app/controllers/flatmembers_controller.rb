@@ -1,10 +1,9 @@
 class FlatmembersController < ApplicationController
 before_action :set_flat, only: [:invite, :update, :send_invitations]
 before_action :set_flatmember, only: [:update, :destroy]
+
   def invite
-
-    @flat = Flat.find(params[:flat_id])
-
+    @flat = policy_scope(Flat).find(params[:flat_id])
   end
 
   def send_invitations
@@ -41,7 +40,7 @@ before_action :set_flatmember, only: [:update, :destroy]
   private
 
   def set_flat
-    @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
   end
 
   def set_flatmember

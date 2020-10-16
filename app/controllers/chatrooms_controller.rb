@@ -1,7 +1,8 @@
 class ChatroomsController < ApplicationController
 
   def index
-    @flat = Flat.find(params[:flat_id])
+    # @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @chatrooms = Chatroom.where(flat_id: @flat.id)
     @message = Message.new
 

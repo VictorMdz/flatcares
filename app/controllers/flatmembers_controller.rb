@@ -18,8 +18,8 @@ before_action :set_flatmember, only: [:update, :destroy]
         user = User.invite!({ email: email }, current_user)
         user.flats.push @flat
       end
-    end
     redirect_to flat_path(@flat)
+    end
 
   end
 

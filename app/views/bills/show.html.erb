@@ -63,18 +63,26 @@
                   <p class= "secondary-p">Has to pay to <%= @bill.paying_user.first_name %> </p>
                 </div>
               <% else %>
-                <div class="text-right">
-                  <h2> <%= humanized_money_with_symbol(payment.amount) %> </h2>
-                  <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
-                  <%= render 'form_bill_hasnt_paid', payment: payment %>
-                </div>
+                  <div class="text-right">
+                    <h2> <%= humanized_money_with_symbol(payment.amount) %> </h2>
+                    <p class= "secondary-p">Has paid to <%= @bill.paying_user.first_name %></p>
+                  <% if ((current_user.id == payment.user_id) || (current_user.id == @bill.paying_user_id)) %>
+                    <%= render 'form_bill_hasnt_paid', payment: payment %>
+                  <% end %>
+                  </div>
               <% end %>
             </div>
-            <% if (payment.user_id != @bill.paying_user_id) & (payment.paid == false) %>
-              <div class="d-flex justify-content-between align-items-center background-none">
-                <%= link_to "Request Payment", flat_bills_path, class: "secondary-link" %>
-                <%= render 'form_bill_has_paid', payment: payment %>
-              </div>
+            <% if ((payment.user_id != @bill.paying_user_id) && (payment.paid == false)) %>
+              <% if (current_user.id == @bill.paying_user_id) %>
+                <div class="d-flex justify-content-between align-items-center background-none">
+                  <%= link_to "Request Payment", flat_bills_path, class: "secondary-link" %>
+                  <%= render 'form_bill_has_paid', payment: payment %>
+                </div>
+              <% elsif (current_user.id == payment.user_id) %>
+                <div class="background-none d-flex align-items-end flex-column">
+                  <%= render 'form_bill_has_paid', payment: payment %>
+                </div>
+              <% end %>
             <% end %>
           </div>
       <% end %>

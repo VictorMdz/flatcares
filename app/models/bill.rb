@@ -4,6 +4,7 @@ class Bill < ApplicationRecord
   belongs_to :user
   belongs_to :flat
   belongs_to :paying_user, class_name: 'User'
+  # belongs_to :bill_members_user, class_name: 'User'
 
 
   has_one_attached :invoice
@@ -43,12 +44,20 @@ class Bill < ApplicationRecord
   private
 
   def create_payments
-    amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
 
-    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_users, paid: true)
+    amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / sharing_member.count
 
-    flat.users.where.not(id: paying_user_id).each do |user|
-      Payment.create(user_id: user.id, bill_id: id, amount: amount_by_users)
+    if sharing_member.include?(paying_user_id)
+      Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_users, paid: true)
+
+      (sharing_member - [paying_user_id]).each do |user|
+        Payment.create(user_id: user, bill_id: id, amount: amount_by_users)
+      end
+    else
+      sharing_member.each do |user|
+        Payment.create(user_id: user, bill_id: id, amount: amount_by_users)
+      end
+
     end
   end
 

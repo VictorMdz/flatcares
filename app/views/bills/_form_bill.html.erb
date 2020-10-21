@@ -31,7 +31,7 @@
   <%= f.association :paying_user,
                     collection: @flat.users,
                     required: true,
-                    label_method: :first_name,
+                    label_method: lambda { |user| user.first_name.nil? ? "#{user.email}" : "#{user.first_name}" },
                     include_blank: "Who paid the bill?",
                     label: false
                     %>
@@ -43,7 +43,7 @@
               value_method: :id,
               include_blank: false,
               include_hidden: false,
-              label_method: :first_name,
+              label_method: lambda { |user| user.first_name.nil? ? "#{user.email}" : "#{user.first_name}" },
               label: "Who is part of the bill?"
               %>
 

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :bills, dependent: :destroy
   has_many :payments, dependent: :destroy
   has_many :paying_bills, class_name: 'Bill', foreign_key: 'paying_user_id'
+  # has_many :paying_members, class_name: 'Bill', foreign_key: 'bill_members_user_id'
   has_one_attached :picture
   # devise :database_authenticatable, :confirmable, :invitable
   # Include default devise modules. Others available are:

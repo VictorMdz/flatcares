@@ -35,6 +35,18 @@
                     include_blank: "Who paid the bill?",
                     label: false
                     %>
+
+  <%= f.input :sharing_member,
+              as: :check_boxes,
+              collection: @flat.users,
+              required: true,
+              value_method: :id,
+              include_blank: false,
+              include_hidden: false,
+              label_method: :first_name,
+              label: "Who is part of the bill?"
+              %>
+
   <%= f.input :invoice,
               as: :file,
               label: false

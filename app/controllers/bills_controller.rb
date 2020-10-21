@@ -102,7 +102,8 @@ class BillsController < ApplicationController
       :due_date,
       :paying_user_id,
       :invoice,
-      :category
+      :category,
+      :sharing_member, sharing_member: []
     )
   end
 

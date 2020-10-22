@@ -78,5 +78,5 @@ gem 'activity_notification'
 gem 'money-rails'
 
 gem 'pg_search'
-gem 'dotenv-rails', groups: [:development, :test]
+
 

@@ -6,10 +6,12 @@ class ChatroomsController < ApplicationController
     @chatrooms = Chatroom.where(flat_id: @flat.id)
     @message = Message.new
 
-    @notification = current_user.notifications.find_by(notifiable_id: params[:message_id], notifiable_type: "Message")
+    @notifications = current_user.notifications.where(notifiable_type: "Message")
 
-    if @notification
-      @notification.update opened_at: Date.today
+    @notifications.each do |notification|
+      if notification
+        notification.update opened_at: Date.today
+      end
     end
   end
 

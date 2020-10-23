@@ -46,7 +46,6 @@ class BillsController < ApplicationController
 
     @flat = Flat.find(params[:flat_id])
     @chatroom = @flat.chatrooms.first
-
   end
 
   def new

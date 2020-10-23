@@ -32,13 +32,24 @@
     </div>
   <% end %>
 
-  <%= link_to flat_chatrooms_path(@flat) do %>
-    <% css_class_chatroom = controller?('chatrooms') ? "text-orange" : "text-gray" %>
-      <div class="navbar-chat <%= css_class_chatroom %> ">
-        <i class=" <%= "#{ICONS_NAVBAR[:chatroom]}" %> "></i>
-        <p>Chat</p>
-      </div>
+  <% notifications_count = current_user.notifications.where(notifiable_type: 'Message', opened_at: nil).count %>
+  <% css_class_chatroom = controller?('chatrooms') ? "text-orange" : "text-gray" %>
+  <% if notifications_count == 0 %>
+    <%= link_to flat_chatrooms_path(@flat) do %>
+        <div class="navbar-chat <%= css_class_chatroom %> ">
+          <i class=" <%= "#{ICONS_NAVBAR[:chatroom]}" %> "></i>
+          <p>Chat</p>
+        </div>
+    <% end %>
+  <% else %>
+    <%= link_to flat_chatrooms_path(@flat) do %>
+        <div class="navbar-chat <%= css_class_chatroom %> ">
+          <i class=" <%= "#{ICONS_NAVBAR[:chatroom]}" %> "></i>
+          <p>Chat <sup class="smartphone"> <span class="badge badge-pill badge-danger text-top"> <%= notifications_count %> </span> </sup> </p>
+        </div>
+    <% end %>
   <% end %>
-
 </div>
+
+
 

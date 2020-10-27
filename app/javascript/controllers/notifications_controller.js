@@ -16,6 +16,7 @@ export default class extends Controller {
     const container = document.querySelector('#notifications-wrapper')
     const flatId = document.body.dataset.flat
     const user = document.body.dataset.user
+    const badge = document.querySelector('.badge').innerText
 
 
     if (flatId) {
@@ -35,6 +36,7 @@ export default class extends Controller {
             toastr.options.onclick = () => window.location.href = data.url
             toastr.success(data.message);
             notified.add(data.notification_id)
+            badge
           }
         },
       });

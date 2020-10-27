@@ -44,7 +44,8 @@
   <% else %>
     <%= link_to flat_chatrooms_path(@flat) do %>
         <div class="navbar-chat <%= css_class_chatroom %> ">
-          <i class=" <%= "#{ICONS_NAVBAR[:chatroom]}" %> "> <sup class="smartphone"> <span class="badge badge-pill badge-danger text-top"> <%= notifications_count %> </span> </sup> </i>
+          <sup class="smartphone"> <span class="badge badge-pill badge-danger text-top notification-badge"> <%= notifications_count %> </span> </sup>
+          <i class=" <%= "#{ICONS_NAVBAR[:chatroom]}" %> "> </i>
           <p>Chat</p>
         </div>
     <% end %>

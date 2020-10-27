@@ -22,15 +22,19 @@
           </div>
 
           <div class="dropdown">
-            <p data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button role="button" type="button" class="btn dropdown p-0" data-toggle="dropdown">
               Assigned to: <%= @area.assigned_user.first_name %> <%= @area.assigned_user.last_name[0] %>
-            </p>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </button>
+            <div class="dropdown-menu p-1 text-center" aria-labelledby="dropdownMenuButton" data-remote="true">
               <% @flat.users.each do |user| %>
-                <a class="dropdown-item" href="#"><%= user.first_name %></a>
+                <%= simple_form_for @area, class: "dropdown-item background-none p-0 m-0", url: flat_area_path(@flat, @area), method: :patch do |f| %>
+                    <%= f.input :assigned_user_id, :as => :hidden, :input_html => { :value => "#{user.id}" } %>
+                    <%= f.submit "#{user.first_name}", class: "dropdown-item submit-tag p-0"%>
+                <% end %>
               <% end %>
             </div>
           </div>
+
         <p><%= link_to "< Go to all tasks", flat_areas_path(@flat), class: "primary-link" %></p>
       </div>
     </div>

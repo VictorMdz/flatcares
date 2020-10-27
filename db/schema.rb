@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_143422) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "flat_id"
     t.integer "event_type"
+    t.json "json"
     t.string "location"
     t.date "date"
     t.index ["flat_id"], name: "index_events_on_flat_id"
@@ -105,22 +106,6 @@ ActiveRecord::Schema.define(version: 2020_10_20_143422) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "full_address"
-  end
-
-  create_table "invites", force: :cascade do |t|
-    t.string "email"
-    t.string "token"
-    t.integer "sender_id"
-    t.integer "recipient_id"
-    t.integer "invitable_id"
-    t.string "invitable_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_invites_on_email"
-    t.index ["invitable_id", "invitable_type"], name: "index_invites_on_invitable_id_and_invitable_type"
-    t.index ["recipient_id"], name: "index_invites_on_recipient_id"
-    t.index ["sender_id"], name: "index_invites_on_sender_id"
-    t.index ["token"], name: "index_invites_on_token"
   end
 
   create_table "messages", force: :cascade do |t|

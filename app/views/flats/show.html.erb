@@ -69,7 +69,7 @@
                           <% if flatmember.is_admin %>
                             <p class="dropdown-item m-0 background-admin">Admin</p>
                           <% else %>
-                            <%= simple_form_for flatmember, class: "dropdown-item background-none p-0 m-0", url: flat_flatmember_path(@flat, flatmember), method: :patch, remote: true do |f| %>
+                            <%= simple_form_for flatmember, class: "dropdown-item background-none p-0 m-0", url: flat_flatmember_path(@flat, flatmember), method: :patch do |f| %>
                               <%= f.input :is_admin, :as => :hidden, :input_html => { :value => :true } %>
                               <%= f.submit "Make admin", class: "dropdown-item submit-tag p-0" %>
                             <% end %>

@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  static targets = ["title", "input"]
+  static targets = ["title", "input", "assignee", "area"]
 
   changeNameToInput () {
     if (this.titleTarget.querySelector('h1')) {
@@ -13,7 +13,6 @@ export default class extends Controller {
   }
 
   saveValueOfInput () {
-    console.log(this.titleTarget.dataset.id)
     fetch(`/areas/${this.titleTarget.dataset.id}`, {
       headers: { accept: "application/json", 'content-type': 'application/json' },
       method: "PATCH",
@@ -36,4 +35,5 @@ export default class extends Controller {
       `
     }
   }
+
 }

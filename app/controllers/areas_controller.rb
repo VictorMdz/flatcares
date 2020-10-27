@@ -49,13 +49,20 @@ class AreasController < ApplicationController
   end
 
   def update
-    flat = policy_scope(Flat).find(params[:flat_id])
+    # flat = policy_scope(Flat).find(params[:flat_id])
     @flat = @area.flat
-    @area.update(area_params)
-      respond_to do |format|
-        format.html
-        format.json { render json: { area: @area } }
-      end
+
+    if @area.update(area_params)
+      redirect_to flat_area_path(@flat, @area)
+    else
+      redirect_to flat_areas_path(@flat)
+    end
+
+    # @area.update(area_params)
+    #   respond_to do |format|
+    #     format.html
+    #     format.json { render json: { area: @area } }
+    #   end
   end
 
   def destroy

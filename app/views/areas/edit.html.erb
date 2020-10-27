@@ -6,15 +6,19 @@
         <%= f.input :name,
                     placeholder: "Area's name",
                     label: false %>
+
         <%= f.input :category,
                     placeholder: "New Area's type",
                     label: false,
                     collection: AREA_CATEGORIES %>
 
-        <%= f.input :assigned_user_id,
-                    placeholder: "Assign to",
-                    label: false,
-                    collection: @users %>
+        <%= f.association :assigned_user,
+                    collection: @flat.users,
+                    required: true,
+                    label_method: :first_name,
+                    include_blank: "Who is going to be resposible?",
+                    label: false
+                    %>
 
         <%= f.submit "Update area", class: "btn btn-success text-white"%>
       <% end %>

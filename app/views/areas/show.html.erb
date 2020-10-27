@@ -20,9 +20,17 @@
             </div>
 
           </div>
-            <div>
-              <p>Assigned to: <%= @area.assigned_user.first_name %> <%= @area.assigned_user.last_name[0] %></p>
+
+          <div class="dropdown">
+            <p data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Assigned to: <%= @area.assigned_user.first_name %> <%= @area.assigned_user.last_name[0] %>
+            </p>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% @flat.users.each do |user| %>
+                <a class="dropdown-item" href="#"><%= user.first_name %></a>
+              <% end %>
             </div>
+          </div>
         <p><%= link_to "< Go to all tasks", flat_areas_path(@flat), class: "primary-link" %></p>
       </div>
     </div>

@@ -27,9 +27,9 @@
             </button>
             <div class="dropdown-menu p-1 text-center" aria-labelledby="dropdownMenuButton" data-remote="true">
               <% @flat.users.each do |user| %>
-                <%= simple_form_for @area, class: "dropdown-item background-none p-0 m-0", url: flat_area_path(@flat, @area), method: :patch, remote: true do |f| %>
+                <%= simple_form_for @area, class: "dropdown-item background-none p-0 m-0", url: flat_area_path(@flat, @area), method: :patch do |f| %>
                     <%= f.input :assigned_user_id, :as => :hidden, :input_html => { :value => "#{user.id}" } %>
-                    <%= f.submit "#{user.first_name}", class: "dropdown-item submit-tag p-0" %>
+                    <%= f.submit "#{user.first_name}", class: "dropdown-item submit-tag p-0"%>
                 <% end %>
               <% end %>
             </div>

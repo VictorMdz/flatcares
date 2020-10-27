@@ -36,38 +36,4 @@ export default class extends Controller {
     }
   }
 
-  changeAssigneeToArea () {
-    if (this.assigneeTarget.querySelector('div .list-js')) {
-      this.assigneeTarget.innerHTML = `
-        <input autofocus type="text" data-action="blur->tasks#saveAssigneeOfArea" class="area-group-text mb-3" data-target="tasks.area">
-      `
-    }
-  }
-
-  saveAssigneeOfArea () {
-    console.log(this.areaTarget.value)
-    fetch(`/areas/${this.assigneeTarget.dataset.id}`, {
-      headers: { accept: "application/json", 'content-type': 'application/json' },
-      method: "PATCH",
-      body: JSON.stringify({
-        area: {
-          assigned_user: this.areaTarget.value }
-        }
-      )
-    })
-      .then(response => response.json())
-      .then((data) => {
-        this.changeAreaToAssignee(data.area.assigned_user);
-      });
-  }
-
-  changeAreaToAssignee (assignee) {
-    if (this.assigneeTarget.querySelector('area')) {
-      this.assigneeTarget.innerHTML = `
-        <p data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Assigned to: ${assignee.first_name} ${assignee.last_name[0]}
-        </p>
-      `
-    }
-  }
 }

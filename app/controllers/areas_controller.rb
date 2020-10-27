@@ -49,7 +49,7 @@ class AreasController < ApplicationController
   end
 
   def update
-    flat = policy_scope(Flat).find(params[:flat_id])
+    # flat = policy_scope(Flat).find(params[:flat_id])
     @flat = @area.flat
     @area.update(area_params)
       respond_to do |format|

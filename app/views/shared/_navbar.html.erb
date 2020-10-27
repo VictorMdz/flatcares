@@ -29,10 +29,19 @@
           <% css_class_event = controller?('events') ? "nav-link text-orange" : "nav-link text-gray" %>
           <%= link_to "Events", flat_events_path(@flat), class: "#{css_class_event}" %>
         </li>
-        <li class="nav-item">
+        <div class="nav-item">
           <% css_class_chatroom = controller?('chatrooms') ? "nav-link text-orange" : "nav-link text-gray" %>
-          <%= link_to "Chat", flat_chatrooms_path(@flat), class: "#{css_class_chatroom}" %>
-        </li>
+          <% notifications_count = current_user.notifications.where(notifiable_type: 'Message', opened_at: nil).count %>
+          <% if notifications_count == 0 %>
+            <%= link_to "Chat", flat_chatrooms_path(@flat), class: "#{css_class_chatroom}" %>
+          <% else %>
+            <div class="d-flex justify-content-between align-items-center">
+              <%= link_to flat_chatrooms_path(@flat), class: "#{css_class_chatroom}" do %>
+                <div>Chat <sup> <span class="badge badge-pill badge-danger text-top"> <%= notifications_count %> </span> </sup> </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 
       <% elsif (user_signed_in?) && (@flats.nil?) %>
         <li class="nav-item dropdown">

@@ -1,5 +1,6 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :update, :edit, :destroy]
+  # before_action :set_users, only: [:show, :update, :edit, :destroy]
   before_action :set_tasks, only: [:show]
   skip_before_action :verify_authenticity_token, :only => [:update]
 
@@ -40,7 +41,11 @@ class AreasController < ApplicationController
 
   def edit
     @flat = @area.flat
+    @users = @flat.users
+
+
     authorize @area
+
   end
 
   def update
@@ -69,10 +74,17 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name, :category)
+    params.require(:area).permit(:name, :category, :assigned_user_id)
   end
 
   def set_tasks
     @tasks = @area.tasks.all.order("created_at")
   end
+
+  # def set_users
+  #   @users = []
+  #   @flat.users.each do |user|
+  #     @users << "#{user.first_name}"
+  #   end
+  # end
 end

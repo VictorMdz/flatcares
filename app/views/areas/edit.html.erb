@@ -1,10 +1,25 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <%= simple_form_for  @area do |f| %>
+      <%= simple_form_for @area do |f| %>
         <h2>Edit Area </h2>
-        <%= f.input :name, placeholder: "Area's name", label: false %>
-        <%= f.input :description, placeholder: "Description", label: false %>
+        <%= f.input :name,
+                    placeholder: "Area's name",
+                    label: false %>
+
+        <%= f.input :category,
+                    placeholder: "New Area's type",
+                    label: false,
+                    collection: AREA_CATEGORIES %>
+
+        <%= f.association :assigned_user,
+                    collection: @flat.users,
+                    required: true,
+                    label_method: :first_name,
+                    include_blank: "Who is going to be resposible?",
+                    label: false
+                    %>
+
         <%= f.submit "Update area", class: "btn btn-success text-white"%>
       <% end %>
     </div>

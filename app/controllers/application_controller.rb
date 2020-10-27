@@ -30,6 +30,4 @@ class ApplicationController < ActionController::Base
       flats_path
     end
   end
-
-
 end

@@ -5,9 +5,7 @@ class Bill < ApplicationRecord
   belongs_to :flat
   belongs_to :paying_user, class_name: 'User'
 
-
   has_one_attached :invoice
-
   has_many :payments, dependent: :destroy
 
   enum category: CATEGORIES
@@ -18,10 +16,10 @@ class Bill < ApplicationRecord
   validates :due_date, presence: true
 
   after_create :create_payments
-
   after_update :update_payments
 
   monetize :amount_cents
+
 
   def status
     if (Date.today > self.due_date) && self.payments.where(paid: false).size > 0
@@ -42,21 +40,25 @@ class Bill < ApplicationRecord
   private
 
   def create_payments
-    amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
+    amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / sharing_member.count
 
-    Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_users, paid: true)
+    if sharing_member.include?(paying_user_id)
+      Payment.create(user_id: paying_user_id, bill_id: id, amount: amount_by_users, paid: true)
 
-    flat.users.where.not(id: paying_user_id).each do |user|
-      Payment.create(user_id: user.id, bill_id: id, amount: amount_by_users)
+      (sharing_member - [paying_user_id]).each do |user|
+        Payment.create(user_id: user, bill_id: id, amount: amount_by_users)
+      end
+    else
+      sharing_member.each do |user|
+        Payment.create(user_id: user, bill_id: id, amount: amount_by_users)
+      end
     end
+
   end
 
   def update_payments
-    amount_by_users = ActionView::Base.new.humanized_money(amount).to_f / flat.users.count
-
-    payments.each do |payment|
-      payment.update(amount: amount_by_users, paid: payment.user == paying_user)
-    end
+    payments.destroy_all
+    create_payments
   end
 
 end

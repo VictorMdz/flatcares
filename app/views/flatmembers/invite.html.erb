@@ -14,7 +14,8 @@
                 <div class="mb-2 additional-fields" data-target="invitations.additionalFields" >
                 </div>
               </div>
-            <%= submit_tag("Invite", class: 'btn btn-primary text-white')%>
+            <%= submit_tag("Invite", class: 'btn btn-primary text-white mb-3', data: { disable_with: "Mate created!" })%>
+          <p><%= link_to "Go back to #{@flat.name}", flat_path(@flat), class: "primary-link" %></p>
           </div>
         <% end %>
       </div>

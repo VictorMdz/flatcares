@@ -2,13 +2,16 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :destroy, :update, :edit]
 
   def index
-    @flat = Flat.find(params[:flat_id])
+    # @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @events = Event.where(flat_id: params[:flat_id])
     @formatted_events = Event.format_json @events
   end
 
   def show
+    authorize @event
     @flat = Flat.find(params[:flat_id])
+    # @flat = policy_scope(Flat).find(params[:flat_id])
     @event_participations =  @event.participations
     @current_user_participation = @event_participations.where(user_id: current_user).first
 
@@ -25,7 +28,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @flat = Flat.find(params[:flat_id])
+    # @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @users = @flat.users
     @user = current_user
     @event = Event.new
@@ -36,7 +40,8 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
 
-    @flat = Flat.find(params[:flat_id])
+    # @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     @event.flat_id = @flat.id
 
     if @event.save
@@ -48,10 +53,12 @@ class EventsController < ApplicationController
 
   def edit
     @flat = Flat.find(params[:flat_id])
+    authorize @event
   end
 
   def update
-    @flat = Flat.find(params[:flat_id])
+    # @flat = Flat.find(params[:flat_id])
+    @flat = policy_scope(Flat).find(params[:flat_id])
     if @event.update(event_params)
       redirect_to flat_event_path(@flat, @event)
     else
@@ -61,6 +68,7 @@ class EventsController < ApplicationController
 
   def destroy
     @flat = Flat.find(params[:flat_id])
+
     @event.destroy
     redirect_to flat_events_path(@flat)
   end

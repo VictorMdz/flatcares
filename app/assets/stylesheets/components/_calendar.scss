@@ -35,6 +35,7 @@
 
 .cjslib-days > div > label {
   justify-content: center;
+  align-items: center;
 }
 
 .cjslib-year, .cjslib-month, .cjslib-labels, .cjslib-days, .cjslib-day-diluted {
@@ -104,8 +105,8 @@
 }
 
 .cjslib-day-listed {
-  border-bottom: 0!important;;
-  border-right: 0!important;;
+  border-bottom: 0;
+  border-right: 0;
   border-radius: 5px;
 }
 
@@ -122,28 +123,10 @@
   text-align: center!important;
 }
 
-.cjslib-day>.cjslib-day-num {
-  padding-left: 10px;
-  padding-right: 10px;
-
-}
-
 .cjslib-day.cjslib-day-listed > .cjslib-day-num {
   font-size: 14px;
   color: #4F4F4F;
 }
-
-// .cjslib-day.cjslib-day-listed > .cjslib-day-num[data-longpressed="false"] {
-//   color: $white;
-//   background-color: $orange;
-//   border-radius: 50px;
-// }
-
-// .cjslib-day.cjslib-day-listed.cjslib-day-today > .cjslib-day-num[data-longpressed="false"] {
-//   color: $white;
-//   border: none;
-// }
-
 
 .cjslib-day.cjslib-day-diluted>.cjslib-day-num {
   font-size: 14px;
@@ -154,17 +137,21 @@
   -webkit-box-shadow: none!important;
   box-shadow: none!important;
   background-color: $orange;
-  border-radius: 50px;
+  align-items: center;
     span {
       color: $white!important;
     }
   }
 
-
 .cjslib-day.cjslib-day-today > .cjslib-day-num {
-  border-color: #E7836B!important;
+  border:none;
   padding-bottom: 0;
   color: #E7836B;
+}
+
+.cjslib-day-radios:not(:checked)+.cjslib-day-today {
+  border-bottom: 2px solid $orange;
+  border-radius: 0px;
 }
 
 .cjslib-calendar.cjslib-size-small .cjslib-day>.cjslib-day-indicator {

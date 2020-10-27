@@ -1,4 +1,4 @@
 <%= simple_form_for payment, class: "background-none", url: bill_payment_path(@bill, payment), method: :patch do |f| %>
   <%= f.input :paid, :as => :hidden, :input_html => { :value => :false }, remote: true %>
-  <%= f.submit "Mark as unpaid", class: "btn btn-link primary-link" %>
+  <%= f.submit "Mark as unpaid", class: "btn btn-link primary-link margin-changes" %>
 <% end %>

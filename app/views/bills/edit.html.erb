@@ -3,11 +3,56 @@
     <div class="col-md-8">
       <%= simple_form_for [@flat, @bill] do |f| %>
         <h2>Edit a Bill</h2>
-        <%= f.input :name, placeholder: "Bill's Name", label: false %>
-        <%= f.input :amount, placeholder: 'How much was the payment?', label: false %>
-        <%= f.input :due_date, class: "form-control", placeholder: 'Date of the bill', label: false %>
-        <%= f.association :paying_user, collection: @flat.users, label_method: :first_name, include_blank: "Who paid the bill?", label: false %>
-        <%= f.input :invoice, as: :file, label: false %>
+        <%= f.input :name,
+              required: true,
+              placeholder: "Bill's Name",
+              label: false
+              %>
+        <%= f.input :category,
+                    collection: CATEGORIES,
+                    required: true,
+                    include_blank: "Bill's Category",
+                    label: false
+                    %>
+        <%= f.input :amount,
+                    as: :float,
+                    required: true,
+                    placeholder: 'How much was the payment?',
+                    label: false,
+                    input_html:
+                      { min: 0,
+                        value: nil,
+                        class: 'form-control numeric float optional'
+                      }
+                    %>
+        <%= f.input :due_date,
+                    required: true,
+                    placeholder: "Year",
+                    class: "form-control"
+                    %>
+        <%= f.association :paying_user,
+                          collection: @flat.users,
+                          required: true,
+                          label_method: :first_name,
+                          include_blank: "Who paid the bill?",
+                          label: false
+                          %>
+
+          <%= f.input :sharing_member,
+              as: :check_boxes,
+              collection: @flat.users,
+              required: true,
+              value_method: :id,
+              include_blank: false,
+              include_hidden: false,
+              label_method: lambda { |user| user.first_name.nil? ? "#{user.email}" : "#{user.first_name}" },
+              label: "Who is part of the bill?"
+              %>
+
+        <%= f.input :invoice,
+                    as: :file,
+                    label: false
+                    %>
         <%= f.submit "Submit the bill", class: "btn btn-success text-white"%>
       <% end %>
     </div>

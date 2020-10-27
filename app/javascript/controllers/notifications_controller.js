@@ -17,6 +17,7 @@ export default class extends Controller {
     const flatId = document.body.dataset.flat
     const user = document.body.dataset.user
 
+
     if (flatId) {
       consumer.subscriptions.create({ channel: "NotificationChannel", id: flatId }, {
         received(data) {

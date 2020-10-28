@@ -1,5 +1,1 @@
-<h1>User#invitations</h1>
-
-<p>
-  <%= @user.first_name %>, find me in app/views/user_mailer/invitations.html.erb
-</p>
+<% render '../devise/mailer/invitation_instructions.html.erb' %>

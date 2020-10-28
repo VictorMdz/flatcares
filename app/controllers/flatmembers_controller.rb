@@ -17,7 +17,7 @@ before_action :set_flatmember, only: [:update, :destroy]
       else
         user = User.invite!({ email: email }, current_user)
         user.flats.push @flat
-        mail = UserMailer.with(user: user).invitations
+        mail = UserMailer.with(user: user).invitations(user)
         mail.deliver_now
       end
     redirect_to flat_path(@flat)

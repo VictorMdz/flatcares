@@ -5,8 +5,8 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.invitations.subject
   #
-  def invitations
-    @user = params[:user] # Instance variable => available in view
+  def invitations(user)
+    @user = user # Instance variable => available in view
     mail(to: @user.email, subject: 'Invitation to join Flatcares')
     # This will render a view in `app/views/user_mailer`!
   end

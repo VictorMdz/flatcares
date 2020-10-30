@@ -38,7 +38,8 @@
 
   <%= f.input :sharing_member,
               as: :check_boxes,
-              collection: @flat.users,
+              collection: [User.new(id: 0, first_name: 'Select All')] + @flat.users,
+              input_html: {data: {behaviour: 'select-all'}},
               required: true,
               value_method: :id,
               include_blank: false,
